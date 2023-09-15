@@ -15,7 +15,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "root";
-        $dbname = "your_database_name";
+        $dbname = "dlamrade";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -33,6 +33,16 @@
         else{
             if(isset($_GET['addN']) && $_GET['addN'] == "1"){
 
+                $sql = "SELECT positive_feedback_count FROM evenement WHERE id";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $count = $row["positive_feedback_count"];
+                $count++;
+
+                $sql = "UPDATE feedback_counts SET positive_feedback_count = $count WHERE id = 1";
+                $result = $conn->query($sql);
+
+                header("Location: index.php");
                 echo "<div class=\"alert alert-success\" role=\"alert\">Merci d'avoir rempli le formulaire 1</div>";
             }
             else if (isset($_GET['addN']) && $_GET['addN'] == "2"){
