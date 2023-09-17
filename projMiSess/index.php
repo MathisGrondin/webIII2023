@@ -19,7 +19,7 @@
                     <div class="card-body h-100">
                         <div class="row text-center h-100 my-5">
                             <div class="col-4">
-                                    <a href="add.php?addN=1Evenement=<?php echo "$even" ?>" class="btn btn-success w-100 h-100 border border-1 border-secondary rounded-pill">
+                                    <a href="add.php?addN=1" class="btn btn-success w-100 h-100 border border-1 border-secondary rounded-pill">
                                         <div class="d-flex justify-content-between flex-column w-100 h-100">
                                             <img src="img/admin.png" alt="admin" class="img-fluid">
                                             <p class="p-0 m-0 fw-bold">Adore</p>
@@ -28,7 +28,7 @@
                                 </form>
                             </div>
                             <div class="col-4">
-                                <a href="add.php?addN=2Evenement=<?php echo "$even" ?>" class="btn btn-warning w-100 h-100 border border-1 border-secondary rounded-pill">
+                                <a href="add.php?addN=2" class="btn btn-warning w-100 h-100 border border-1 border-secondary rounded-pill">
                                     <div class="d-flex justify-content-between flex-column w-100 h-100">
                                         <img src="img/admin.png" alt="admin" class="img-fluid">
                                         <p class="p-0 m-0 fw-bold">Neutre</p>
@@ -36,7 +36,7 @@
                                 </a>
                             </div>
                             <div class="col-4">
-                                <a href="add.php?addN=3Evenement=<?php echo "$even" ?>" class="btn btn-danger w-100 h-100 border border-1 border-secondary rounded-pill">
+                                <a href="add.php?addN=3" class="btn btn-danger w-100 h-100 border border-1 border-secondary rounded-pill">
                                     <div class="d-flex justify-content-between flex-column w-100 h-100">
                                         <img src="img/admin.png" alt="admin" class="img-fluid">
                                         <p class="p-0 m-0 fw-bold">Déteste</p>
