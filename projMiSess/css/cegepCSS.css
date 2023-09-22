@@ -10,6 +10,10 @@
     color : #CF152D;
 }
 
+.border-rouge-cegep{
+    border: 2px solid #CF152D;
+}
+
 .rougeOrangeCegep{
     color : #EF3832;
 }
@@ -17,7 +21,11 @@
 .lilasCegep{
     color : #DFCCE4;
 }
+.bgLilasCegep{
+    background-color: #DFCCE4;
+}
 
 .fontCegep{
     font-family: century gothic;
 }
+
