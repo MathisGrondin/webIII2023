@@ -1,8 +1,25 @@
-.icone-menu{
-    width: 25%;
+img{
+    width: 20%;
 }
 
-#rowMenu, #contMenu, #colMenu{
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.bgBleuCegep{
+    background-color: #092D74;
+}
+
+.bgLilasCegep{
+    background-color: #DFCCE4;
+}
+
+.border-rouge-cegep{
+    border: 2px solid #CF152D;
+}
+
+/* #rowMenu, #contMenu, #colMenu{
     height: 8vh;
 }
 
@@ -21,4 +38,4 @@
     justify-content: center;
 }
 
-
+ */
