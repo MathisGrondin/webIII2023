@@ -6,6 +6,10 @@
     background-color : #092D74;
 }
 
+.border-bleuCegep{
+    border: 2px solid #092D74;
+}
+
 .rougeCegep{
     color : #CF152D;
 }
