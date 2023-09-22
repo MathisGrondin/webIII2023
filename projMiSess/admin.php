@@ -297,43 +297,43 @@ session_start();
             <div class="col-xl-6">
                 <!-- Card pour création d'un événement -->
                 <div class="card">
-                    <div class="card-header p-2 text-center fontCegep fw-2">
-                        <h3 class="p-0 m-0" id="titreCarteModifier">Création d'un événement</h3>
+                    <div class="card-header p-2 bg bg-bleuCegep">
+                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
-                        <div class="card-body">
+                        <div class="card-body bg bgLilasCegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="dateEvent" class="fontCegep fw-bold fs-6">Date</label>
+                                    <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="date" name="dateEvent" class="form-control">
+                                    <input type="date" name="dateEvent" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center">
+                            <div class="row d-flex align-items-center pt-3">
                                 <div class="col-4">
-                                    <label for="lieuEvent" class="fontCegep fw-bold fs-6">Lieu</label>
+                                    <label for="lieuEvent" class="fontCegep bleuCegep fw-bold fs-6">Lieu</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="lieuEvent" class="form-control">
+                                    <input type="text" name="lieuEvent" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row d-flex align-items-center pt-3">
                                 <div class="col-4">
-                                    <label for="nomEvent" class="fontCegep fw-bold fs-6">Nom</label>
+                                    <label for="nomEvent" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomEvent" class="form-control">
+                                    <input type="text" name="nomEvent" class="form-control border-bleuCegep">
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row d-flex align-items-center pt-3">
                                 <div class="col-4">
-                                    <label for="progEvent" class="fontCegep fw-bold fs-6">Programme</label>
+                                    <label for="progEvent" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="progEvent" class="form-control">
+                                    <select name="progEvent" class="form-control border-bleuCegep">
 
                                         <?php
 
@@ -356,18 +356,20 @@ session_start();
                             </div>
                         </div>
                         
-                        <div class="card-footer">
-                            <div class="row">
+                        <div class="card-footer bg bg-bleuCegep">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <button type="submit" class="btn btn-success w-100">Créer</button>
+                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="ajouter" class="me-2">Créer</button>
                                 </div>
 
                                 <div class="col-4">
-                                    <a href="admin.php?page=events&action=Modifier" class="btn btn-warning w-100">Liste événements</a>
+                                    <button class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep">
+                                        <a href="admin.php?page=events&action=Modifier"><img src="icones/modifier.png" alt="ajouter" class="me-1">Liste événements</a>                                        
+                                    </button>
                                 </div>
 
                                 <div class="col-4">
-                                    <button type="reset" class="btn btn-danger w-100">Annuler</button>
+                                    <button type="reset" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/retour.png" alt="ajouter" class="me-1">Annuler</button>
                                 </div>
                             </div>
                         </div>
