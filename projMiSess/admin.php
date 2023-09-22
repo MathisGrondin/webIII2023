@@ -13,6 +13,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleco.css">
+    <link rel="stylesheet" href="css/cegepCSS.css">
     <title>Connexion admin</title>
 </head>
 <body>
@@ -165,9 +166,9 @@ session_start();
 
     <!-- Barre de menu Admin -->
     <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-        <div class="row bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+        <div class="row bg bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
             <div class="col">
-                <a href="admin.php?page=events" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
                     <div class="row ">
                         <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                             <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
@@ -178,7 +179,7 @@ session_start();
             </div>
 
             <div class="col">
-                <a href="admin.php?page=users" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                <a href="admin.php?page=users" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
                     <div class="row ">
                         <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                             <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
@@ -235,12 +236,32 @@ session_start();
 
     <!-- Bas de page admin : Événements -->
     <div class="container-fluid h-100 w-100" id="containerEvent" style="display: <?php echo $pageEvent; ?>">
-        <div class="row bgLilasCegep h-100" id="rowEvent">
-            <div class="offset col-xl-4"></div>
-            <div class="col-xl-4 d-flex justify-content-center align-items-center">
-                <div class="card h-50 w-100">
-                    <div class="card-header text-center">
-                        <h4>Choix de l'événement</h4>
+        <div class="row bgLilasCegep h-100  d-flex justify-content-center align-items-center" id="rowEvent">
+            <div class="offset col-xl-1"></div>
+            <div class="col-xl-2">
+                <div class="card">
+                    <div class="card-body">
+                        <table>
+                            <th>Événements</th>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="offset col-xl-1"></div>
+            <div class="col-xl-4">
+                <div class="card h-auto w-auto">
+                    <div class="card-header p-2 text-center fontCegep fw-2">
+                        <h3 class="p-0 m-0">Création d'un événement</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-4 text-center">
+                                <label for="nomEvent" class="fontCegep fw-bold fs-6">Date</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" name="nomEvent" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
