@@ -23,7 +23,8 @@ session_start();
         $pageEvent = "none";
         $afficherliste = "none";
         $formCreation = "block";
-
+        $stadeAlerte = "";
+        $Message = "";
 
 
         $servername = "cours.cegep3r.info";
@@ -71,7 +72,7 @@ session_start();
             }
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
-            if(isset($_POST["dateEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["nomEvent"]) && isset($_POST["programme"])) {
+            if(isset($_POST["dateEvent"]) && $_POST["dateEvent"] != "" && isset($_POST["lieuEvent"]) && $_POST["lieuEvent"] != "" && isset($_POST["nomEvent"]) && $_POST["nomEvent"] != "" && isset($_POST["programme"]) && $_POST["programme"] != "") {
                 $dateEvent = $_POST["dateEvent"];
                 echo $dateEvent . "<br>";
                 $lieuEvent = $_POST["lieuEvent"];
@@ -79,27 +80,68 @@ session_start();
                 $nomEvent = $_POST["nomEvent"];
                 echo $nomEvent . "<br>";
                 $programme = $_POST["programme"];
+
+                $placeQuoteLieu = stripos($lieuEvent, '\'');
+                $placeQuoteNom = stripos($nomEvent, '\'');
+                $placeQuoteProg = stripos($programme, '\'');
+
+                if($placeQuoteLieu != null){
+                    $substringLieu = substr($lieuEvent, 0, $placeQuoteLieu);
+                    echo $substringLieu . "<br>";
+                }
+                else{
+                    echo $lieuEvent . "<br>";
+                    $substringLieu = $lieuEvent;
+                }
+
+                if($placeQuoteNom != null){
+                    $substringNom = substr($nomEvent, 0, $placeQuoteNom);
+                    echo $substringNom . "<br>";
+                }
+                else{
+                    echo $nomEvent . "<br>";
+                    $substringNom = $nomEvent;
+                }
+                if($placeQuoteProg != null){
+                    $substringProg = substr($programme, 0, $placeQuoteProg);
+                    $substringProg = $substringProg . "\\";
+                    $substringProg = $substringProg . substr($programme, $placeQuoteProg);
+                    echo $substringProg . "<br>";
+                }
+                else{
+                    echo $programme . "<br>";
+                    $substringProg = $programme;
+                }
+
+
+
                 echo $programme . "<br>";
 
-                $sql = "INSERT INTO evenements 
-                        VALUES (null, '$dateEvent', '$lieuEvent', '$nomEvent', '$programme', 0, 0, 0)";
+                $sql = "INSERT INTO evenements
+                        VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0)";
                 $result = $conn->query($sql);
 
                 echo $sql . "<br>";
-                // echo $result;
+                echo $result;
 
                 if($result) {
-                    header("Location: admin.php?page=events&errCreation=0");
-                    echo "<div class='alert alert-success'>Événement créé avec succès</div>";
+                    $stadeAlerte = "success";
+                    $Message = "Événement créé avec succès";
+                    // echo "<div class='alert alert-success'>Événement créé avec succès</div>";
                 }
                 else {
-                    header("Location: admin.php?page=events&errCreation=2");
-                    echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
+                    // echo $result;
+                    $stadeAlerte = "danger";
+                    $Message = "Erreur lors de la création de l'événement";
+
+                    // echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
                 }
             }
             else{
-                header("Location: admin.php?page=events&errCreation=1");
-                echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
+                // header("Location: admin.php?page=events&errCreation=1");
+                $stadeAlerte = "danger";
+                $Message = "Merci de remplir tous les champs";
+                // echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
             }
         }
         // Si la page est appelée en GET
@@ -310,6 +352,12 @@ session_start();
             <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
                 <!-- Card pour création d'un événement -->
+                <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>
+
+                <script>
+                    
+                </script>
+
                 <div class="card">
                     <div class="card-header p-2 bg bg-bleuCegep">
                         <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
@@ -344,14 +392,10 @@ session_start();
 
                             <div class="row d-flex align-items-center pt-3">
                                 <div class="col-4">
-                                    <label for="progEvent" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
+                                    <label for="programme" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="progEvent" class="form-control border-bleuCegep">
-                                    <label for="programme" class="fontCegep fw-bold fs-6">Programme</label>
-                                </div>
-                                <div class="col-8">
-                                    <select name="programme" class="form-control">
+                                    <select name="programme" class="form-control border-bleuCegep">
 
                                         <?php
 
@@ -381,7 +425,10 @@ session_start();
                                 </div>
 
                                 <div class="col-4">
-                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0"><img src="icones/modifier.png" alt="ajouter" class="me-1">Liste événements</a>                                                                       
+                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0">
+                                        <img src="icones/modifier.png" alt="ajouter" class="me-1">
+                                        Liste événements
+                                    </a>                                                                       
                                 </div>
 
                                 <div class="col-4">
