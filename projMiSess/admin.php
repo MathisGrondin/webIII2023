@@ -166,7 +166,7 @@ session_start();
 
     <!-- Barre de menu Admin -->
     <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-        <div class="row bg bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+        <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
             <div class="col">
                 <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
                     <div class="row ">
