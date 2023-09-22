@@ -375,9 +375,7 @@ session_start();
                                 </div>
 
                                 <div class="col-4">
-                                    <button class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep">
-                                        <a href="admin.php?page=events&action=Modifier"><img src="icones/modifier.png" alt="ajouter" class="me-1">Liste événements</a>                                        
-                                    </button>
+                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0"><img src="icones/modifier.png" alt="ajouter" class="me-1">Liste événements</a>                                                                       
                                 </div>
 
                                 <div class="col-4">

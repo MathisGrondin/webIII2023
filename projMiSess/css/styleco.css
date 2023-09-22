@@ -8,11 +8,9 @@ html, body{
     overflow: hidden;
 }
 
-.contConnex
-{
+#rowEvent{
     background-image: url("../img/background.png");
 }
-
 
 /* #rowMenu, #contMenu, #colMenu{
     height: 8vh;
