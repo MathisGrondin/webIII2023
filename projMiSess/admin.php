@@ -21,14 +21,15 @@ session_start();
         $formVisible = "block";
         $barreMenuAdmin = "none";
         $pageEvent = "none";
+        $afficherliste = "none";
+        $formCreation = "block";
 
 
 
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "bla";
+        $servername = "cours.cegep3r.info";
+        $username = "2230572";
+        $password = "2230572";
+        $dbname = "2230572-mathis-grondin";
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -68,6 +69,30 @@ session_start();
                 ";
             }
         }
+        else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
+            if(isset($_POST["dateEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["nomEvent"]) && isset($_POST["programme"])) {
+                $dateEvent = $_POST["dateEvent"];
+                $lieuEvent = $_POST["lieuEvent"];
+                $nomEvent = $_POST["nomEvent"];
+                $programme = $_POST["programme"];
+
+                $sql = "INSERT INTO evenements (date, lieu, nom, programme) VALUES ('$dateEvent', '$lieuEvent', '$nomEvent', '$programme')";
+                $result = $conn->query($sql);
+
+                if($result) {
+                    header("Location: admin.php?page=events&errCreation=0");
+                    echo "<div class='alert alert-success'>Événement créé avec succès</div>";
+                }
+                else {
+                    header("Location: admin.php?page=events&errCreation=2");
+                    echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
+                }
+            }
+            else{
+                header("Location: admin.php?page=events&errCreation=1");
+                echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
+            }
+        }
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
@@ -79,6 +104,39 @@ session_start();
                     $page = $_GET["page"];
                     if($page == "events") {
                         $pageEvent = "block";
+
+                        if(!isset($_GET["action"]) && $afficherliste == "block"){
+                            $pageEvent = "block";
+                            $afficherliste = "none";
+                            $formCreation = "block";
+                        }
+
+
+                        if(isset($_GET["action"])) {
+                            $action = $_GET["action"];
+                            if($action == "Modifier") {
+                                $pageEvent = "block";
+                                $afficherliste = "block";
+                                $formCreation = "none";
+                            }
+                        }
+                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 0){
+                            $pageEvent = "block";
+                            $formCreation = "block";
+                            echo "<div class='alert alert-success'>L'événement a bien été créé</div>";
+                        }
+                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 1){
+                            $pageEvent = "block";
+                            $formCreation = "block";
+                            echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
+                        }
+                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 2){
+                            $pageEvent = "block";
+                            $formCreation = "block";
+                            echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
+                        }
+
+                        
                     }
                     else if($page == "users") {
                         include("users.php");
@@ -164,7 +222,7 @@ session_start();
 
     <!-- Barre de menu Admin -->
     <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-        <div class="row bg-bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+        <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
             <div class="col">
                 <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
                     <div class="row ">
@@ -238,64 +296,120 @@ session_start();
             <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
                 <!-- Card pour création d'un événement -->
-                <form action="" method="get"></form>
                 <div class="card">
                     <div class="card-header p-2 text-center fontCegep fw-2">
-                        <h3 class="p-0 m-0">Création d'un événement</h3>
+                        <h3 class="p-0 m-0" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-4">
-                                <label for="dateEvent" class="fontCegep fw-bold fs-6">Date</label>
+                    
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
+                        <div class="card-body">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="dateEvent" class="fontCegep fw-bold fs-6">Date</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" name="dateEvent" class="form-control">
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <input type="date" name="dateEvent" class="form-control">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="lieuEvent" class="fontCegep fw-bold fs-6">Lieu</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="lieuEvent" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row d-flex align-items-center">
-                            <div class="col-4">
-                                <label for="lieuEvent" class="fontCegep fw-bold fs-6">Lieu</label>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="nomEvent" class="fontCegep fw-bold fs-6">Nom</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="nomEvent" class="form-control">
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <input type="text" name="lieuEvent" class="form-control">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="nomEvent" class="fontCegep fw-bold fs-6">Nom</label>
-                            </div>
-                            <div class="col-8">
-                                <input type="text" name="nomEvent" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-4">
-                                <label for="progEvent" class="fontCegep fw-bold fs-6">Programme</label>
-                            </div>
-                            <div class="col-8">
-                                <select name="progEvent" class="form-control">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="progEvent" class="fontCegep fw-bold fs-6">Programme</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="progEvent" class="form-control">
 
+                                        <?php
+
+                                            $sql = "SELECT * FROM programmes";
+                                            $result = $conn->query($sql);
+
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                                }
+                                            }  
+                                            else {
+                                                echo "<option value=''>Aucun programme</option>";
+                                            }                                  
+
+                                        ?>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-success w-100">Créer</button>
+                                </div>
+
+                                <div class="col-4">
+                                    <a href="admin.php?page=events&action=Modifier" class="btn btn-warning w-100">Liste événements</a>
+                                </div>
+
+                                <div class="col-4">
+                                    <button type="reset" class="btn btn-danger w-100">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div style="display: <?php echo $afficherliste; ?>">
+                        <div class="card-body">
+                            <table class="w-100">
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>Nom</th>
+                                    <th>Date</th>
+                                    <th>Lieu</th>
+                                    <th>Programme</th>
+                                    <th>Modifier</th>
+                                </tr>
                                 <?php
-
-                                    $sql = "SELECT * FROM departements";
+                                    $sql = "SELECT * FROM evenements";
                                     $result = $conn->query($sql);
-
                                     if($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                            echo "<tr class=\"text-center\">";
+                                            echo "<td>" . $row["id"] . "</td>";
+                                            echo "<td>" . $row["nom"] . "</td>";
+                                            echo "<td>" . $row["date"] . "</td>";
+                                            echo "<td>" . $row["lieu"] . "</td>";
+                                            echo "<td>" . $row["programme"] . "</td>";
+                                            echo "<td><a href='admin.php?page=events&action=Modifier&id=" . $row["id"] . "' class='btn btn-warning'>Modifier</a></td>";
+                                            echo "</tr>";
                                         }
-                                    }  
+                                    }
                                     else {
-                                        echo "<option value=''>Aucun programme</option>";
-                                    }                                  
-
+                                        echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                    }
                                 ?>
-
-                                </select>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-12">
+                                <a href="admin.php?page=events" class="btn btn-danger w-100">Retourner au formulaire</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
