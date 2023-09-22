@@ -1,6 +1,9 @@
 img{
     width: 20%;
 }
+*{
+    font-family: century gothic;
+}
 
 html, body{
     height: 100%;
