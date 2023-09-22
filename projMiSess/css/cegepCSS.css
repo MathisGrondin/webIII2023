@@ -2,8 +2,12 @@
     color : #092D74;
 }
 
-.bg-bgBleuCegep{
-    background-color: #092D74;
+.bg-bleuCegep{
+    background-color : #092D74;
+}
+
+.border-bleuCegep{
+    border: 2px solid #092D74;
 }
 
 .rougeCegep{
