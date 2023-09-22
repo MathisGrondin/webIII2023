@@ -73,19 +73,20 @@ session_start();
         else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
             if(isset($_POST["dateEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["nomEvent"]) && isset($_POST["programme"])) {
                 $dateEvent = $_POST["dateEvent"];
-                echo substr($dateEvent, 0, 10);
+                echo $dateEvent . "<br>";
                 $lieuEvent = $_POST["lieuEvent"];
-                echo "/" + $lieuEvent;
+                echo $lieuEvent . "<br>";
                 $nomEvent = $_POST["nomEvent"];
-                echo "/" + $nomEvent;
+                echo $nomEvent . "<br>";
                 $programme = $_POST["programme"];
-                echo "/" + $programme;
+                echo $programme . "<br>";
 
-                $sql = "INSERT INTO evenements (date, lieu, nom, programme) VALUES ('$dateEvent', '$lieuEvent', '$nomEvent', '$programme')";
+                $sql = "INSERT INTO evenements 
+                        VALUES (null, '$dateEvent', '$lieuEvent', '$nomEvent', '$programme', 0, 0, 0)";
                 $result = $conn->query($sql);
 
-                echo $sql + "<br>";
-                echo $result;
+                echo $sql . "<br>";
+                // echo $result;
 
                 if($result) {
                     header("Location: admin.php?page=events&errCreation=0");
@@ -350,7 +351,7 @@ session_start();
 
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                                    echo "<option name='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
                                                 }
                                             }  
                                             else {
