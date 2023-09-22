@@ -233,21 +233,30 @@ session_start();
         </div>        
     </div>
 
+    <!-- Bas de page admin : Événements -->
     <div class="container-fluid h-100 w-100" id="containerEvent" style="display: <?php echo $pageEvent; ?>">
         <div class="row bgLilasCegep h-100" id="rowEvent">
             <div class="offset col-xl-4"></div>
             <div class="col-xl-4 d-flex justify-content-center align-items-center">
                 <div class="card h-50 w-100">
-                    <div class="card-header">
-                        <h4>Test</h4>
+                    <div class="card-header text-center">
+                        <h4>Choix de l'événement</h4>
                     </div>
                 </div>
             </div>
             <div class="offset col-xl-4"></div>
         </div>
     </div>
-    <div class="container-fluid" id="containerUsers"></div>
-    <div class="container-fluid" id="containerAccueil"></div>
+
+    <!-- Bas de page admin : Utilisateurs -->
+    <div class="container-fluid" id="containerUsers">
+
+    </div>
+
+    <!-- Bas de page admin : Accueil -->
+    <div class="container-fluid" id="containerAccueil">
+
+    </div>
 
     <script src="js/bootstrap.js"></script>
 </body>
