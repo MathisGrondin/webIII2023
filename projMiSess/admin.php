@@ -93,7 +93,7 @@ session_start();
                     echo "<div class='alert alert-success'>Événement créé avec succès</div>";
                 }
                 else {
-                    // header("Location: admin.php?page=events&errCreation=2");
+                    header("Location: admin.php?page=events&errCreation=2");
                     echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
                 }
             }
@@ -132,7 +132,12 @@ session_start();
                         else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 0){
                             $pageEvent = "block";
                             $formCreation = "block";
-                            echo "<div class='alert alert-success'>L'événement a bien été créé</div>";
+                            ?>
+                                <div class='alert alert-success' id="alertInfo">L'événement a bien été créé</div>
+
+
+
+                            <?php
                         }
                         else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 1){
                             $pageEvent = "block";
