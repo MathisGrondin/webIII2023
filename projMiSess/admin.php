@@ -73,26 +73,27 @@ session_start();
         else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
             if(isset($_POST["dateEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["nomEvent"]) && isset($_POST["programme"])) {
                 $dateEvent = $_POST["dateEvent"];
-                echo substr($dateEvent, 0, 10);
+                echo $dateEvent . "<br>";
                 $lieuEvent = $_POST["lieuEvent"];
-                echo "/" + $lieuEvent;
+                echo $lieuEvent . "<br>";
                 $nomEvent = $_POST["nomEvent"];
-                echo "/" + $nomEvent;
+                echo $nomEvent . "<br>";
                 $programme = $_POST["programme"];
-                echo "/" + $programme;
+                echo $programme . "<br>";
 
-                $sql = "INSERT INTO evenements (date, lieu, nom, programme) VALUES ('$dateEvent', '$lieuEvent', '$nomEvent', '$programme')";
+                $sql = "INSERT INTO evenements 
+                        VALUES (null, '$dateEvent', '$lieuEvent', '$nomEvent', '$programme', 0, 0, 0)";
                 $result = $conn->query($sql);
 
-                echo $sql + "<br>";
-                echo $result;
+                echo $sql . "<br>";
+                // echo $result;
 
                 if($result) {
                     header("Location: admin.php?page=events&errCreation=0");
                     echo "<div class='alert alert-success'>Événement créé avec succès</div>";
                 }
                 else {
-                    // header("Location: admin.php?page=events&errCreation=2");
+                    header("Location: admin.php?page=events&errCreation=2");
                     echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
                 }
             }
@@ -131,7 +132,12 @@ session_start();
                         else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 0){
                             $pageEvent = "block";
                             $formCreation = "block";
-                            echo "<div class='alert alert-success'>L'événement a bien été créé</div>";
+                            ?>
+                                <div class='alert alert-success' id="alertInfo">L'événement a bien été créé</div>
+
+
+
+                            <?php
                         }
                         else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 1){
                             $pageEvent = "block";
@@ -354,7 +360,7 @@ session_start();
 
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                                    echo "<option name='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
                                                 }
                                             }  
                                             else {
