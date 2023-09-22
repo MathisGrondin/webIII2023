@@ -38,6 +38,7 @@ session_start();
         }
 
 
+        // Si la page est appelée en POST
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["courriel"]) && isset($_POST["mdp"])) {
 
             $courriel = $_POST["courriel"];
@@ -68,6 +69,7 @@ session_start();
 
             $conn->close();
         }
+        // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_SESSION["admin"])){
@@ -104,6 +106,7 @@ session_start();
                 $barreMenuAdmin = "none";
             }
         }
+        // sinon
         else{
             $formVisible = "none";
             $barreMenuAdmin = "none";
@@ -126,6 +129,7 @@ session_start();
             <?php
         }
     ?>
+    <!-- Formulaire -->
     <div class="container-fluid" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="row mt-4">
@@ -159,6 +163,7 @@ session_start();
         </form>
     </div>
 
+    <!-- Barre de menu Admin -->
     <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
         <div class="row bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
             <div class="col">
