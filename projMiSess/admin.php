@@ -129,31 +129,31 @@ session_start();
         }
     ?>
     <!-- Formulaire -->
-    <div class="container-fluid" style="display: <?php echo $formVisible; ?>">
+    <div class="container-fluid contConnex h-100" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="row mt-4">
+            <div class="row pt-4">
                 <div class="offset col-xl-4"></div>
                     <div class="col-xl-4">
                         <div class="card border border-1 border-dark">
-                            <div class="card-header bg bg-gradient bg-secondary bg-opacity-75 text-white text-opacity-75">
-                                <h2 class="text-center ">Connexion admin</h2>
+                            <div class="card-header bg bg-bleuCegep">
+                                <h2 class="text-center text-white fontCegep fw-bold">Connexion admin</h2>
                             </div>
 
-                            <div class="card-body">
+                            <div class="card-body bg bgLilasCegep">
                                 <div class="d-flex justify-content-between">
-                                    <label for="courriel" class="fw-bold">Courriel</label>
+                                    <label for="courriel" class="fw-bold fontCegep">Courriel</label>
                                     <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center">
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-3">
-                                    <label for="mdp" class="fw-bold">Mot de passe</label>
+                                    <label for="mdp" class="fw-bold fontCegep">Mot de passe</label>
                                     <input type="password" name="mdp" class="rounded">
                                 </div>
                                 
                             </div>
 
-                            <div class="card-footer d-flex justify-content-center bg bg-gradient bg-secondary bg-opacity-75">
-                                <button type="submit" class="btn btn-secondary border border-1 border-light w-50 ">Connexion</button>
+                            <div class="card-footer d-flex justify-content-center bg bg-bleuCegep">
+                                <button type="submit" class="btn bgLilasCegep border border-2 border-light w-50 fontCegep fw-bold">Connexion</button>
                             </div>
                         </div>
                     </div>
