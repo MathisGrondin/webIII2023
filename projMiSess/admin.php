@@ -67,8 +67,6 @@ session_start();
                 
                 ";
             }
-
-            $conn->close();
         }
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -166,7 +164,7 @@ session_start();
 
     <!-- Barre de menu Admin -->
     <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-        <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+        <div class="row bg-bgBleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
             <div class="col">
                 <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
                     <div class="row ">
@@ -236,36 +234,72 @@ session_start();
 
     <!-- Bas de page admin : Événements -->
     <div class="container-fluid h-100 w-100" id="containerEvent" style="display: <?php echo $pageEvent; ?>">
-        <div class="row bgLilasCegep h-100  d-flex justify-content-center align-items-center" id="rowEvent">
-            <div class="offset col-xl-1"></div>
-            <div class="col-xl-2">
+        <div class="row h-100 d-flex justify-content-center align-items-center" id="rowEvent">
+            <div class="offset col-xl-3"></div>
+            <div class="col-xl-6">
+                <!-- Card pour création d'un événement -->
+                <form action="" method="get"></form>
                 <div class="card">
-                    <div class="card-body">
-                        <table>
-                            <th>Événements</th>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="offset col-xl-1"></div>
-            <div class="col-xl-4">
-                <div class="card h-auto w-auto">
                     <div class="card-header p-2 text-center fontCegep fw-2">
                         <h3 class="p-0 m-0">Création d'un événement</h3>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex align-items-center">
-                            <div class="col-4 text-center">
-                                <label for="nomEvent" class="fontCegep fw-bold fs-6">Date</label>
+                            <div class="col-4">
+                                <label for="dateEvent" class="fontCegep fw-bold fs-6">Date</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="date" name="dateEvent" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-4">
+                                <label for="lieuEvent" class="fontCegep fw-bold fs-6">Lieu</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="text" name="lieuEvent" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="nomEvent" class="fontCegep fw-bold fs-6">Nom</label>
                             </div>
                             <div class="col-8">
                                 <input type="text" name="nomEvent" class="form-control">
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="progEvent" class="fontCegep fw-bold fs-6">Programme</label>
+                            </div>
+                            <div class="col-8">
+                                <select name="progEvent" class="form-control">
+
+                                <?php
+
+                                    $sql = "SELECT * FROM departements";
+                                    $result = $conn->query($sql);
+
+                                    if($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                        }
+                                    }  
+                                    else {
+                                        echo "<option value=''>Aucun programme</option>";
+                                    }                                  
+
+                                ?>
+
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="offset col-xl-4"></div>
+            <div class="offset col-xl-3"></div>
         </div>
     </div>
 
