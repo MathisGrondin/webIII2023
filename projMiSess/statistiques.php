@@ -1,3 +1,10 @@
+<?php
+session_start();
+    if(!isset($_SESSION['admin'])){
+        header('Location: index.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr-ca">
 <head>
@@ -9,6 +16,25 @@
     <title>Statistiques</title>
 </head>
 <body>
+
+    <?php
+
+        $servername = "cours.cegep3r.info";
+        $username = "2230572";
+        $password = "2230572";
+        $dbname = "2230572-mathis-grondin";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn->set_charset("utf8");
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+    ?>
+
     <div class="container-fluid">
         <div class="row bg-bleuCegep py-3">
             <div class="col-xl-2 col-10 d-flex align-items-center">
@@ -17,48 +43,47 @@
             </div>
         </div>
 
-<!-- mode tableau ici pour les infos -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="offset col-2"></div>
-        <div class="col-8">
-            <table class="mt-4">
-                <thead>
-                    <tr  class="bg bg-bleuCegep text-center lilasCegep border-rouge-cegep">
-                        <th scope="col" class="fontCegep fw-bold px-3 py-3">Événement</th>
-                        <th scope="col"><img src="icones/aime.png" alt="aime" height="150" class="px-3 py-3"></th>
-                        <th scope="col"><img src="icones/neutre.png" alt="neutre" height="150" class="px-3 py-3"></th>
-                        <th scope="col"><img src="icones/deteste.png" alt="deteste" height="150" class="px-3 py-3"></th>
-                    </tr>
-                </thead>
-                
-                <tbody class="table-group-divider">
-                    <tr class="text-center border-bleuCegep bgLilasCegep">
-                        <th scope="row">1</th>
-                        <td class="px-3 py-3">24</td>
-                        <td class="px-3 py-3">45</td>
-                        <td class="px-3 py-3">18</td>
-                    </tr>
+        <div class="row">
+            <div class="offset col-4"></div>
+            <div class="col-4 d-flex justify-content-center align-items-center">
+                <table class="mt-4">
+                    <thead>
+                        <tr  class="bg bg-bleuCegep text-center lilasCegep border-rouge-cegep">
+                            <th scope="col" class="fontCegep fw-bold px-3 py-3">Événement</th>
+                            <th scope="col"><img src="icones/aime.png" alt="aime" height="150" class="px-3 py-3"></th>
+                            <th scope="col"><img src="icones/neutre.png" alt="neutre" height="150" class="px-3 py-3"></th>
+                            <th scope="col"><img src="icones/deteste.png" alt="deteste" height="150" class="px-3 py-3"></th>
+                        </tr>
+                    </thead>
                     
-                    <tr class="text-center border-bleuCegep bgLilasCegep">
-                        <th scope="row">2</th>
-                        <td class="px-3 py-3">63</td>
-                        <td class="px-3 py-3">46</td>
-                        <td class="px-3 py-3">3</td>
-                    </tr>
-                    
-                    <tr class="text-center border-bleuCegep bgLilasCegep">
-                        <th scope="row">3</th>
-                        <td class="px-3 py-3">63</td>
-                        <td class="px-3 py-3">57</td>
-                        <td class="px-3 py-3">7</td>
-                    </tr>
-                </tbody>
-            </table> 
+                    <tbody class="table-group-divider">
+                        <tr class="text-center border-bleuCegep bgLilasCegep">
+                            <th scope="row">1</th>
+                            <td class="px-3 py-3">24</td>
+                            <td class="px-3 py-3">45</td>
+                            <td class="px-3 py-3">18</td>
+                        </tr>
+                        
+                        <tr class="text-center border-bleuCegep bgLilasCegep">
+                            <th scope="row">2</th>
+                            <td class="px-3 py-3">63</td>
+                            <td class="px-3 py-3">46</td>
+                            <td class="px-3 py-3">3</td>
+                        </tr>
+                        
+                        <tr class="text-center border-bleuCegep bgLilasCegep">
+                            <th scope="row">3</th>
+                            <td class="px-3 py-3">63</td>
+                            <td class="px-3 py-3">57</td>
+                            <td class="px-3 py-3">7</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+            <div class="offset col-4"></div>
         </div>
-        <div class="offset col-2"></div>
     </div>
-</div>
+
 
             
    

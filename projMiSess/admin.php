@@ -33,6 +33,7 @@ session_start();
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn->set_charset("utf8");
 
         // Check connection
         if($conn->connect_error) {
@@ -72,19 +73,26 @@ session_start();
         else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
             if(isset($_POST["dateEvent"]) && isset($_POST["lieuEvent"]) && isset($_POST["nomEvent"]) && isset($_POST["programme"])) {
                 $dateEvent = $_POST["dateEvent"];
+                echo substr($dateEvent, 0, 10);
                 $lieuEvent = $_POST["lieuEvent"];
+                echo "/" + $lieuEvent;
                 $nomEvent = $_POST["nomEvent"];
+                echo "/" + $nomEvent;
                 $programme = $_POST["programme"];
+                echo "/" + $programme;
 
                 $sql = "INSERT INTO evenements (date, lieu, nom, programme) VALUES ('$dateEvent', '$lieuEvent', '$nomEvent', '$programme')";
                 $result = $conn->query($sql);
+
+                echo $sql + "<br>";
+                echo $result;
 
                 if($result) {
                     header("Location: admin.php?page=events&errCreation=0");
                     echo "<div class='alert alert-success'>Événement créé avec succès</div>";
                 }
                 else {
-                    header("Location: admin.php?page=events&errCreation=2");
+                    // header("Location: admin.php?page=events&errCreation=2");
                     echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
                 }
             }
@@ -334,6 +342,10 @@ session_start();
                                 </div>
                                 <div class="col-8">
                                     <select name="progEvent" class="form-control border-bleuCegep">
+                                    <label for="programme" class="fontCegep fw-bold fs-6">Programme</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="programme" class="form-control">
 
                                         <?php
 
