@@ -188,7 +188,30 @@ session_start();
                     $page = $_GET["page"];
 
                     if($page == "events"){ include("pageEvent.php"); }
-                    else if($page == "users") { include("users.php"); }
+                    else if($page == "users") 
+                    { 
+                        $pageUsers = "block";
+                        $barreMenuAdmin = "block";
+                        
+                        if($_SESSION["admin"] == false){
+                            $listeUsers = "block";
+                            $formUserCr = "none";
+                        }
+                        else{
+                            $listeUsers = "none";
+                            $formUserCr = "block";
+                        }
+
+                        if(isset($_GET["action"])){
+                            $action = $_GET["action"];
+
+                            if($action == "Modifier"){
+                                $listeUsers = "block";
+                                $formUserCr = "none";
+                            }
+                        }
+                        
+                    }
                     else if($page == "accueil") {
                         $pageAccueil = "block";
                         $barreMenuAdmin = "block";
