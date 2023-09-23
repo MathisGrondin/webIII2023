@@ -402,12 +402,12 @@ session_start();
                 </script>
 
                 <div class="card">
-                    <div class="card-header p-2 bg bg-bleuCegep">
+                    <div class="card-header p-2 bg bg-bleuCegep border-rouge-cegep">
                         <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
-                        <div class="card-body bg bgLilasCegep">
+                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
@@ -461,7 +461,7 @@ session_start();
                             </div>
                         </div>
                         
-                        <div class="card-footer bg bg-bleuCegep">
+                        <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="ajouter" class="me-2">Créer</button>
@@ -482,7 +482,7 @@ session_start();
                     </form>
 
                     <div style="display: <?php echo $afficherliste; ?>">
-                        <div class="card-body bg bgLilasCegep">
+                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
                             <table class="w-100">
                                 <thead>
                                     <tr class="text-center">
@@ -517,7 +517,7 @@ session_start();
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center">
+                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
                             <div class="col-4 px-1">
                                 <a href="admin.php?page=events" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
@@ -544,61 +544,69 @@ session_start();
                 </script>
 
                 <div class="card">
-                    <div class="card-header p-2 bg bg-bleuCegep">
+                    <div class="card-header p-2 bg bg-bleuCegep border-rouge-cegep">
                         <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un utilisateur</h3>
                     </div>
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>">
-                        <div class="card-body bg bgLilasCegep">
+                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
+                        <div class="row d-flex align-items-center">
+                            <div class="offset col-4"></div>
+                            <div class="col-8 pb-3">
+                                <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
+                                <input type="checkbox" id="checkAdmin" class="form-check-input border-bleuCegep">
+                            </div>                                    
+                            </div>
                             <div class="row d-flex align-items-center">
-                                    <div class="col-4">
-                                        <label for="nomUser" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="text" name="nomUser" class="form-control border-bleuCegep">
-                                    </div>
+                                <div class="col-4">
+                                    <label for="nomUser" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
                                 </div>
-                                <div class="row d-flex align-items-center pt-3">
-                                    <div class="col-4">
-                                        <label for="prenomUser" class="fontCegep bleuCegep fw-bold fs-6">Prénom</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="text" name="prenomUser" class="form-control border-bleuCegep">
-                                    </div>
+                                <div class="col-8">
+                                    <input type="text" name="nomUser" class="form-control border-bleuCegep">
                                 </div>
-                                <div class="row d-flex align-items-center pt-3">
-                                    <div class="col-4">
-                                        <label for="courriel" class="fontCegep bleuCegep fw-bold fs-6">Courriel du CTR</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="text" name="courriel" class="form-control border-bleuCegep">
-                                    </div>
+                            </div>
+                            <div class="row d-flex align-items-center pt-3">
+                                <div class="col-4">
+                                    <label for="prenomUser" class="fontCegep bleuCegep fw-bold fs-6">Prénom</label>
                                 </div>
-                                <div class="row d-flex align-items-center pt-3">
-                                    <div class="col-4">
-                                        <label for="mdp1" class="fontCegep bleuCegep fw-bold fs-6">Mot de passe</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="password" name="mdp1" class="form-control border-bleuCegep">
-                                    </div>                                    
+                                <div class="col-8">
+                                    <input type="text" name="prenomUser" class="form-control border-bleuCegep">
                                 </div>
-                                <div class="row d-flex align-items-center pt-3">
-                                    <div class="col-4">
-                                        <label for="mdp2" class="fontCegep bleuCegep fw-bold fs-6">Confirmation Mdp</label>
-                                    </div>
-                                    <div class="col-8">
-                                        <input type="password" name="mdp2" class="form-control border-bleuCegep">
-                                    </div>                                    
+                            </div>
+                            <div class="row d-flex align-items-center pt-3">
+                                <div class="col-4">
+                                    <label for="courriel" class="fontCegep bleuCegep fw-bold fs-6">Courriel du CTR</label>
                                 </div>
-                                <div class="row d-flex align-items-center pt-3">
-                                    <div class="col-12">
-                                        <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
-                                        <input type="checkbox" id="checkAdmin" class="form-check-input border-bleuCegep">
-                                    </div>                                    
+                                <div class="col-8">
+                                    <input type="text" name="courriel" class="form-control border-bleuCegep">
                                 </div>
+                            </div>
+                            <div class="row d-flex align-items-center pt-3">
+                                <div class="col-4">
+                                    <label for="mdp1" class="fontCegep bleuCegep fw-bold fs-6">Mot de passe</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="password" name="mdp1" class="form-control border-bleuCegep">
+                                </div>                                    
+                            </div>
+                            <div class="row d-flex align-items-center pt-3">
+                                <div class="col-4">
+                                    <label for="mdp2" class="fontCegep bleuCegep fw-bold fs-6">Confirmation Mdp</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="password" name="mdp2" class="form-control border-bleuCegep">
+                                </div>                                    
+                            </div>
+                            <div class="row d-flex align-items-center pt-3">
+                                <div class="offset col-4"></div>
+                                <div class="col-8 pt-3">
+                                    <input type="checkbox" id="checkInfos" class="form-check-input border-bleuCegep">
+                                    <label for="checkInfos" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Je confirme que les informations sont exactes</label>                                   
+                                </div>                                    
+                            </div>
                         </div>
                         
-                        <div class="card-footer bg bg-bleuCegep">
+                        <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="créer" class="me-2">Créer</button>
@@ -619,7 +627,7 @@ session_start();
                     </form>
 
                     <div style="display: <?php echo $listeUsers; ?>">
-                        <div class="card-body bg bgLilasCegep">
+                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
                             <table class="w-100">
                                 <thead>
                                     <tr class="text-center">
@@ -628,6 +636,7 @@ session_start();
                                         <th scope="col" class="font-cegep fw-bold bleuCegep">Prénom</th>
                                         <th scope="col" class="font-cegep fw-bold bleuCegep">Admin</th>
                                         <th scope="col" class="font-cegep fw-bold bleuCegep">Courriel</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -649,6 +658,7 @@ session_start();
                                                 }
 
                                                 echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["email"] . "</td>";
+                                                echo "<td><a href='admin.php?page=users&action=Modifier&id=" . $row["id"] . "'class='btn btn-warning'>Modifier</a><div></div></td>";
                                                 echo "</tr>";
                                             }
                                         }
@@ -659,7 +669,7 @@ session_start();
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center">
+                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
                             <div class="col-4 px-1">
                                 <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
