@@ -181,57 +181,22 @@ session_start();
 
                 if(isset($_GET["page"])){
                     $page = $_GET["page"];
-                    if($page == "events") {
-                        $pageEvent = "block";
 
-                        if(!isset($_GET["action"]) && $afficherliste == "block"){
-                            $pageEvent = "block";
-                            $afficherliste = "none";
-                            $formCreation = "block";
-                        }
-
-
-                        if(isset($_GET["action"])) {
-                            $action = $_GET["action"];
-                            if($action == "Modifier") {
-                                $pageEvent = "block";
-                                $afficherliste = "block";
-                                $formCreation = "none";
-                            }
-                        }
-                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 0){
-                            $pageEvent = "block";
-                            $formCreation = "block";
-                            ?>
-                                <div class='alert alert-success' id="alertInfo">L'événement a bien été créé</div>
-
-
-
-                            <?php
-                        }
-                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 1){
-                            $pageEvent = "block";
-                            $formCreation = "block";
-                            echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
-                        }
-                        else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 2){
-                            $pageEvent = "block";
-                            $formCreation = "block";
-                            echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
-                        }
-
-                        
-                    }
-                    else if($page == "users") {
-                        include("users.php");
-                    }
+                    if($page == "events"){ include("pageEvent.php"); }
+                    else if($page == "users") { include("users.php"); }
                     else if($page == "accueil") {
                         $pageAccueil = "block";
                         $barreMenuAdmin = "block";
                         $formCreation = "none";
                     }
                     else if($page == "deco") {
-                        session_destroy();
+                        try{
+                            session_unset();
+                            session_destroy();
+                        }
+                        catch(Exception $e){
+                            echo "Erreur lors de la déconnexion";
+                        }
                         header("Location: admin.php");
                     }
                     else if($page == "themes") {
