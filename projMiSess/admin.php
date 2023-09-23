@@ -53,9 +53,27 @@ session_start();
             
 
             if($result->num_rows > 0) {
-                $_SESSION["admin"] = $courriel;
+                $_SESSION["user"] = $courriel;
                 $formVisible = "none";
                 $barreMenuAdmin = "block";
+
+                // check if user is admin
+                $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
+                $result = $conn->query($sql);
+
+                if($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        if($row["admin"] == 1) {
+                            $_SESSION["admin"] = true;
+                        }
+                        else {
+                            $_SESSION["admin"] = false;
+                        }
+                    }
+                }
+
+
+
             }
             else {
                 echo "
@@ -71,82 +89,92 @@ session_start();
                 ";
             }
         }
-        else if($_SERVER["REQUEST_METHOD"] == "POST" && $_SESSION["admin"] == true){
-            if(isset($_POST["dateEvent"]) && $_POST["dateEvent"] != "" && isset($_POST["lieuEvent"]) && $_POST["lieuEvent"] != "" && isset($_POST["nomEvent"]) && $_POST["nomEvent"] != "" && isset($_POST["programme"]) && $_POST["programme"] != "") {
-                $dateEvent = $_POST["dateEvent"];
-                echo $dateEvent . "<br>";
-                $lieuEvent = $_POST["lieuEvent"];
-                echo $lieuEvent . "<br>";
-                $nomEvent = $_POST["nomEvent"];
-                echo $nomEvent . "<br>";
-                $programme = $_POST["programme"];
+        else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){
 
-                $placeQuoteLieu = stripos($lieuEvent, '\'');
-                $placeQuoteNom = stripos($nomEvent, '\'');
-                $placeQuoteProg = stripos($programme, '\'');
+            //SET permissions selon rôle
 
-                if($placeQuoteLieu != null){
-                    $substringLieu = substr($lieuEvent, 0, $placeQuoteLieu);
-                    echo $substringLieu . "<br>";
-                }
-                else{
-                    echo $lieuEvent . "<br>";
-                    $substringLieu = $lieuEvent;
-                }
+            // Si un utilisateur (Admin ici) essaie de créer un événement 
+            if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
 
-                if($placeQuoteNom != null){
-                    $substringNom = substr($nomEvent, 0, $placeQuoteNom);
-                    echo $substringNom . "<br>";
-                }
-                else{
-                    echo $nomEvent . "<br>";
-                    $substringNom = $nomEvent;
-                }
-                if($placeQuoteProg != null){
-                    $substringProg = substr($programme, 0, $placeQuoteProg);
-                    $substringProg = $substringProg . "\\";
-                    $substringProg = $substringProg . substr($programme, $placeQuoteProg);
-                    echo $substringProg . "<br>";
-                }
-                else{
+                if(isset($_POST["dateEvent"], $_POST["lieuEvent"], $_POST["nomEvent"], $_POST["programme"]) && $_POST["dateEvent"] != "" && $_POST["lieuEvent"] != "" && $_POST["nomEvent"] != "" && $_POST["programme"] != "") {
+                    $dateEvent = $_POST["dateEvent"];
+                    $lieuEvent = $_POST["lieuEvent"];
+                    $nomEvent = $_POST["nomEvent"];
+                    $programme = $_POST["programme"];
+    
+                    $placeQuoteLieu = stripos($lieuEvent, '\'');
+                    $placeQuoteNom = stripos($nomEvent, '\'');
+                    $placeQuoteProg = stripos($programme, '\'');
+    
+                    if($placeQuoteLieu != null){
+                        $substringLieu = substr($lieuEvent, 0, $placeQuoteLieu);
+                    }
+                    else{
+                        echo $lieuEvent . "<br>";
+                        $substringLieu = $lieuEvent;
+                    }
+    
+                    if($placeQuoteNom != null){
+                        $substringNom = substr($nomEvent, 0, $placeQuoteNom);
+                        echo $substringNom . "<br>";
+                    }
+                    else{
+                        echo $nomEvent . "<br>";
+                        $substringNom = $nomEvent;
+                    }
+                    if($placeQuoteProg != null){
+                        $substringProg = substr($programme, 0, $placeQuoteProg);
+                        $substringProg = $substringProg . "\\";
+                        $substringProg = $substringProg . substr($programme, $placeQuoteProg);
+                        echo $substringProg . "<br>";
+                    }
+                    else{
+                        echo $programme . "<br>";
+                        $substringProg = $programme;
+                    }
+    
+    
+    
                     echo $programme . "<br>";
-                    $substringProg = $programme;
+    
+                    $sql = "INSERT INTO evenements
+                            VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0)";
+                    $result = $conn->query($sql);
+    
+                    echo $sql . "<br>";
+                    echo $result;
+    
+                    if($result) {
+                        $stadeAlerte = "success";
+                        $Message = "Événement créé avec succès";
+                        header("Location: admin.php?page=events");
+                    }
+                    else {
+                        // echo $result;
+                        $stadeAlerte = "danger";
+                        $Message = "Erreur lors de la création de l'événement";
+                        header("Location: admin.php?page=events");
+                    }
                 }
-
-
-
-                echo $programme . "<br>";
-
-                $sql = "INSERT INTO evenements
-                        VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0)";
-                $result = $conn->query($sql);
-
-                echo $sql . "<br>";
-                echo $result;
-
-                if($result) {
-                    $stadeAlerte = "success";
-                    $Message = "Événement créé avec succès";
-                    header("Location: admin.php?page=events");
-                }
-                else {
-                    // echo $result;
+                else{
+                    // header("Location: admin.php?page=events&errCreation=1");
                     $stadeAlerte = "danger";
-                    $Message = "Erreur lors de la création de l'événement";
+                    $Message = "Merci de remplir tous les champs";
                     header("Location: admin.php?page=events");
                 }
+
             }
             else{
-                // header("Location: admin.php?page=events&errCreation=1");
-                $stadeAlerte = "danger";
-                $Message = "Merci de remplir tous les champs";
-                header("Location: admin.php?page=events");
+                $formVisible = "block";
+                $barreMenuAdmin = "none";
             }
+
+            
         }
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
-            if(isset($_SESSION["admin"])){
+            if(isset($_SESSION["user"])){
                 $formVisible = "none";
                 $barreMenuAdmin = "block";
 
