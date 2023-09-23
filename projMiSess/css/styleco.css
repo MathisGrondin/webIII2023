@@ -8,7 +8,11 @@ html, body{
     overflow: hidden;
 }
 
-#rowEvent{
+.contConnex{
+    background-image: url("../img/background.png");
+}
+
+#containerEvent{
     background-image: url("../img/background.png");
 }
 
