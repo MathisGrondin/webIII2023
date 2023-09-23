@@ -127,21 +127,20 @@ session_start();
                 if($result) {
                     $stadeAlerte = "success";
                     $Message = "Événement créé avec succès";
-                    // echo "<div class='alert alert-success'>Événement créé avec succès</div>";
+                    header("Location: admin.php?page=events");
                 }
                 else {
                     // echo $result;
                     $stadeAlerte = "danger";
                     $Message = "Erreur lors de la création de l'événement";
-
-                    // echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
+                    header("Location: admin.php?page=events");
                 }
             }
             else{
                 // header("Location: admin.php?page=events&errCreation=1");
                 $stadeAlerte = "danger";
                 $Message = "Merci de remplir tous les champs";
-                // echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
+                header("Location: admin.php?page=events");
             }
         }
         // Si la page est appelée en GET
