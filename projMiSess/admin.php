@@ -359,7 +359,7 @@ session_start();
 
                 <div class="card">
                     <div class="card-header p-2 bg bg-bleuCegep">
-                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
+                        <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
@@ -425,54 +425,60 @@ session_start();
 
                                 <div class="col-4">
                                     <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <img src="icones/modifier.png" alt="ajouter" class="me-1">
+                                        <img src="icones/modifier.png" alt="modifier" class="me-1">
                                         Liste événements
                                     </a>                                                                       
                                 </div>
 
                                 <div class="col-4">
-                                    <button type="reset" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/retour.png" alt="ajouter" class="me-1">Annuler</button>
+                                    <button type="reset" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/retour.png" alt="annuler" class="me-1">Annuler</button>
                                 </div>
                             </div>
                         </div>
                     </form>
 
                     <div style="display: <?php echo $afficherliste; ?>">
-                        <div class="card-body">
+                        <div class="card-body bg bgLilasCegep">
                             <table class="w-100">
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Nom</th>
-                                    <th>Date</th>
-                                    <th>Lieu</th>
-                                    <th>Programme</th>
-                                    <th>Modifier</th>
-                                </tr>
-                                <?php
-                                    $sql = "SELECT * FROM evenements";
-                                    $result = $conn->query($sql);
-                                    if($result->num_rows > 0) {
-                                        while($row = $result->fetch_assoc()) {
-                                            echo "<tr class=\"text-center\">";
-                                            echo "<td>" . $row["id"] . "</td>";
-                                            echo "<td>" . $row["nom"] . "</td>";
-                                            echo "<td>" . $row["date"] . "</td>";
-                                            echo "<td>" . $row["lieu"] . "</td>";
-                                            echo "<td>" . $row["programme"] . "</td>";
-                                            echo "<td><a href='admin.php?page=events&action=Modifier&id=" . $row["id"] . "' class='btn btn-warning'>Modifier</a></td>";
-                                            echo "</tr>";
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Date</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Lieu</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Programme</th>
+                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <?php
+                                        $sql = "SELECT * FROM evenements";
+                                        $result = $conn->query($sql);
+                                        if($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                echo "<tr class=\"text-center\">";
+                                                echo "<th scope=\"row\" class=\"font-cegep bleuCegep\">" . $row["id"] . "</th>";
+                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["nom"] . "</td>";
+                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["date"] . "</td>";
+                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["lieu"] . "</td>";
+                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["programme"] . "</td>";
+                                                echo "<td><a href='admin.php?page=events&action=Modifier&id=" . $row["id"] . "'class='btn btn-warning'>Modifier</a></td>";
+                                                echo "</tr>";
+                                            }
                                         }
-                                    }
-                                    else {
-                                        echo "<tr><td colspan='5'>Aucun événement</td></tr>";
-                                    }
-                                ?>
+                                        else {
+                                            echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                        }
+                                    ?>
+                                </tbody>
                             </table>
                         </div>
-                        <div class="card-footer">
-                            <div class="col-12">
-                                <a href="admin.php?page=events" class="btn btn-danger w-100">Retourner au formulaire</a>
+                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center">
+                            <div class="offset col-4"></div>                        
+                            <div class="col-4 px-1">
+                                <a href="admin.php?page=events" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
                             </div>
+                            <div class="offset col-4"></div>
                         </div>
                     </div>
                 </div>
