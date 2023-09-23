@@ -590,6 +590,12 @@ session_start();
                                         <input type="password" name="mdp2" class="form-control border-bleuCegep">
                                     </div>                                    
                                 </div>
+                                <div class="row d-flex align-items-center pt-3">
+                                    <div class="col-12">
+                                        <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
+                                        <input type="checkbox" id="checkAdmin" class="form-check-input border-bleuCegep">
+                                    </div>                                    
+                                </div>
                         </div>
                         
                         <div class="card-footer bg bg-bleuCegep">
