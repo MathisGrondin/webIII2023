@@ -1,3 +1,29 @@
+<?php
+session_start();
+if(isset($_SESSION['type'])){
+    if($_SESSION['type'] == 'etudiant'){
+        $avisEtuVisible = "block";
+        $avisEmpVisible = "none";
+    }
+    else if($_SESSION['type'] == 'employeur'){
+        $avisEtuVisible = "none";
+        $avisEmpVisible = "block";
+    }
+}
+else{
+    echo "
+    <div class=\"container-fluid mt-4\">
+        <div class=\"row\">
+            <div class=\"offset col-xl-4 col-sm-4\"></div>
+                <div class=\"col-xl-4 col-sm-4 col-12\">
+                    <div class='alert alert-danger'>Veuillez-vous connecter pour accéder au site.</div>
+                </div>
+            <div class=\"offset col-xl-4 col-sm-4\"></div>
+        </div>";
+    header("Location: admin.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr-ca">
 <head>
@@ -6,11 +32,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleIndex.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
-    <title>Formulaire satisfaction 2023</title>
+    <title>Formulaire satisfaction</title>
 </head>
 <body>
+    <?php
+    $avisEtuVisible = "block";
+    $avisEmpVisible = "block";
+    ?>
     <!-- Carte étudiant -->
-    <div class="container-fluid" id="conteneurCarte">
+    <div class="container-fluid" id="conteneurCarte" style="display: <?php echo $avisEtuVisible; ?>">
         <div class="row d-flex justify-content-center align-items-center" id="rowCarte">
             <div class="offset col-xl-2 col-m-2"></div>
             <div class="col-xl-8 col- col-m-8 col-12">
@@ -62,7 +92,7 @@
     </div>
 
     <!-- Carte Employeur -->
-    <div class="container-fluid" id="contCarteEmp">
+    <div class="container-fluid" id="contCarteEmp" style="display: <?php echo $avisEmpVisible; ?>">
         <div class="row d-flex justify-content-center align-items-center" id="rowCarteEmp">
             <div class="offset col-xl-2 col-m-2"></div>
             <div class="col-xl-8 col- col-m-8 col-12">
