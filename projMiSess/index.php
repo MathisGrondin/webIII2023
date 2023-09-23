@@ -83,7 +83,7 @@ else{
                         </div>
                     </div>
                     <div class="card-footer bg bg-bleuCegep py-4 text-center d-flex justify-content-center align-content-center">
-                        <h4 class="fontCegep lilasCegep p-0 m-0 fs-2">Étudiants</h4>
+                        <h4 class="fontCegep lilasCegep p-0 m-0 fw-bold fs-2">Étudiants</h4>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ else{
                         </div>
                     </div>
                     <div class="card-footer bg bgLilasCegep py-4 text-center d-flex justify-content-center align-content-center">
-                        <h4 class="fontCegep bleuCegep p-0 m-0 fs-2">Employeurs</h4>
+                        <h4 class="fontCegep bleuCegep p-0 m-0 fw-bold fs-2">Employeurs</h4>
                     </div>
                 </div>
             </div>
