@@ -1,6 +1,7 @@
 <?php
-session_start();
-    if(!isset($_SESSION['admin'])){
+    session_start();
+
+    if(!isset($_SESSION['user'])){
         header('Location: index.php');
     }
 ?>
@@ -44,11 +45,11 @@ session_start();
         </div>
 
         <div class="row p-3">
-            <div class="offset col-4"></div>
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <table >
+            <div class="offset col-2"></div>
+            <div class="col-8 d-flex justify-content-center align-items-center">
+                <table>
                     <thead>
-                        <tr  class="bg bg-bleuCegep text-center lilasCegep border-rouge-cegep">
+                        <tr class="bg-bleuCegep text-center lilasCegep border-rouge-cegep">
                             <th scope="col" class="fontCegep fw-bold px-3 py-3">Id</th>
                             <th scope="col" class="fontCegep fw-bold px-3 py-3">Événement</th>
                             <th scope="col"><img src="icones/aime.png" alt="aime" height="150" class="px-3 py-3"></th>
@@ -70,9 +71,9 @@ session_start();
                                     echo '<tr class="text-center border-bleuCegep bgLilasCegep">';
                                         echo '<th scope="row" class="bleuCegep">'.$row["id"].'</th>';
                                         echo '<td class="px-3 py-3 bleuCegep">'.$row["nom"].'</td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbAime"].'</td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbNeutre"].'</td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbDeteste"].'</td>';
+                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbAimeEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbAimeEmp"] . '</span></td>';
+                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbNeutreEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbNeutreEmp"] . '</td>';
+                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbDetesteEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbDetesteEmp"] . '</td>';
                                     echo '</tr>';
                                 }
                             } else {
@@ -87,7 +88,7 @@ session_start();
                     </tbody>
                 </table> 
             </div>
-            <div class="offset col-4"></div>
+            <div class="offset col-2"></div>
         </div>
     </div>
 
