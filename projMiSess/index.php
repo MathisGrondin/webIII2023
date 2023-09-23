@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(isset($_SESSION['type'])){
     if($_SESSION['type'] == 'etudiant'){
         $avisEtuVisible = "block";
@@ -11,15 +12,6 @@ if(isset($_SESSION['type'])){
     }
 }
 else{
-    echo "
-    <div class=\"container-fluid mt-4\">
-        <div class=\"row\">
-            <div class=\"offset col-xl-4 col-sm-4\"></div>
-                <div class=\"col-xl-4 col-sm-4 col-12\">
-                    <div class='alert alert-danger'>Veuillez-vous connecter pour accéder au site.</div>
-                </div>
-            <div class=\"offset col-xl-4 col-sm-4\"></div>
-        </div>";
     header("Location: admin.php");
 }
 ?>
@@ -29,16 +21,17 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleIndex.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
     <title>Formulaire satisfaction</title>
 </head>
 <body>
-    <?php
-    $avisEtuVisible = "block";
-    $avisEmpVisible = "block";
-    ?>
+    <div class="container-fluid">
+        <div class="row h-auto">
+            <span>Type = <?php echo $_SESSION['type']; ?> | evenement : <?php echo $_SESSION["event"]; ?></span>
+        </div>
+    </div>
     <!-- Carte étudiant -->
     <div class="container-fluid" id="conteneurCarte" style="display: <?php echo $avisEtuVisible; ?>">
         <div class="row d-flex justify-content-center align-items-center" id="rowCarte">
@@ -46,7 +39,10 @@ else{
             <div class="col-xl-8 col- col-m-8 col-12">
                 <div class="card border-bleuCegep">
                     <div class="card-header bg bg-bleuCegep">
-                        <h1 class="fontCegep lilasCegep text-center fw-bold">Appréciation de l'événement</h1>
+                        <div class="d-flex flex-column">
+                            <h1 class="fontCegep lilasCegep text-center fw-bold">Appréciation de l'événement</h1>
+                            <span>Nom de l'événement : <?php echo $_SESSION["event"]; ?></span>
+                        </div>
                     </div>
                     <div class="card-body bg bgLilasCegep">
                         <div class="row text-center my-5">

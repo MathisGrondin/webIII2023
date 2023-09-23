@@ -21,6 +21,7 @@ session_start();
         $formVisible = "block";
         $barreMenuAdmin = "none";
         $pageEvent = "none";
+        $pageAccueil = "none";
         $afficherliste = "none";
         $formCreation = "block";
         $stadeAlerte = "";
@@ -225,7 +226,9 @@ session_start();
                         include("users.php");
                     }
                     else if($page == "accueil") {
-                        include("accueil.php");
+                        $pageAccueil = "block";
+                        $barreMenuAdmin = "block";
+                        $formCreation = "none";
                     }
                     else if($page == "deco") {
                         session_destroy();
@@ -521,8 +524,55 @@ session_start();
     </div>
 
     <!-- Bas de page admin : Accueil -->
-    <div class="container-fluid" id="containerAccueil">
-
+    <div class="container-fluid h-100 w-100" id="containerAccueil" style="display: <?php echo $pageAccueil; ?>;">
+        <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+            <div class="col-xl-6">
+                <form action="add.php" method="post">
+                    <div class="card">
+                        <div class="card-header p-2 bg-bleuCegep">
+                            <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold">Renseignements important</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6">Événement auquel envoyer les votes</label>
+                                </div>
+                                <div class="col-6">
+                                    <select name="quelEvent" id="eventvotes" class="w-75 text-center">
+                                        <?php
+                                            $sql = "SELECT * FROM evenements";
+                                            $result = $conn->query($sql);
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                }
+                                            }
+                                            else {
+                                                echo "<option value=''>Aucun événement</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6">Qui répondera au sondage sur cet appareil ? </label>
+                                </div>
+                                <div class="col-6">
+                                    <select name="quiRepond" id="quiRepond" class="w-75 text-center">
+                                        <option value="etudiant">Étudiants</option>
+                                        <option value="employeur">Employeurs</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="w-100">Se déconnecter et retourner à la page de vote</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="js/bootstrap.js"></script>

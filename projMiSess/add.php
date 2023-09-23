@@ -1,5 +1,9 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="fr-ca">
+<html lang="fr-ca" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,51 +12,179 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
-<body>
+<body class="h-100">
 
     <?php
-        // Connexion à la base de données
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "bla";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-        }
-        echo "Connected successfully";
+        
 
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            header("Location: index.php");
+
+            if(isset($_POST["quelEvent"]) && isset($_POST["quiRepond"])){
+                if(!isset($_SESSION["event"]) || !isset($_SESSION["type"])){
+                    $_SESSION["event"] = $_POST["quelEvent"];
+                    $_SESSION["type"] = $_POST["quiRepond"];
+                }
+                else{
+                    $_SESSION["event"] = $_POST["quelEvent"];
+                    $_SESSION["type"] = $_POST["quiRepond"];
+                }
+                header("Location: index.php");
+            }
         }
         else{
-            if(isset($_GET['addN']) && $_GET['addN'] == "1"){
 
-                $sql = "SELECT positive_feedback_count FROM evenement WHERE id";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $count = $row["positive_feedback_count"];
-                $count++;
 
-                $sql = "UPDATE feedback_counts SET positive_feedback_count = $count WHERE id = 1";
-                $result = $conn->query($sql);
+            
 
-                header("Location: index.php");
-                echo "<div class=\"alert alert-success\" role=\"alert\">Merci d'avoir rempli le formulaire 1</div>";
-            }
-            else if (isset($_GET['addN']) && $_GET['addN'] == "2"){
-                echo "<div class=\"alert alert-warning\" role=\"alert\">Merci d'avoir rempli le formulaire 2</div>";
-            }
-            else if (isset($_GET['addN']) && $_GET['addN'] == "3"){
-                echo "<div class=\"alert alert-danger\" role=\"alert\">Merci d'avoir rempli le formulaire 3</div>";
+
+            // ajout d'un commentaire si on connait l'event, le type et le commentaire
+            if(isset($_GET["addN"]) && $_GET["addN"] != "" && isset($_SESSION["event"]) && $_SESSION["event"] != "" && isset($_SESSION["type"]) && $_SESSION["type"] != ""){
+                $addN = $_GET["addN"];
+                $event = $_SESSION["event"];
+                $type = $_SESSION["type"];
+
+                // Connexion à la base de données
+                $servername = "cours.cegep3r.info";
+                $username = "2230572";
+                $password = "2230572";
+                $dbname = "2230572-mathis-grondin";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                
+
+                if($type == "etudiant"){
+                    switch($addN){
+                        case 1:
+                            $sql = "SELECT nbAimeEtu FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbAimeEtu"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbAimeEtu = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+
+                            <?php
+                            break;
+                        case 2:
+                            $sql = "SELECT nbNeutreEtu FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbNeutreEtu"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbNeutreEtu = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+
+                            <?php
+                            break;
+                        case 3:
+                            $sql = "SELECT nbDetesteEtu FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbDetesteEtu"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbDetesteEtu = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+                            
+                            <?php
+                            break;
+                    }
+                }
+                else if($type == "employeur"){
+                    switch($addN){
+                        case 1:
+                            $sql = "SELECT nbAimeEmp FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbAimeEmp"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbAimeEmp = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+                            
+                            <?php
+                            break;
+                        case 2:
+                            $sql = "SELECT nbNeutreEmp FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbNeutreEmp"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbNeutreEmp = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+                            
+                            <?php
+                            break;
+                        case 3:
+                            $sql = "SELECT nbDetesteEmp FROM evenement WHERE id = $event";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                            $count = $row["nbDetesteEmp"];
+                            $count++;
+    
+                            $sql = "UPDATE evenement SET nbDetesteEmp = $count WHERE id = $event";
+                            $result = $conn->query($sql);
+                            ?>
+
+                                <script>
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                </script>
+                            
+                            <?php
+                            break;
+                    }
+                    header("Location: index.php");
+                }
             }
             else{
-                echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur</div>";
+                ?>
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="offset col-xl-4 col-2"></div>
+                            <div class="col-xl-4 col-8 d-flex align-items-center justify-content-center">
+                                <div class="alert alert-danger text-center">
+                                    <h2>Cette page n'est pas accessible de cette manière, merci de retourner sur la page principale.</h2>
+                                </div>
+                            </div>
+                            <div class="offset col-xl-4 col-2"></div>
+                        </div>
+                    </div>
+                <?php
             }
         }
     ?>
