@@ -45,7 +45,7 @@
         </div>
 
         <div class="row p-3">
-            <div class="offset col-2"></div>
+        <div class="offset col-2"></div>
             <div class="col-8 d-flex justify-content-center align-items-center">
                 <table>
                     <thead>
@@ -59,15 +59,11 @@
                     </thead>
                     
                     <tbody class="table-group-divider">
-
                         <?php
-
                             $sql = "SELECT * FROM `evenements`";
                             $result = $conn->query($sql);
-
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-
                                     echo '<tr class="text-center border-bleuCegep bgLilasCegep">';
                                         echo '<th scope="row" class="bleuCegep">'.$row["id"].'</th>';
                                         echo '<td class="px-3 py-3 bleuCegep">'.$row["nom"].'</td>';
@@ -79,18 +75,17 @@
                             } else {
                                 echo "0 results";
                             }
-
                             $conn->close();
-
                         ?>
-
                         
                     </tbody>
                 </table> 
             </div>
-            <div class="offset col-2"></div>
+        <div class="offset col-2"></div>
         </div>
-    </div>
+        </div>
+ 
+ 
 
 
             
