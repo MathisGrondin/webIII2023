@@ -348,12 +348,15 @@ session_start();
     <!-- Bas de page admin : Événements -->
     <div class="container-fluid h-100 w-100" id="containerEvent" style="display: <?php echo $pageEvent; ?>">
         <div class="row h-100 d-flex justify-content-center align-items-center" id="rowEvent">
-            <div class="offset col-xl-3"></div>
-            <div class="col-xl-6">
+            <div class="offset col-xl-2"></div>
+            <div class="col-xl-8">
                 <!-- Card pour création d'un événement -->
                 <div class="card">
                     <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
-                        <h3 class="p-0 m-0 py-2 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier"><img src="icones/event.png" alt="crEvent" id="iconUser">Création d'un événement</h3>
+                        <h3 class="p-0 m-0 py-2 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">
+                            <img src="icones/event.png" alt="crEvent" id="iconUser">
+                            Création d'un événement
+                        </h3>
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
@@ -412,21 +415,34 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-4">
-                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="créer" class="me-2">Créer</button>
+                        <div class="card-footer w-100 h-100 bg-bleuCegep border-rouge-cegep p-0 m-0 d-flex align-items-center justify-content-center">
+                            <div class="row w-100 p-3">
+
+                                <div class="col-4 d-flex align-items-center justify-content-center">
+                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-100 p-0 m-0">
+                                        <div class="w-100 d-flex align-items-center justify-content-center p-0 m-0">
+                                            <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0" >Créer</span>
+                                        </div>
+                                    </button>
                                 </div>
 
-                                <div class="col-4">
-                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <img src="icones/modifier.png" alt="modifier" class="me-1">
-                                        Liste événements
+                                <div class="col-4 d-flex align-items-center justify-content-center">
+                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                        <div class="d-flex align-items-center justify-content-center p-0 m-0">
+                                            <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0">Liste événements</span>
+                                        </div>
                                     </a>                                                                       
                                 </div>
 
-                                <div class="col-4">
-                                    <button type="reset" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/retour.png" alt="annuler" class="me-1">Annuler</button>
+                                <div class="col-4 d-flex align-items-center justify-content-center">
+                                    <button type="reset" class="rounded bgLilasCegep w-100 border-rouge-cegep p-0 m-0">
+                                        <div class="d-flex justify-content-center align-items-center p-0 m-0">
+                                            <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0">Annuler</span>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -441,10 +457,11 @@ session_start();
                         </div>
                     </div>
                     <div class="card-footer bg bg-bleuCegep border-rouge-cegep" style="display: <?php echo $contextBodyCreaEvent ?>">
-                            <div class="row d-flex align-items-center">
-                                <br>
-                            </div>
+                        <div class="row d-flex align-items-center">
+                            <br>
                         </div>
+                    </div>
+                        
 
 
 
@@ -502,7 +519,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="offset col-xl-3"></div>
+            <div class="offset col-xl-2"></div>
         </div>
     </div>
 
@@ -663,7 +680,19 @@ session_start();
                     <div class="card">
                         
                         <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
-                            <h3 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0"><img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">Renseignements importants<img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3"></h3>
+                            <div class="row w-100 h-50 py-2">
+                                <div class="col-2 d-flex justify-content-center align-items-center w-25">
+                                    <img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">
+                                </div>
+                                <div class="col-9 d-flex justify-content-center align-items-center w-50">
+                                    <h3 class="text-center lilasCegep fontCegep fw-bold p-0 my-0">
+                                        Renseignements importants
+                                    </h3>
+                                </div>
+                                <div class="col-2 d-flex justify-content-center align-items-center w-25">
+                                    <img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
