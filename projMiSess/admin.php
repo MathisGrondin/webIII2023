@@ -601,15 +601,15 @@ session_start();
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep " style="display: <?php echo $afficherliste; ?>">
-                        <div class="offset col-4"></div>                        
-                        <div class="col-4 px-1">
-                            <a href="admin.php?page=events" class="btn bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center" style="display : <?php echo $boutonRetourEvent; ?>"  >
-                            <img src="icones/retour.png" alt="annuler" class="me-1" style="width: 60px;">
-                            <span>Retour au formulaire</span>
-                        </a>
+                    <div class="card-footer bg-bleuCegep w-100 align-items-center justify-content-center" style="display: <?php echo $boutonRetourEvent; ?>">
+                        <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourEvent; ?>">
+                            <div class="col-4">
+                                <a href="admin.php?page=events" class="btn bgLilasCegep border-rouge-cegep w-100 d-flex align-items-center justify-content-center">
+                                    <img src="icones/retour.png" alt="annuler" class="fontCegep fw-bold" style="width: 60px;">
+                                    <span>Retour au formulaire</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="offset col-4"></div>
                     </div>
                 </div>
             </div>
