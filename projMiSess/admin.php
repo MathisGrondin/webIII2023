@@ -217,11 +217,17 @@ session_start();
                 
                     if($mdp1 != $mdp2){
                         echo "Veuillez entrer 2 mots de passe identiques";
+                    }                    
+                   
+                    if(isset($_POST["checkAdmin"]) == true){
+                        $adminUser = 1;                       
                     }
-                        
-                    
+                    else{
+                        $adminUser = 0;                        
+                    }
+
                     $sql = "INSERT INTO users
-                        VALUES (null, '$substringNomUser', '$substringPrenom', 0, '$substringCourriel', '$mdp1')";
+                        VALUES (null, '$substringNomUser', '$substringPrenom', '$adminUser', '$substringCourriel', '$mdp1')";
                     $result = $conn->query($sql);
                     
                     echo $sql . "<br>";
@@ -630,14 +636,17 @@ session_start();
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>">
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
-                        <div class="row d-flex align-items-center">
-                            <div class="offset col-4"></div>
-                            <div class="col-8 pb-3">
-                                <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
-                                <input type="checkbox" id="checkAdmin" class="form-check-input border-bleuCegep">
-                            </div>                                    
-                            </div>
-                            <div class="row d-flex align-items-center">
+   
+                            <div class="row ">
+                                <div class="offset col-4"></div>
+                                <div class="col-8 d-flex align-content-center">
+                                    <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
+                                    <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input border-bleuCegep ms-1">  
+                                    <h5 class="fontCegep rougeCegep fw-bold fs-6 m-0 p-0"><img src="icones/alerte.png" alt="annuler" class="me-1 ms-3 icons">Un admin a tous les droits<img src="icones/alerte.png" alt="annuler" class="ms-1 icons"></h5>
+                                </div>
+                            </div>       
+
+                            <div class="row d-flex align-items-center pt-3">
                                 <div class="col-4">
                                     <label for="nomUser" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
                                 </div>
@@ -677,11 +686,16 @@ session_start();
                                     <input type="password" name="mdp2" class="form-control border-bleuCegep">
                                 </div>                                    
                             </div>
+
+
                             <div class="row d-flex align-items-center pt-3">
                                 <div class="offset col-4"></div>
                                 <div class="col-8 pt-3">
-                                    <input type="checkbox" id="checkInfos" class="form-check-input border-bleuCegep">
-                                    <label for="checkInfos" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Je confirme que les informations sont exactes</label>                                   
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input border-bleuCegep" name="checkInfos" id="invalidCheck" required>
+                                        <label for="invalidCheck" class="form-check-label fontCegep bleuCegep fw-bold">Je confirme que les informations sont exactes</label>
+                                        <div class="invalid-feedback fontCegep rougeCegep fw-bold">Vous devez confirmer les informations</div>
+                                    </div>
                                 </div>                                    
                             </div>
                         </div>
