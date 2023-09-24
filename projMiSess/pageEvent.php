@@ -1,5 +1,11 @@
 <?php
 
+if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET))
+{
+    header("Location: admin.php");
+}
+
+
 // SI DÉSIRE ALLER SUR PAGE Événements
 
     $pageEvent = "block";
