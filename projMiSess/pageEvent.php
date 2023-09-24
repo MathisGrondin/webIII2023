@@ -13,6 +13,7 @@ else
     if($_SESSION["admin"] == false){
         $pageEvent = "block";
         $afficherliste = "block";
+        $boutonRetourEvent = "none";
         $formCreation = "none";
     }
     else{
