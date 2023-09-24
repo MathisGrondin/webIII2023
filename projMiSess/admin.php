@@ -479,14 +479,16 @@ session_start();
                                         $result = $conn->query($sql);
                                         if($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
-                                                echo "<tr class=\"text-center border-bottom border-dark\">";
-                                                echo "<th scope=\"row\" class=\"font-cegep bleuCegep\">" . $row["id"] . "</th>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["nom"] . "</td>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["date"] . "</td>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["lieu"] . "</td>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["programme"] . "</td>";
-                                                echo "<td><a href='admin.php?page=events&action=Modifier&id=" . $row["id"] . "'class='btn btn-warning'>Modifier</a></td>";
-                                                echo "</tr>";
+                                                ?>
+                                                    <tr class="text-center border-bottom border-dark">
+                                                        <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"]; ?></th>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"]; ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["date"]; ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["lieu"]; ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["programme"]; ?></td>
+                                                        <td><a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"]; ?>'class='btn btn-warning'>Modifier</a></td>
+                                                    </tr>
+                                                <?php
                                             }
                                         }
                                         else {
@@ -518,9 +520,7 @@ session_start();
                 <!-- Card pour création d'un user -->
                 <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>
 
-                <script>
-                    
-                </script>
+                
 
                 <div class="card">                                   
                     <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
@@ -624,21 +624,20 @@ session_start();
                                         $result = $conn->query($sql);
                                         if($result->num_rows > 0) {
                                             while($row = $result->fetch_assoc()) {
-                                                echo "<tr class=\"text-center border-bottom border-dark\">";
-                                                echo "<th scope=\"row\" class=\"font-cegep bleuCegep\">" . $row["id"] . "</th>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["nom"] . "</td>";
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["prenom"] . "</td>";
-                                                
-                                                if($row["admin"] == 1){
-                                                    echo "<td class=\"font-cegep fw-bold rougeCegep my-3 py-3\">Administrateur</td>";
-                                                }
-                                                else{
-                                                    echo "<td class=\"font-cegep fw-bold bleuCegep my-3 py-3\">Utilisateur normal</td>";
-                                                }
-
-                                                echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["email"] . "</td>";
-                                                echo "<td><a href='admin.php?page=users&action=Modifier&id=" . $row["id"] . "><img src=\"icones/deteste.png\"></a></td>";
-                                                echo "</tr>";
+                                                ?>
+                                                    <tr class="text-center border-bottom border-dark">
+                                                        <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"] ?></th>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["prenom"] ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["admin"] == 1?"Admin":"Utilisateur standard" ?></td>
+                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["email"] ?></td>
+                                                        <td>
+                                                            <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
+                                                                <img src="icones/modifier.png">
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php
                                             }
                                         }
                                         else {
