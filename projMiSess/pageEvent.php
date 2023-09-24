@@ -13,7 +13,8 @@ else
     if($_SESSION["admin"] == false){
         $pageEvent = "block";
         $afficherliste = "block";
-        $boutonRetourEvent = "none";
+        $boutonRetourEvent = "block";
+        $idBarreBas = "existe";
         $formCreation = "none";
     }
     else{
@@ -21,7 +22,9 @@ else
         $afficherliste = "none";
         $boutonRetourEvent = "block";
         $formCreation = "block";
-
+        $boutonRetourEvent = "none";
+        $idBarreBas = "existePas";
+        
         if(isset($_GET["action"]))
         {
             $action = $_GET["action"];
@@ -30,15 +33,26 @@ else
             {
                 $pageEvent = "block";
                 $afficherliste = "block";
+                $boutonRetourEvent = "block";
                 $formCreation = "none";
             }
+        }
+        else{
+            $pageEvent = "block";
+            $afficherliste = "none";
+            $formCreation = "block";
+            $boutonRetourEvent = "none";
+            $idBarreBas = "existePas";
         }
 
         if(!isset($_GET["action"]) && $afficherliste == "block")
         {
             $pageEvent = "block";
             $afficherliste = "none";
+
+            $boutonRetourEvent = "none";
             $formCreation = "block";
+            $idBarreBas = "existePas";
         }
 
         if(isset($_GET["state"])){

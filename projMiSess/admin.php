@@ -30,6 +30,7 @@ session_start();
         $contextBodyCreaEvent = "none";
         $messageContexte = "";
         $boutonRetourEvent = "none";
+        $idBarreBas = "existePas";
 
         // Users
         $pageUsers = "none";
@@ -452,20 +453,19 @@ session_start();
     </div>
 
     <!-- Bas de page admin : Événements -->
-    <div class="container-fluid h-100 w-100" id="containerEvent" style="display: <?php echo $pageEvent; ?>">
-        <div class="row h-100 d-flex justify-content-center align-items-center" id="rowEvent">
-            <div class="offset col-xl-2"></div>
-            <div class="col-xl-8">
+    <div class="container-fluid h-100 w-100 " id="containerEvent" style="display: <?php echo $pageEvent; ?>">
+        <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowEvent">
+            <div class="col-xl-8 h-75">
                 <!-- Card pour création d'un événement -->
-                <div class="card">
+                <div class="card h-75 w-100">
                     <div class="card-header p-2 bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
                         <img src="icones/event.png" alt="crEvent" id="iconUser">
                         <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
-                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>" class="h-100" >
+                        <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
@@ -474,7 +474,7 @@ session_start();
                                     <input type="date" name="dateEvent" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="lieuEvent" class="fontCegep bleuCegep fw-bold fs-6">Lieu</label>
                                 </div>
@@ -482,7 +482,7 @@ session_start();
                                     <input type="text" name="lieuEvent" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="nomEvent" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
                                 </div>
@@ -491,7 +491,7 @@ session_start();
                                 </div>
                             </div>
 
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="programme" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
                                 </div>
@@ -519,7 +519,7 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="card-footer w-100 h-100 bg-bleuCegep border-rouge-cegep p-0 m-0 d-flex align-items-center justify-content-center">
+                        <div class="card-footer p-0 m-0 bg-bleuCegep">
                             <div class="row w-100 p-3">
 
                                 <div class="col-4 d-flex align-items-center justify-content-center">
@@ -553,7 +553,7 @@ session_start();
                     </form>
 
                     <!-- Body contexte sur ajout -->
-                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 boder-bleuCegep text-center" style="display: <?php echo $contextBodyCreaEvent ?>">
+                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep text-center" style="display: <?php echo $contextBodyCreaEvent ?>">
                         <div class="row text-center w-100">
                             <div class="col-12 text-center d-flex justify-content-center align-items-center">
                                 <h4 class="text-center"><?php echo $messageContexte; ?></h4>
@@ -566,64 +566,59 @@ session_start();
                         </div>
                     </div>
                         
-
-
-
-
-
-                    <div style="display: <?php echo $afficherliste; ?>">
-                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
-                            <table class="w-100">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Date</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Lieu</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Programme</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <?php
-                                        $sql = "SELECT * FROM evenements";
-                                        $result = $conn->query($sql);
-                                        if($result->num_rows > 0) {
-                                            while($row = $result->fetch_assoc()) {
-                                                ?>
-                                                    <tr class="text-center border-bottom border-dark">
-                                                        <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"]; ?></th>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"]; ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["date"]; ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["lieu"]; ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["programme"]; ?></td>
-                                                        <td>
-                                                            <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
-                                                                <img src="icones/modifier.png">
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                            }
+                    <div class="card-body h-25 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep listeOverflow" style="display: <?php echo $afficherliste; ?>">
+                        <table class="w-100">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Date</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Lieu</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Programme</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <?php
+                                    $sql = "SELECT * FROM evenements";
+                                    $result = $conn->query($sql);
+                                    if($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            ?>
+                                                <tr class="text-center border-bottom border-dark">
+                                                    <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"]; ?></th>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"]; ?></td>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["date"]; ?></td>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["lieu"]; ?></td>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["programme"]; ?></td>
+                                                    <td>
+                                                        <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
+                                                            <img src="icones/modifier.png">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php
                                         }
-                                        else {
-                                            echo "<tr><td colspan='5'>Aucun événement</td></tr>";
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+                                    }
+                                    else {
+                                        echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep " style="display: <?php echo $afficherliste; ?>">
+                        <div class="offset col-4"></div>                        
+                        <div class="col-4 px-1">
+                            <a href="admin.php?page=events" class="btn bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center" style="display : <?php echo $boutonRetourEvent; ?>"  >
+                            <img src="icones/retour.png" alt="annuler" class="me-1" style="width: 60px;">
+                            <span>Retour au formulaire</span>
+                        </a>
                         </div>
-                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
-                            <div class="offset col-4"></div>                        
-                            <div class="col-4 px-1">
-                                <a href="admin.php?page=events" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" style="display : <?php echo $boutonRetourEvent; ?>"  ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
-                            </div>
-                            <div class="offset col-4"></div>
-                        </div>
+                        <div class="offset col-4"></div>
                     </div>
                 </div>
             </div>
-            <div class="offset col-xl-2"></div>
         </div>
     </div>
 

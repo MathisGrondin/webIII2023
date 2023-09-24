@@ -16,3 +16,9 @@ html, body{
     height: 80px;
     width: auto;
 }
+
+#bodyStats{
+    height: 100%;
+    overflow-y: scroll;
+
+}

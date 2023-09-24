@@ -21,6 +21,20 @@ html, body{
     width: auto;
 }
 
+.listeOverflow{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#existePas{
+    display: none;
+}
+
+#existe{
+    display: flex;
+}
+
+
 .icons{
     height: 30px;
     width: auto;
