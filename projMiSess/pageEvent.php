@@ -24,29 +24,50 @@
         }
     }  
     
-    
-    else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 0)
-    {
-        $pageEvent = "block";
-        $formCreation = "block";
+    if(isset($_GET["state"])){
+        $state = $_GET["state"];
+
+        if($state == 0){
+            $formCreation = "none";
+            $contextBodyCreaEvent = "flex";
+            $messageContexte = "Événement créé avec succès";
+            echo '
+                <script>
+                    setTimeout(function()
+                    {
+                        window.location.href = "admin.php?page=events"
+                    },1000);
+                </script>';
+        }
+        else if($state == 1){
+            $formCreation = "none";
+            $contextBodyCreaEvent = "flex";
+            $messageContexte = "Erreur lors de la création de l'événement";
+
+            echo '
+            <script>
+                setTimeout(function()
+                {
+                    window.location.href = "admin.php?page=events"
+                },1000);
+            </script>';
+
+        }
+        else if($state == 2){
+            $formCreation = "none";
+            $contextBodyCreaEvent = "flex";
+            $messageContexte = "Merci de remplir tous les champs";
+
+            echo '
+            <script>
+                setTimeout(function()
+                {
+                    window.location.href = "admin.php?page=events"
+                },1000);
+            </script>';
+
+        }
     }
-
-
-    else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 1)
-    {
-        $pageEvent = "block";
-        $formCreation = "block";
-        echo "<div class='alert alert-danger'>Merci de remplir tous les champs</div>";
-    }
-
-    
-    else if(isset($_GET["errCreation"]) && $_GET["errCreation"] == 2){
-        $pageEvent = "block";
-        $formCreation = "block";
-        echo "<div class='alert alert-danger'>Erreur lors de la création de l'événement</div>";
-    }
-    
-
 
 
 

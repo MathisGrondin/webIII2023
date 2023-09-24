@@ -1,7 +1,6 @@
 <?php
     session_start();
 
-
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(isset($_POST["quelEvent"]) && isset($_POST["quiRepond"])){
@@ -18,149 +17,148 @@
     }
     else{
 
-        if(isset($_GET["addN"]) && $_GET["addN"] != "" && isset($_SESSION["event"]) && $_SESSION["event"] != "" && isset($_SESSION["type"]) && $_SESSION["type"] != ""){
+        if(isset($_GET["addN"]) && $_GET["addN"] != "" && isset($_SESSION["event"]) && $_SESSION["event"] != "" && isset($_SESSION["type"]) && $_SESSION["type"] != "")
+        {
             $addN = $_GET["addN"];
-                $event = $_SESSION["event"];
-                $type = $_SESSION["type"];
+            $event = $_SESSION["event"];
+            $type = $_SESSION["type"];
 
-                // Connexion à la base de données
-                $servername = "cours.cegep3r.info";
-                $username = "2230572";
-                $password = "2230572";
-                $dbname = "2230572-mathis-grondin";
+            // Connexion à la base de données
+            $servername = "cours.cegep3r.info";
+            $username = "2230572";
+            $password = "2230572";
+            $dbname = "2230572-mathis-grondin";
 
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
                 
 
-                if($type == "etudiant"){
+            if($type == "etudiant") {
+                try {
                     switch($addN){
-                        case 1:
+                            case 1 : 
+                                {
+                                    // Récupération du nombre d'aimé de l'événement
+                                        /* Requête SQL                          */ $sql         = "SELECT nbAimeEtu FROM evenements WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);
+                                        /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                        /* Variable du résultat (nombreLike)    */ $nbAimeEtu   = $row["nbAimeEtu"];
+                                        
+
+                                    // Ajout d'un like
+                                        /* Nouveau nombre de likes              */ $nbAimeEtu++;
+                                        /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbAimeEtu = $nbAimeEtu WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);     
+                                        
+                                    // Retour à la page d'accueil
+                                        header("Location: index.php?ajout=ok");
+                                        break;
+                                }
                             
-
-
-                            // Récupération de l'id de l'événement
-                                /* Requête SQL                  */ $sql     = "SELECT id FROM evenements WHERE nom = '$event'";
-                                /* Envoi requête                */ $result  = $conn->query($sql);
-                                /* Récupération des résultats   */ $row     = $result->fetch_assoc();
-                                /* Variable du résultat (ID)    */ $id      = $row["id"];
-    
-                            // Récupération du nombre d'aimé de l'événement
-                                /* Requête SQL                          */ $sql         = "SELECT nbAimeEtu FROM evenements WHERE id=$id";
-                                /* Envoi requête                        */ $result      = $conn->query($sql);
-                                /* Récupération des résultats           */ $row         = $result->fetch_assoc();
-                                /* Variable du résultat (nombreLike)    */ $nbAimeEtu   = $row["nbAimeEtu"];
+                            case 2 : 
+                                {
+                                    // Récupération du nombre d'aimé de l'événement
+                                        /* Requête SQL                          */ $sql         = "SELECT nbNeutreEtu FROM evenements WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);
+                                        /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                        /* Variable du résultat (nombreLike)    */ $nbAimeEtu   = $row["nbNeutreEtu"];
                                     
 
-                            // Ajout d'un like
-                                /* Nouveau nombre de likes              */ $nbAimeEtu++;
-                                /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbAimeEtu = $nbAimeEtu WHERE id = $id";
-                                /* Envoi requête                        */ $result      = $conn->query($sql);                            
-                            ?>
+                                    // Ajout d'un like
+                                        /* Nouveau nombre de likes              */ $nbNeutreEtu++;
+                                        /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbNeutreEtu = $nbNeutreEtu WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);        
+                                    
+                                    // Retour à la page d'accueil
+                                        header("Location: index.php?ajout=ok");
+                                        break;
+                                }
+                            case 3 : 
+                                {
+                                    // Récupération du nombre d'aimé de l'événement
+                                        /* Requête SQL                          */ $sql         = "SELECT nbDetesteEdu FROM evenements WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);
+                                        /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                        /* Variable du résultat (nombreLike)    */ $nbDetesteEdu   = $row["nbDetesteEdu"];
+                                    
 
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :)\nSi cela vous intéresse, sachez que vous êtes le <?php echo $nbAimeEtu; ?>e étudiant à aimer cet événement!");
-                                </script>
-
-                            <?php
-                            break;
-                        case 2:
-                            $sql = "SELECT nbNeutreEtu FROM evenement WHERE nom = $event";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            $count = $row["nbNeutreEtu"];
-                            $count++;
-    
-                            $sql = "UPDATE evenement SET nbNeutreEtu = $count WHERE nom = $event";
-                            $result = $conn->query($sql);
-                            ?>
-
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
-                                </script>
-
-                            <?php
-                            break;
-                        case 3:
-                            $sql = "SELECT nbDetesteEtu FROM evenement WHERE nom = $event";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            $count = $row["nbDetesteEtu"];
-                            $count++;
-    
-                            $sql = "UPDATE evenement SET nbDetesteEtu = $count WHERE nom = $event";
-                            $result = $conn->query($sql);
-                            ?>
-
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
-                                </script>
-                            
-                            <?php
-                            break;
+                                    // Ajout d'un like
+                                        /* Nouveau nombre de likes              */ $nbDetesteEdu++;
+                                        /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbDetesteEdu = $nbDetesteEdu WHERE nom = '$event'";
+                                        /* Envoi requête                        */ $result      = $conn->query($sql);        
+                                    
+                                    // Retour à la page d'accueil
+                                        header("Location: index.php?ajout=ok");
+                                        break;
+                                }
                     }
                 }
-                else if($type == "employeur"){
-                    switch($addN){
-                        case 1:
-                            $sql = "SELECT nbAimeEmp FROM evenement WHERE id = $event";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            $count = $row["nbAimeEmp"];
-                            $count++;
-    
-                            $sql = "UPDATE evenement SET nbAimeEmp = $count WHERE id = $event";
-                            $result = $conn->query($sql);
-                            ?>
-
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
-                                </script>
-                            
-                            <?php
-                            break;
-                        case 2:
-                            $sql = "SELECT nbNeutreEmp FROM evenement WHERE id = $event";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            $count = $row["nbNeutreEmp"];
-                            $count++;
-    
-                            $sql = "UPDATE evenement SET nbNeutreEmp = $count WHERE id = $event";
-                            $result = $conn->query($sql);
-                            ?>
-
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
-                                </script>
-                            
-                            <?php
-                            break;
-                        case 3:
-                            $sql = "SELECT nbDetesteEmp FROM evenement WHERE id = $event";
-                            $result = $conn->query($sql);
-                            $row = $result->fetch_assoc();
-                            $count = $row["nbDetesteEmp"];
-                            $count++;
-    
-                            $sql = "UPDATE evenement SET nbDetesteEmp = $count WHERE id = $event";
-                            $result = $conn->query($sql);
-                            ?>
-
-                                <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
-                                </script>
-                            
-                            <?php
-                            break;
-                    }
-                    header("Location: index.php");
+                catch(Exception $e) {
+                    header("Location: index.php?ajout=erreur");
                 }
+            }
+            else if($type == "employeur") {
+                try {
+                    switch($addN)
+                    {
+                        case 1 : 
+                            //? Récupération du nombre d'aimé de l'événement
+                                /* Requête SQL                          */ $sql         = "SELECT nbAimeEmp FROM evenements WHERE nom = '$event'";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);
+                                /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                /* Variable du résultat (nombreLike)    */ $nbAimeEmp   = $row["nbAimeEmp"];
+                                
+                            //? Ajout d'un like
+                                /* Nouveau nombre de likes              */ $nbAimeEmp++;
+                                /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbAimeEmp = $nbAimeEmp WHERE nom = '$event'";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);     
+                                
+                            //? Retour à la page d'accueil
+                                header("Location: index.php?ajout=ok");
+                                break;
+                        
+                        case 2 : 
+                            //? Récupération du nombre d'aimé de l'événement
+                                /* Requête SQL                          */ $sql         = "SELECT nbNeutreEmp FROM evenements WHERE nom = '$event'";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);
+                                /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                /* Variable du résultat (nombreLike)    */ $nbNeutreEmp   = $row["nbNeutreEmp"];
+                            
+                            //? Ajout d'un like
+                                /* Nouveau nombre de likes              */ $nbNeutreEmp++;
+                                /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbNeutreEmp = $nbNeutreEmp WHERE nom = '$event'";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);        
+                            
+                            //? Retour à la page d'accueil
+                                header("Location: index.php?ajout=ok");
+                                break;
+                            
+                        case 3 : 
+                            //? Récupération du nombre d'aimé de l'événement
+                               /* Requête SQL                          */ $sql         = "SELECT nbDetesteEmp FROM evenements WHERE nom = '$event'";
+                               /* Envoi requête                        */ $result      = $conn->query($sql);
+                               /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                               /* Variable du résultat (nombreLike)    */ $nbDetesteEmp   = $row["nbDetesteEmp"];
+
+                            //? Ajout d'un like
+                               /* Nouveau nombre de likes              */ $nbDetesteEmp++;
+                               /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbDetesteEmp = $nbDetesteEmp WHERE nom = '$event'";
+                               /* Envoi requête                        */ $result      = $conn->query($sql);
+                           
+                            //? Retour à la page d'accueil
+                               header("Location: index.php?ajout=ok");
+                               break;
+                    }
+                }
+                catch(Exception $e) { 
+                    header("Location: index.php?ajout=erreur");
+                }
+            }
         }
         else{
             header("Location: index.php");
