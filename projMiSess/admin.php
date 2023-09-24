@@ -26,6 +26,8 @@ session_start();
         $pageAccueil = "none";
         $afficherliste = "none";
         $formCreation = "block";
+        $contextBodyCreaEvent = "none";
+        $messageContexte = "";
 
         // Users
         $pageUsers = "none";
@@ -144,29 +146,26 @@ session_start();
                     echo $programme . "<br>";
     
                     $sql = "INSERT INTO evenements
-                            VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0)";
+                            VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0, 0, 0, 0)";
                     $result = $conn->query($sql);
     
                     echo $sql . "<br>";
                     echo $result;
     
                     if($result) {
-                        $stadeAlerte = "success";
-                        $Message = "Événement créé avec succès";
-                        header("Location: admin.php?page=events");
+                        header("Location: admin.php?page=events&state=0");
                     }
                     else {
                         // echo $result;
-                        $stadeAlerte = "danger";
-                        $Message = "Erreur lors de la création de l'événement";
-                        header("Location: admin.php?page=events");
+                        header("Location: admin.php?page=events&state=1");
                     }
+                }
+                else if($_POST["dateEvent"] == "" || $_POST["lieuEvent"] == "" || $_POST["nomEvent"] == "" || $_POST["programme"] == ""){
+                    header("Location: admin.php?page=events&state=2");
                 }
                 else{
                     // header("Location: admin.php?page=events&errCreation=1");
-                    $stadeAlerte = "danger";
-                    $Message = "Merci de remplir tous les champs";
-                    header("Location: admin.php?page=events");
+                    header("Location: admin.php?page=events&state=1");
                 }
 
             }
@@ -188,30 +187,7 @@ session_start();
                     $page = $_GET["page"];
 
                     if($page == "events"){ include("pageEvent.php"); }
-                    else if($page == "users") 
-                    { 
-                        $pageUsers = "block";
-                        $barreMenuAdmin = "block";
-                        
-                        if($_SESSION["admin"] == false){
-                            $listeUsers = "block";
-                            $formUserCr = "none";
-                        }
-                        else{
-                            $listeUsers = "none";
-                            $formUserCr = "block";
-                        }
-
-                        if(isset($_GET["action"])){
-                            $action = $_GET["action"];
-
-                            if($action == "Modifier"){
-                                $listeUsers = "block";
-                                $formUserCr = "none";
-                            }
-                        }
-                        
-                    }
+                    else if($page == "users"){ include("pageUsers.php"); }
                     else if($page == "accueil") {
                         $pageAccueil = "block";
                         $barreMenuAdmin = "block";
@@ -235,6 +211,7 @@ session_start();
                         $barreMenuAdmin = "none";                        
                     }
                 }
+                
             }
             else{
                 $formVisible = "block";
@@ -374,17 +351,12 @@ session_start();
             <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
                 <!-- Card pour création d'un événement -->
-                <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>
-
-                <script>
-                    
-                </script>
- 
                 <div class="card">
                     <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
                         <h3 class="p-0 m-0 py-2 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier"><img src="icones/event.png" alt="crEvent" id="iconUser">Création d'un événement</h3>
                     </div>
                     
+                    <!-- Formulaire de création d'événement -->
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
                             <div class="row d-flex align-items-center">
@@ -439,7 +411,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
@@ -459,6 +431,24 @@ session_start();
                             </div>
                         </div>
                     </form>
+
+                    <!-- Body contexte sur ajout -->
+                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 boder-bleuCegep text-center" style="display: <?php echo $contextBodyCreaEvent ?>">
+                        <div class="row text-center w-100">
+                            <div class="col-12 text-center d-flex justify-content-center align-items-center">
+                                <h4 class="text-center"><?php echo $messageContexte; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg bg-bleuCegep border-rouge-cegep" style="display: <?php echo $contextBodyCreaEvent ?>">
+                            <div class="row d-flex align-items-center">
+                                <br>
+                            </div>
+                        </div>
+
+
+
+
 
                     <div style="display: <?php echo $afficherliste; ?>">
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
