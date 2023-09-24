@@ -330,26 +330,26 @@ session_start();
             <div class="row pt-4">
                 <div class="offset col-xl-4"></div>
                     <div class="col-xl-4">
-                        <div class="card border border-1 border-dark">
-                            <div class="card-header bg bg-bleuCegep">
-                                <h2 class="text-center text-white fontCegep fw-bold">Connexion admin</h2>
+                        <div class="card">
+                            <div class="card-header bg bg-bleuCegep border-rouge-cegep">
+                                <h2 class="text-center lilasCegep fontCegep fw-bold">Connexion admin</h2>
                             </div>
 
-                            <div class="card-body bg bgLilasCegep">
+                            <div class="card-body bg bgLilasCegep border-bleuCegep border-top-0 border-bottom-0">
                                 <div class="d-flex justify-content-between">
-                                    <label for="courriel" class="fw-bold fontCegep">Courriel</label>
-                                    <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center">
+                                    <label for="courriel" class="fw-bold bleuCegep fontCegep">Courriel</label>
+                                    <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center border-bleuCegep">
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-3">
-                                    <label for="mdp" class="fw-bold fontCegep">Mot de passe</label>
-                                    <input type="password" name="mdp" class="rounded">
+                                    <label for="mdp" class="fw-bold bleuCegep fontCegep">Mot de passe</label>
+                                    <input type="password" name="mdp" class="rounded border-bleuCegep">
                                 </div>
                                 
                             </div>
 
-                            <div class="card-footer d-flex justify-content-center bg bg-bleuCegep">
-                                <button type="submit" class="btn bgLilasCegep border border-2 border-light w-50 fontCegep fw-bold">Connexion</button>
+                            <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
+                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold">Connexion</button>
                             </div>
                         </div>
                     </div>
