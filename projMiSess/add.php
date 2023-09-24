@@ -1,46 +1,25 @@
 <?php
     session_start();
-?>
-
-<!DOCTYPE html>
-<html lang="fr-ca" class="h-100">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
-</head>
-<body class="h-100">
-
-    <?php
-        
 
 
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-            if(isset($_POST["quelEvent"]) && isset($_POST["quiRepond"])){
-                if(!isset($_SESSION["event"]) || !isset($_SESSION["type"])){
-                    $_SESSION["event"] = $_POST["quelEvent"];
-                    $_SESSION["type"] = $_POST["quiRepond"];
-                }
-                else{
-                    $_SESSION["event"] = $_POST["quelEvent"];
-                    $_SESSION["type"] = $_POST["quiRepond"];
-                }
-                header("Location: index.php");
+        if(isset($_POST["quelEvent"]) && isset($_POST["quiRepond"])){
+            if(!isset($_SESSION["event"]) || !isset($_SESSION["type"])){
+                $_SESSION["event"] = $_POST["quelEvent"];
+                $_SESSION["type"] = $_POST["quiRepond"];
             }
-        }
         else{
+            $_SESSION["event"] = $_POST["quelEvent"];
+            $_SESSION["type"] = $_POST["quiRepond"];
+        }
+        header("Location: index.php");
+        }
+    }
+    else{
 
-
-            
-
-
-            // ajout d'un commentaire si on connait l'event, le type et le commentaire
-            if(isset($_GET["addN"]) && $_GET["addN"] != "" && isset($_SESSION["event"]) && $_SESSION["event"] != "" && isset($_SESSION["type"]) && $_SESSION["type"] != ""){
-                $addN = $_GET["addN"];
+        if(isset($_GET["addN"]) && $_GET["addN"] != "" && isset($_SESSION["event"]) && $_SESSION["event"] != "" && isset($_SESSION["type"]) && $_SESSION["type"] != ""){
+            $addN = $_GET["addN"];
                 $event = $_SESSION["event"];
                 $type = $_SESSION["type"];
 
@@ -62,30 +41,37 @@
                 if($type == "etudiant"){
                     switch($addN){
                         case 1:
-                            $sql = "SELECT nbAimeEtu FROM evenement WHERE id = $event";
+                            
+
+
+
+                            $sql = "SELECT id FROM evenements WHERE nom = '$event'";
                             $result = $conn->query($sql);
+                            echo $sql;
                             $row = $result->fetch_assoc();
-                            $count = $row["nbAimeEtu"];
-                            $count++;
+                            echo $row["id"];
+                            $
+                            // $count = $row["nbAimeEtu"];
+                            // $count++;
     
-                            $sql = "UPDATE evenement SET nbAimeEtu = $count WHERE id = $event";
-                            $result = $conn->query($sql);
+                            // $sql = "UPDATE evenement SET nbAimeEtu = $count WHERE nom = $event";
+                            // $result = $conn->query($sql);
                             ?>
 
                                 <script>
-                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                    // alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
                                 </script>
 
                             <?php
                             break;
                         case 2:
-                            $sql = "SELECT nbNeutreEtu FROM evenement WHERE id = $event";
+                            $sql = "SELECT nbNeutreEtu FROM evenement WHERE nom = $event";
                             $result = $conn->query($sql);
                             $row = $result->fetch_assoc();
                             $count = $row["nbNeutreEtu"];
                             $count++;
     
-                            $sql = "UPDATE evenement SET nbNeutreEtu = $count WHERE id = $event";
+                            $sql = "UPDATE evenement SET nbNeutreEtu = $count WHERE nom = $event";
                             $result = $conn->query($sql);
                             ?>
 
@@ -96,13 +82,13 @@
                             <?php
                             break;
                         case 3:
-                            $sql = "SELECT nbDetesteEtu FROM evenement WHERE id = $event";
+                            $sql = "SELECT nbDetesteEtu FROM evenement WHERE nom = $event";
                             $result = $conn->query($sql);
                             $row = $result->fetch_assoc();
                             $count = $row["nbDetesteEtu"];
                             $count++;
     
-                            $sql = "UPDATE evenement SET nbDetesteEtu = $count WHERE id = $event";
+                            $sql = "UPDATE evenement SET nbDetesteEtu = $count WHERE nom = $event";
                             $result = $conn->query($sql);
                             ?>
 
@@ -170,26 +156,9 @@
                     }
                     header("Location: index.php");
                 }
-            }
-            else{
-                ?>
-                    <div class="container-fluid h-100">
-                        <div class="row h-100">
-                            <div class="offset col-xl-4 col-2"></div>
-                            <div class="col-xl-4 col-8 d-flex align-items-center justify-content-center">
-                                <div class="alert alert-danger text-center">
-                                    <h2>Cette page n'est pas accessible de cette manière, merci de retourner sur la page principale.</h2>
-                                </div>
-                            </div>
-                            <div class="offset col-xl-4 col-2"></div>
-                        </div>
-                    </div>
-                <?php
-            }
         }
-    ?>
-
-    <script src="js/bootstrap.js"></script>
-    <script src="js/script.js"></script>
-</body>
-</html>
+        else{
+            header("Location: index.php");
+        }
+    }
+?>
