@@ -400,10 +400,10 @@ session_start();
                 <script>
                     
                 </script>
-
+ 
                 <div class="card">
-                    <div class="card-header p-2 bg bg-bleuCegep border-rouge-cegep">
-                        <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
+                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
+                        <h3 class="p-0 m-0 py-2 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier"><img src="icones/event.png" alt="crEvent" id="iconUser">Création d'un événement</h3>
                     </div>
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>">
@@ -464,7 +464,7 @@ session_start();
                         <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="ajouter" class="me-2">Créer</button>
+                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="créer" class="me-2">Créer</button>
                                 </div>
 
                                 <div class="col-4">
@@ -543,10 +543,10 @@ session_start();
                     
                 </script>
 
-                <div class="card">
-                    <div class="card-header p-2 bg bg-bleuCegep border-rouge-cegep">
-                        <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un utilisateur</h3>
-                    </div>
+                <div class="card">                                   
+                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
+                        <h3 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 m-0" id="titreUserCr"><img src="icones/admin.png" alt="crUser" id="iconUser">Création d'un utilisateur</h3>
+                    </div> 
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>">
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
@@ -609,12 +609,12 @@ session_start();
                         <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouter.png" alt="créer" class="me-2">Créer</button>
+                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouterAdminUser.png" alt="créerUser">Créer</button>
                                 </div>
 
                                 <div class="col-4">
                                     <a href="admin.php?page=users&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <img src="icones/modifier.png" alt="modifier" class="me-1">
+                                        <img src="icones/modifierAdminUser.png" alt="modifierUser">
                                         Liste utilisateurs
                                     </a>                                                                       
                                 </div>
@@ -658,7 +658,7 @@ session_start();
                                                 }
 
                                                 echo "<td class=\"font-cegep bleuCegep my-3 py-3\">" . $row["email"] . "</td>";
-                                                echo "<td><a href='admin.php?page=users&action=Modifier&id=" . $row["id"] . "'class='btn btn-warning'>Modifier</a><div></div></td>";
+                                                echo "<td><a href='admin.php?page=users&action=Modifier&id=" . $row["id"] . "><img src=\"icones/deteste.png\"></a></td>";
                                                 echo "</tr>";
                                             }
                                         }

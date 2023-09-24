@@ -16,6 +16,10 @@ html, body{
     background-image: url("../img/background.png");
 }
 
+#iconUser{
+    height: 60px;
+    width: auto;
+}
 /* #rowMenu, #contMenu, #colMenu{
     height: 8vh;
 }
