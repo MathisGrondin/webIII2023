@@ -1,9 +1,22 @@
 <?php
 
+// s'il n'est pas connecté
     if($_SERVER["REQUEST_METHOD"] == "GET" &&  !isset($_SESSION["admin"], $_SESSION["user"]))
     {
         header("Location: admin.php");
     }
+
+// s'il est connecté
+else{
+    if($_SESSION["admin"] == false){
+        $pageUsers = "block";
+    }
+}
+
+
+
+
+
 
     if($page == "users")
     {

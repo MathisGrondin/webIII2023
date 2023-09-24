@@ -19,6 +19,7 @@ else
     else{
         $pageEvent = "block";
         $afficherliste = "none";
+        $boutonRetourEvent = "block";
         $formCreation = "block";
 
         if(isset($_GET["action"]))
