@@ -72,6 +72,7 @@ session_start();
                 $_SESSION["user"] = $courriel;
                 $formVisible = "none";
                 $barreMenuAdmin = "block";
+                $basAdmin = "block";
 
                 // check if user is admin
                 $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
