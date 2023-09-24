@@ -35,6 +35,7 @@ session_start();
         $pageUsers = "none";
         $listeUsers = "none";
         $formUserCr = "block";
+        $boutonRetourUser = "none";
         $adminUser = 0;
 
         // Alertes
@@ -169,6 +170,9 @@ session_start();
                     // header("Location: admin.php?page=events&errCreation=1");
                     header("Location: admin.php?page=events&state=1");
                 }
+
+
+
 
             }
             else{
@@ -383,11 +387,9 @@ session_start();
             <div class="col-xl-8">
                 <!-- Card pour création d'un événement -->
                 <div class="card">
-                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
-                        <h3 class="p-0 m-0 py-2 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">
-                            <img src="icones/event.png" alt="crEvent" id="iconUser">
-                            Création d'un événement
-                        </h3>
+                    <div class="card-header p-2 bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
+                        <img src="icones/event.png" alt="crEvent" id="iconUser">
+                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
@@ -560,11 +562,10 @@ session_start();
             <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
                 <!-- Card pour création d'un user -->
-                <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>                
-
                 <div class="card">                                   
-                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
-                        <h3 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 m-0" id="titreUserCr"><img src="icones/admin.png" alt="crUser" id="iconUser">Création d'un utilisateur</h3>
+                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
+                        <img src="icones/admin.png" alt="crUser" id="iconUser">
+                        <h3 class="lilasCegep fontCegep fw-bold p-0 m-0" id="titreUserCr">Création d'un utilisateur</h3>
                     </div> 
                     
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>">
@@ -689,8 +690,11 @@ session_start();
                         </div>
                         <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
-                            <div class="col-4 px-1">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="retour" class="me-1">Retour au formulaire</a>
+                            <div class="col-4 px-1" style="display: <?php echo $boutonRetourUser; ?>;">
+                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" >
+                                    <img src="icones/retour.png" alt="retour" class="me-1">
+                                    Retour au formulaire
+                                </a>
                             </div>
                             <div class="offset col-4"></div>
                         </div>

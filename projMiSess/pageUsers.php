@@ -12,10 +12,12 @@
 
         if($_SESSION["admin"] == false){
             $listeUsers = "block";
+            $boutonRetourUser = "none";
             $formUserCr = "none";
         }
         else{
             $listeUsers = "none";
+            $boutonRetourUser = "block";
             $formUserCr = "block";
         }
 
