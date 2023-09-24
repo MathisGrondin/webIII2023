@@ -44,22 +44,27 @@
                             
 
 
-
-                            $sql = "SELECT id FROM evenements WHERE nom = '$event'";
-                            $result = $conn->query($sql);
-                            echo $sql;
-                            $row = $result->fetch_assoc();
-                            echo $row["id"];
-                            $
-                            // $count = $row["nbAimeEtu"];
-                            // $count++;
+                            // Récupération de l'id de l'événement
+                                /* Requête SQL                  */ $sql     = "SELECT id FROM evenements WHERE nom = '$event'";
+                                /* Envoi requête                */ $result  = $conn->query($sql);
+                                /* Récupération des résultats   */ $row     = $result->fetch_assoc();
+                                /* Variable du résultat (ID)    */ $id      = $row["id"];
     
-                            // $sql = "UPDATE evenement SET nbAimeEtu = $count WHERE nom = $event";
-                            // $result = $conn->query($sql);
+                            // Récupération du nombre d'aimé de l'événement
+                                /* Requête SQL                          */ $sql         = "SELECT nbAimeEtu FROM evenements WHERE id=$id";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);
+                                /* Récupération des résultats           */ $row         = $result->fetch_assoc();
+                                /* Variable du résultat (nombreLike)    */ $nbAimeEtu   = $row["nbAimeEtu"];
+                                    
+
+                            // Ajout d'un like
+                                /* Nouveau nombre de likes              */ $nbAimeEtu++;
+                                /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbAimeEtu = $nbAimeEtu WHERE id = $id";
+                                /* Envoi requête                        */ $result      = $conn->query($sql);                            
                             ?>
 
                                 <script>
-                                    // alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :) ");
+                                    alert("Succès! Merci d'avoir pris de temps de répondre au formulaire :)\nSi cela vous intéresse, sachez que vous êtes le <?php echo $nbAimeEtu; ?>e étudiant à aimer cet événement!");
                                 </script>
 
                             <?php
