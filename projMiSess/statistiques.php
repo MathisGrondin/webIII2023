@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleStats.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
     <title>Statistiques</title>
@@ -36,61 +36,73 @@
 
     ?>
 
-    <div class="container-fluid">
-        <div class="row bg-bleuCegep py-3">
-            <div class="col-xl-2 col-10 d-flex align-items-center justify-content-between">
-                <a href="admin.php" class="btn bg bgLilasCegep fontCegep fw-bold bleuCegep">Retour</a> 
-                <h2 class="ms-3 mt-2 lilasCegep fontCegep fw-bold">Statistiques</h2>               
+    <div class="container-fluid contStats h-100 w-100">
+        <div class="row rowStats">
+            <div class="col-12 p-0 m-0">
+                <div class="card m-0 p-0 d-flex justify-content-center">
+
+                    <div class="card-header py-2 bg bg-bleuCegep">
+                            <h2 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0"><img src="icones/stats.png" alt="stats" class="icons mx-3">Statistiques</h2>        
+                    </div>
+
+                    <div class="card-body bg bgLilasCegep">                
+                        <div class="row m-0 p-0">      
+                            <table class="m-0 p-0 caption-top">
+                                <caption><span class="bleuCegep fw-bold fontCegep">Étudiants | </span><span class="rougeOrangeCegep fw-bold fontCegep">Employés</span></caption>
+
+                                <thead>
+                                    <tr class="bg-bleuCegep text-center lilasCegep p-0 m-0">
+                                        <th scope="col" class="fontCegep fw-bold py-3">Id</th>
+                                        <th scope="col" class="fontCegep fw-bold py-3">Événement</th>
+                                        <th scope="col"><img src="icones/aime.png" alt="aime" height="150" class="py-3 iconsAvis"></th>
+                                        <th scope="col"><img src="icones/neutre.png" alt="neutre" height="150" class="py-3 iconsAvis"></th>
+                                        <th scope="col"><img src="icones/deteste.png" alt="deteste" height="150" class="py-3 iconsAvis"></th>
+                                        <th scope="col" class="fontCegep fw-bold py-3">Total votes</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="table-group-divider">
+                                    <?php
+                                        $sql = "SELECT * FROM `evenements`";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                <tr class="text-center border-bottom border-dark">
+                                                    <th scope="row" class="fontCegep bleuCegep"><?php echo $row["id"] ?></th>
+                                                    <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
+                                                    <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbAimeEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbAimeEmp"] ?></span></td>
+                                                    <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbNeutreEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbNeutreEmp"] ?></td>
+                                                    <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbDetesteEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbDetesteEmp"] ?></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        } else {
+                                            echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                        }
+                                        $conn->close();
+                                            ?>
+
+
+                                </tbody>
+                            </table> 
+                        </div>                               
+                    </div>
+
+                    <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center">
+                        <div class="offset col-4"></div>
+                        <div class="col-4 px-1 d-flex justify-content-center align-items-center">
+                            <a href="admin.php" class="btn w-100 bg bgLilasCegep border-rouge-cegep w-100 bleuCegep fontCegep fw-bold rounded p-0 m-0"><img src="icones/retour.png" alt="retour" class="me-1 icons">Retour</a> 
+                        </div>
+                        <div class="offset col-4"></div>
+                    </div>
+
+                </div>
             </div>
-        </div>
-
-        <div class="row p-3">
-        <div class="offset col-2"></div>
-            <div class="col-8 d-flex justify-content-center align-items-center">
-                <table>
-                    <thead>
-                        <tr class="bg-bleuCegep text-center lilasCegep border-rouge-cegep">
-                            <th scope="col" class="fontCegep fw-bold px-3 py-3">Id</th>
-                            <th scope="col" class="fontCegep fw-bold px-3 py-3">Événement</th>
-                            <th scope="col"><img src="icones/aime.png" alt="aime" height="150" class="px-3 py-3"></th>
-                            <th scope="col"><img src="icones/neutre.png" alt="neutre" height="150" class="px-3 py-3"></th>
-                            <th scope="col"><img src="icones/deteste.png" alt="deteste" height="150" class="px-3 py-3"></th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody class="table-group-divider">
-                        <?php
-                            $sql = "SELECT * FROM `evenements`";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<tr class="text-center border-bleuCegep bgLilasCegep">';
-                                        echo '<th scope="row" class="bleuCegep">'.$row["id"].'</th>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nom"].'</td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbAimeEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbAimeEmp"] . '</span></td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbNeutreEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbNeutreEmp"] . '</td>';
-                                        echo '<td class="px-3 py-3 bleuCegep">'.$row["nbDetesteEtu"]. ' | <span class="rougeOrangeCegep">' . $row["nbDetesteEmp"] . '</td>';
-                                    echo '</tr>';
-                                }
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                        ?>
-                        
-                    </tbody>
-                </table> 
-            </div>
-        <div class="offset col-2"></div>
-        </div>
-        </div>
  
- 
+        </div>
+    </div>
 
-
-            
-   
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.js"></script>
 </body>
 </html>

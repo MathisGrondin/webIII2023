@@ -721,7 +721,7 @@ session_start();
 
                         <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>
-                            <div class="col-4 px-1 d-flex justify-content-center align-items-center ">
+                            <div class="col-4 px-1 d-flex justify-content-center align-items-center">
                                 <button type="submit" class="w-100 bg bgLilasCegep border-rouge-cegep w-100 bleuCegep fontCegep fw-bold rounded p-0 m-0"><img src="icones/deconnexion.png" alt="deco" class="me-1">Page de votes</button>
                             </div>
                             <div class="offset col-4"></div>
