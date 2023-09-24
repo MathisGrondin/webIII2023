@@ -38,6 +38,9 @@ session_start();
         $formUserCr = "block";
         $boutonRetourUser = "none";
         $adminUser = 0;
+        $contextBodyCreaUser = "none";
+        $messageCreaUser = "";
+        $boutonRetourUser = "none";
 
         // Alertes
         $stadeAlerte = "";
@@ -173,9 +176,70 @@ session_start();
                     header("Location: admin.php?page=events&state=1");
                 }
 
-
-
-
+                // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
+                if(isset($_POST["nomUser"], $_POST["prenomUser"], $_POST["courriel"], $_POST["mdp1"], $_POST["mdp2"]) && $_POST["nomUser"] != "" && $_POST["prenomUser"] != "" && $_POST["courriel"] != "" && $_POST["mdp1"] != "" && $_POST["mdp2"] != "") {
+                    $nomUser = $_POST["nomUser"];
+                    $prenomUser = $_POST["prenomUser"];
+                    $courriel = $_POST["courriel"];
+                    $mdp1 = sha1($_POST["mdp1"]);
+                    $mdp2 = sha1($_POST["mdp2"]);
+                    
+                    $placeQuoteNomUser = stripos($nomUser, '\'');
+                    $placeQuotePrenom = stripos($prenomUser, '\'');
+                    $placeQuoteCourriel = stripos($courriel, '\'');
+                    
+                    if($placeQuoteNomUser != null){
+                        $substringNomUser = substr($nomUser, 0, $placeQuoteNomUser);
+                        echo $substringNomUser . "<br>";
+                    }
+                    else{
+                        echo $nomUser . "<br>";
+                        $substringNomUser = $nomUser;
+                    }
+                    
+                    if($placeQuotePrenom != null){
+                        $substringPrenom = substr($prenomUser, 0, $placeQuotePrenom);
+                        echo $substringPrenom . "<br>";
+                    }
+                    else{
+                        echo $prenomUser . "<br>";
+                        $substringPrenom = $prenomUser;
+                    }
+                
+                    if($placeQuoteCourriel != null){
+                        $substringCourriel = substr($courriel, 0, $placeQuoteCourriel);
+                        echo $substringCourriel . "<br>";
+                    }
+                    else{
+                        echo $courriel . "<br>";
+                        $substringCourriel = $courriel;
+                    }  
+                
+                    if($mdp1 != $mdp2){
+                        echo "Veuillez entrer 2 mots de passe identiques";
+                    }
+                        
+                    
+                    $sql = "INSERT INTO users
+                        VALUES (null, '$substringNomUser', '$substringPrenom', 0, '$substringCourriel', '$mdp1')";
+                    $result = $conn->query($sql);
+                    
+                    echo $sql . "<br>";
+                    echo $result;
+                    
+                    if($result) {
+                        header("Location: admin.php?page=users&state=0");
+                    }
+                    else {
+                        header("Location: admin.php?page=users&state=1");
+                    }
+                }
+                else if($_POST["nomUser"] == "" || $_POST["prenomUser"] == "" || $_POST["courriel"] == "" || $_POST["mdp1"] == "" || $_POST["mdp2"] == ""){
+                    header("Location: admin.php?page=users&state=2");
+                }
+                else{
+                    header("Location: admin.php?page=users&state=1");
+                }
             }
             else{
                 $formVisible = "block";
@@ -642,6 +706,21 @@ session_start();
                         </div>
                     </form>
 
+
+                    <!-- Body contexte sur ajout -->
+                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 boder-bleuCegep text-center" style="display: <?php echo $contextBodyCreaUser ?>">
+                        <div class="row text-center w-100">
+                            <div class="col-12 text-center d-flex justify-content-center align-items-center">
+                                <h4 class="text-center"><?php echo $messageCreaUser; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg bg-bleuCegep border-rouge-cegep" style="display: <?php echo $contextBodyCreaUser ?>">
+                        <div class="row d-flex align-items-center">
+                            <br>
+                        </div>
+                    </div>
+
                     <div style="display: <?php echo $listeUsers; ?>">
                         <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
                             <table class="w-100">
@@ -686,11 +765,8 @@ session_start();
                         </div>
                         <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
-                            <div class="col-4 px-1" style="display: <?php echo $boutonRetourUser; ?>;">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" >
-                                    <img src="icones/retour.png" alt="retour" class="me-1">
-                                    Retour au formulaire
-                                </a>
+                            <div class="col-4 px-1">
+                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" style="display : <?php echo $boutonRetourUser; ?>"><img src="icones/retour.png" alt="retour" class="me-1">Retour au formulaire</a>
                             </div>
                             <div class="offset col-4"></div>
                         </div>

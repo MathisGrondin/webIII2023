@@ -20,6 +20,7 @@ else
     else{
         $pageEvent = "block";
         $afficherliste = "none";
+        $boutonRetourEvent = "block";
         $formCreation = "block";
         $boutonRetourEvent = "none";
         $idBarreBas = "existePas";
