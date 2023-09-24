@@ -19,6 +19,8 @@
 <body>
 
     <?php
+        $sumEtu = 0;
+        $sumEmp = 0;
 
         $servername = "cours.cegep3r.info";
         $username = "2230572";
@@ -37,9 +39,9 @@
     ?>
 
     <div class="container-fluid contStats h-100 w-100">
-        <div class="row rowStats">
-            <div class="col-12 p-0 m-0">
-                <div class="card m-0 p-0 d-flex justify-content-center">
+        <div class="row h-100">
+            <div class="col-12 p-3 m-0">
+                <div class="card d-flex justify-content-center">
 
                     <div class="card-header py-2 bg bg-bleuCegep">
                             <h2 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0"><img src="icones/stats.png" alt="stats" class="icons mx-3">Statistiques</h2>        
@@ -74,6 +76,14 @@
                                                     <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbAimeEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbAimeEmp"] ?></span></td>
                                                     <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbNeutreEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbNeutreEmp"] ?></td>
                                                     <td class="fontCegep bleuCegep my-3 py-3"><?php echo $row["nbDetesteEtu"] ?><span class="rougeOrangeCegep"> | <?php echo $row["nbDetesteEmp"] ?></td>
+                                                    
+                                                    <?php
+                                                    $sumEmp = $sumEtu = 0;
+                                                    $sumEtu += $row["nbAimeEtu"] + $row["nbNeutreEtu"] + $row["nbDetesteEtu"];
+                                                    $sumEmp += $row["nbAimeEmp"] + $row["nbNeutreEmp"] + $row["nbDetesteEmp"];
+                                                    ?>
+
+                                                    <td class="fontCegep bleuCegep my-3 py-3"><?php echo $sumEtu ?><span class="rougeOrangeCegep"> | <?php echo $sumEmp ?></span></td>
                                                 </tr>
                                             <?php
                                             }
@@ -82,8 +92,6 @@
                                         }
                                         $conn->close();
                                             ?>
-
-
                                 </tbody>
                             </table> 
                         </div>                               

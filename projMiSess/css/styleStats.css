@@ -1,3 +1,12 @@
+html, body{
+    height: 100%;
+    overflow: hidden;
+}
+
+.contStats{
+    background-image: url("../img/background.png");
+}
+
 .icons{
     height: 60px;
     width: auto;
