@@ -28,6 +28,7 @@ session_start();
         $formCreation = "block";
         $contextBodyCreaEvent = "none";
         $messageContexte = "";
+        $boutonRetourEvent = "none";
 
         // Users
         $pageUsers = "none";
@@ -513,7 +514,7 @@ session_start();
                         <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
                             <div class="col-4 px-1">
-                                <a href="admin.php?page=events" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" disabled ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
+                                <a href="admin.php?page=events" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" style="display : <?php echo $boutonRetourEvent; ?>"  ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
                             </div>
                             <div class="offset col-4"></div>
                         </div>
