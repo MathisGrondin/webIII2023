@@ -519,36 +519,34 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="card-footer p-0 m-0 bg-bleuCegep">
-                            <div class="row w-100 p-3">
+                        <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
 
-                                <div class="col-4 d-flex align-items-center justify-content-center">
-                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-100 p-0 m-0">
-                                        <div class="w-100 d-flex align-items-center justify-content-center p-0 m-0">
+                                <div class="col-4 d-flex justify-content-center">
+                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-75">
+                                        <div class=" d-flex align-items-center justify-content-center">
                                             <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0" >Créer</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Créer</span>
                                         </div>
                                     </button>
                                 </div>
 
-                                <div class="col-4 d-flex align-items-center justify-content-center">
-                                    <a href="admin.php?page=events&action=Modifier" class="btn w-100 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <div class="d-flex align-items-center justify-content-center p-0 m-0">
+                                <div class="col-4 d-flex justify-content-center">
+                                    <a href="admin.php?page=events&action=Modifier" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
+                                        <div class="d-flex align-items-center justify-content-center">
                                             <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0">Liste événements</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Liste événements</span>
                                         </div>
                                     </a>                                                                       
                                 </div>
 
-                                <div class="col-4 d-flex align-items-center justify-content-center">
-                                    <button type="reset" class="rounded bgLilasCegep w-100 border-rouge-cegep p-0 m-0">
-                                        <div class="d-flex justify-content-center align-items-center p-0 m-0">
+                                <div class="col-4 d-flex justify-content-center">
+                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-75">
+                                        <div class="d-flex justify-content-center align-items-center">
                                             <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep p-0 m-0">Annuler</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Annuler</span>
                                         </div>
                                     </button>
                                 </div>
-                            </div>
                         </div>
                     </form>
 
@@ -711,19 +709,33 @@ session_start();
                         
                         <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
                             <div class="row d-flex align-items-center">
-                                <div class="col-4">
-                                    <button type="submit" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/ajouterAdminUser.png" alt="créerUser">Créer</button>
+                                <div class="col-4 d-flex align-items-center">
+                                    <button type="submit" class="w-100 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="icones/ajouterAdminUser.png" alt="créerUser">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Créer</span>
+                                        </div>
+                                    </button>
                                 </div>
 
-                                <div class="col-4">
-                                    <a href="admin.php?page=users&action=Modifier" class="btn w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <img src="icones/modifierAdminUser.png" alt="modifierUser">
-                                        Liste utilisateurs
+                                <div class="col-4 d-flex align-items-center">
+                                    <a href="admin.php?page=users&action=Modifier" class="btn w-100 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="icones/modifierAdminUser.png" alt="modifierUser">
+                                            <span class="fs-4 fw-bold bleuCegep fontCegep">Liste Utilisateurs</span>
+                                        </div>    
                                     </a>                                                                       
                                 </div>
 
-                                <div class="col-4">
-                                    <button type="reset" class="w-100 rounded fs-4 fw-bold fontCegep bleuCegep bgLilasCegep border-rouge-cegep"><img src="icones/retour.png" alt="annuler" class="me-1">Annuler</button>
+                                <div class="col-4 d-flex align-items-center">
+                                    <button type="reset" class="w-100 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="icones/retour.png" alt="annuler">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">
+                                                Annuler
+                                            </span>
+                                        </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -825,15 +837,14 @@ session_start();
                             </div>
                         </div>
 
-                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
-                            
-                            <div class="row py-3">                            
+                        <div class="card-body p-4 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
+                            <div class="vstack gap-4">
                                 <div class="row">
-                                    <div class="col-6 ps-5">
-                                        <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6 py-2">Événement auquel envoyer les votes</label>
+                                    <div class="col-6">
+                                        <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6">Événement auquel envoyer les votes</label>
                                     </div>
-                                    <div class="col-6 d-flex justify-content-center py-1">
-                                        <select name="quelEvent" id="eventvotes" class="w-75 text-center bleuCegep border-bleuCegep rounded py-1">
+                                    <div class="col-6 d-flex justify-content-end">
+                                        <select name="quelEvent" id="eventvotes" class="w-75 text-center bleuCegep border-bleuCegep rounded">
                                             <?php
                                                 $sql = "SELECT * FROM evenements";
                                                 $result = $conn->query($sql);
@@ -848,23 +859,23 @@ session_start();
                                             ?>
                                         </select>
                                     </div>
-                                </div> 
-                                
-                                <div class="row pt-3">
-                                    <div class="col-6 ps-5">
-                                        <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6 py-2">Qui répondera au sondage sur cet appareil ? </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6">Qui répondera au sondage sur cet appareil ? </label>
                                     </div>
-                                    <div class="col-6 d-flex justify-content-center py-1">
-                                        <select name="quiRepond" id="quiRepond" class="w-75 text-center bleuCegep border-bleuCegep rounded py-1">
+                                    <div class="col-6 d-flex justify-content-end">
+                                        <select name="quiRepond" id="quiRepond" class="w-75 text-center bleuCegep border-bleuCegep rounded">
                                             <option value="etudiant">Étudiants</option>
                                             <option value="employeur">Employeurs</option>
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div>
-                                <p class="text-center rougeCegep fw-bold m-0 p-0">Vous serez déconnecter pour vous rendre à la page de votes</p>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <span class="text-center p-0 m-0 rougeCegep fw-bold">Vous serez déconnecté pour vous rendre à la page de vote</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
