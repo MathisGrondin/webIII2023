@@ -20,6 +20,7 @@ session_start();
     <?php 
         $formVisible = "block";
         $barreMenuAdmin = "none";
+        $basAdmin = "none";
 
         // Événements
         $pageEvent = "none";
@@ -211,7 +212,12 @@ session_start();
                         $barreMenuAdmin = "none";                        
                     }
                 }
-                
+
+                if(!isset($_GET["page"])){
+                    $basAdmin = "block";
+                }
+                else{
+                    $basAdmin = "none";}                
             }
             else{
                 $formVisible = "block";
@@ -343,6 +349,30 @@ session_start();
                 </a>
             </div>
         </div>        
+    </div>
+
+    <!-- Bas de page admin : Arrivée -->
+    <div class="container-fluid h-100 w-100" id="contWelcome" style="display: <?php echo $basAdmin; ?>">
+        <div class="row h-100 d-flex justify-content-center align-items-center" id="rowWelcome">
+            <div class="offset col-xl-2 col-2"></div>
+            <div class="col-xl-8 col-8">
+                <?php 
+                    $user = $_SESSION["user"];
+
+                    $sql = "SELECT nom FROM users WHERE email = '$user'";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $userNom = $row["nom"];
+
+                    $sql = "SELECT prenom FROM users WHERE email = '$user'";
+                    $result = $conn->query($sql);
+                    $row = $result->fetch_assoc();
+                    $userPrenom = $row["prenom"];
+                ?>
+                <h1 class="text-center fontCegep bleuCegep fw-bold">Bienvenue sur la page <br><?php echo $userPrenom . " " . $userNom?></h1>
+            </div>
+            <div class="offset col-xl-2 col-2"></div>
+        </div>
     </div>
 
     <!-- Bas de page admin : Événements -->
