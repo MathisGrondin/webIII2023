@@ -476,7 +476,11 @@ session_start();
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["date"]; ?></td>
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["lieu"]; ?></td>
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["programme"]; ?></td>
-                                                        <td><a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"]; ?>'class='btn btn-warning'>Modifier</a></td>
+                                                        <td>
+                                                            <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
+                                                                <img src="icones/modifier.png">
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 <?php
                                             }
@@ -508,9 +512,7 @@ session_start();
             <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
                 <!-- Card pour création d'un user -->
-                <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>
-
-                
+                <div class="alert alert-<?php echo $stadeAlerte; ?>" id="alerteTemp"><?php echo $Message; ?></div>                
 
                 <div class="card">                                   
                     <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
@@ -619,7 +621,7 @@ session_start();
                                                         <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"] ?></th>
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["prenom"] ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["admin"] == 1?"Admin":"Utilisateur standard" ?></td>
+                                                        <td class="font-cegep my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
                                                         <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["email"] ?></td>
                                                         <td>
                                                             <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
@@ -640,7 +642,7 @@ session_start();
                         <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
                             <div class="offset col-4"></div>                        
                             <div class="col-4 px-1">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="annuler" class="me-1">Retour au formulaire</a>
+                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" ><img src="icones/retour.png" alt="retour" class="me-1">Retour au formulaire</a>
                             </div>
                             <div class="offset col-4"></div>
                         </div>
@@ -654,52 +656,70 @@ session_start();
     <!-- Bas de page admin : Accueil -->
     <div class="container-fluid h-100 w-100" id="containerAccueil" style="display: <?php echo $pageAccueil; ?>;">
         <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+        <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
+
                 <form action="add.php" method="post">
                     <div class="card">
-                        <div class="card-header p-2 bg-bleuCegep">
-                            <h3 class="p-0 m-0 py-3 text-center lilasCegep fontCegep fw-bold">Renseignements important</h3>
+                        
+                        <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
+                            <h3 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0"><img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">Renseignements importants<img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3"></h3>
                         </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-6">
-                                    <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6">Événement auquel envoyer les votes</label>
-                                </div>
-                                <div class="col-6">
-                                    <select name="quelEvent" id="eventvotes" class="w-75 text-center">
-                                        <?php
-                                            $sql = "SELECT * FROM evenements";
-                                            $result = $conn->query($sql);
-                                            if($result->num_rows > 0) {
-                                                while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+
+                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
+                            
+                            <div class="row py-3">                            
+                                <div class="row">
+                                    <div class="col-6 ps-5">
+                                        <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6 py-2">Événement auquel envoyer les votes</label>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center py-1">
+                                        <select name="quelEvent" id="eventvotes" class="w-75 text-center bleuCegep border-bleuCegep rounded py-1">
+                                            <?php
+                                                $sql = "SELECT * FROM evenements";
+                                                $result = $conn->query($sql);
+                                                if($result->num_rows > 0) {
+                                                    while($row = $result->fetch_assoc()) {
+                                                        echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                    }
                                                 }
-                                            }
-                                            else {
-                                                echo "<option value=''>Aucun événement</option>";
-                                            }
-                                        ?>
-                                    </select>
+                                                else {
+                                                    echo "<option value=''>Aucun événement</option>";
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div> 
+                                
+                                <div class="row pt-3">
+                                    <div class="col-6 ps-5">
+                                        <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6 py-2">Qui répondera au sondage sur cet appareil ? </label>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center py-1">
+                                        <select name="quiRepond" id="quiRepond" class="w-75 text-center bleuCegep border-bleuCegep rounded py-1">
+                                            <option value="etudiant">Étudiants</option>
+                                            <option value="employeur">Employeurs</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row text-center">
-                                <div class="col-6">
-                                    <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6">Qui répondera au sondage sur cet appareil ? </label>
-                                </div>
-                                <div class="col-6">
-                                    <select name="quiRepond" id="quiRepond" class="w-75 text-center">
-                                        <option value="etudiant">Étudiants</option>
-                                        <option value="employeur">Employeurs</option>
-                                    </select>
-                                </div>
+
+                            <div>
+                                <p class="text-center rougeCegep fw-bold m-0 p-0">Vous serez déconnecter pour vous rendre à la page de votes</p>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="w-100">Se déconnecter et retourner à la page de vote</button>
+
+                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
+                            <div class="offset col-4"></div>
+                            <div class="col-4 px-1 d-flex justify-content-center align-items-center ">
+                                <button type="submit" class="w-100 bg bgLilasCegep border-rouge-cegep w-100 bleuCegep fontCegep fw-bold rounded p-0 m-0"><img src="icones/deconnexion.png" alt="deco" class="me-1">Page de votes</button>
+                            </div>
+                            <div class="offset col-4"></div>
                         </div>
                     </div>
                 </form>
             </div>
+            <div class="offset col-xl-3"></div>
         </div>
     </div>
 

@@ -12,11 +12,11 @@ html, body{
     background-image: url("../img/background.png");
 }
 
-#containerEvent, #containerUsers{
+#containerEvent, #containerUsers, #containerAccueil{
     background-image: url("../img/background.png");
 }
 
-#iconUser{
+#iconUser, .iconInfos{
     height: 60px;
     width: auto;
 }
