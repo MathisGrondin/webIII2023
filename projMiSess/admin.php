@@ -639,10 +639,19 @@ session_start();
    
                             <div class="row ">
                                 <div class="offset col-4"></div>
+
                                 <div class="col-8 d-flex align-content-center">
-                                    <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
-                                    <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input border-bleuCegep ms-1">  
-                                    <h5 class="fontCegep rougeCegep fw-bold fs-6 m-0 p-0"><img src="icones/alerte.png" alt="annuler" class="me-1 ms-3 icons">Un admin a tous les droits<img src="icones/alerte.png" alt="annuler" class="ms-1 icons"></h5>
+                                    <div class="row w-100 d-flex align-items-center">
+                                        <div class="col-2 d-flex align-items-center" style="height: 30px;">
+                                            <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
+                                            <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input border-bleuCegep ms-1">  
+                                        </div>
+                                        <div class="col-10 d-flex align-items-center">
+                                            <img src="icones/alerte.png" alt="annuler" class="icons">
+                                            <h5 class="fontCegep rougeCegep fw-bold fs-6 m-0 p-0">Un admin a tous les droits</h5>
+                                            <img src="icones/alerte.png" alt="annuler" class="icons">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>       
 
