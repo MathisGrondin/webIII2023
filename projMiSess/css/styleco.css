@@ -16,8 +16,13 @@ html, body{
     background-image: url("../img/background.png");
 }
 
-#iconUser, .iconInfos{
+#iconUser, .iconInfos, #icons{
     height: 60px;
+    width: auto;
+}
+
+.icons{
+    height: 30px;
     width: auto;
 }
 /* #rowMenu, #contMenu, #colMenu{
