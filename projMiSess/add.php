@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+
+    // Si la méthode est POST et que les variables sont définies
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(isset($_POST["quelEvent"]) && isset($_POST["quiRepond"])){
@@ -81,15 +83,15 @@
                             case 3 : 
                                 {
                                     // Récupération du nombre d'aimé de l'événement
-                                        /* Requête SQL                          */ $sql         = "SELECT nbDetesteEdu FROM evenements WHERE nom = '$event'";
+                                        /* Requête SQL                          */ $sql         = "SELECT nbDetesteEtu FROM evenements WHERE nom = '$event'";
                                         /* Envoi requête                        */ $result      = $conn->query($sql);
                                         /* Récupération des résultats           */ $row         = $result->fetch_assoc();
-                                        /* Variable du résultat (nombreLike)    */ $nbDetesteEdu   = $row["nbDetesteEdu"];
+                                        /* Variable du résultat (nombreLike)    */ $nbDetesteEtu   = $row["nbDetesteEtu"];
                                     
 
                                     // Ajout d'un like
-                                        /* Nouveau nombre de likes              */ $nbDetesteEdu++;
-                                        /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbDetesteEdu = $nbDetesteEdu WHERE nom = '$event'";
+                                        /* Nouveau nombre de likes              */ $nbDetesteEtu++;
+                                        /* Requête SQL                          */ $sql         = "UPDATE evenements SET nbDetesteEtu = $nbDetesteEtu WHERE nom = '$event'";
                                         /* Envoi requête                        */ $result      = $conn->query($sql);        
                                     
                                     // Retour à la page d'accueil
