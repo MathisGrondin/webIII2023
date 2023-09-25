@@ -54,6 +54,7 @@ else
             $formCreation = "block";
             $boutonRetourEvent = "none";
             $idBarreBas = "hidden";
+            $titreCreation = "Création d'un événement";
         }
 
         //? Si l'utilisateur est connecté et est admin,
