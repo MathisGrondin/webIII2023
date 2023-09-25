@@ -82,6 +82,19 @@ else{
                 retourPage('user', $tempsAttente);
                 // echo $retourDepart;
             }
+            else if($state == 3){
+                $formUserCr = "none";
+                $contextBodyCreaUser = "flex";
+                $messageCreaUser = "Mot de passe différents dans les 2 champs";
+
+                echo '
+                    <script>
+                        setTimeout(function()
+                        {
+                            window.location.href = "admin.php?page=users"
+                        },1000);
+                    </script>';
+            }
         }
     }
 }
