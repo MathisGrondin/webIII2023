@@ -21,6 +21,7 @@ session_start();
         $formVisible = "flex";
         $barreMenuAdmin = "none";
         $basAdmin = "none";
+        $messageErreurConnexion = "";
 
         // Événements
         $pageEvent = "none";
@@ -85,6 +86,7 @@ session_start();
                 $result = $conn->query($sql);
 
                 if($result->num_rows > 0) {
+                    $messageErreurConnexion = "";
                     while($row = $result->fetch_assoc()) {
                         if($row["admin"] == 1) {
                             $_SESSION["admin"] = true;
@@ -96,17 +98,7 @@ session_start();
                 }
             }
             else {
-                echo "
-                <div class=\"container-fluid mt-4\">
-                    <div class=\"row\">
-                        <div class=\"offset col-xl-4 col-sm-4\"></div>
-                            <div class=\"col-xl-4 col-sm-4 col-12\">
-                                <div class='alert alert-danger'>Identifiants de connexion invalides</div>
-                            </div>
-                        <div class=\"offset col-xl-4 col-sm-4\"></div>
-                    </div>
-                
-                ";
+                $messageErreurConnexion = "Les identifiants fournies sont invalides";
             }
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){
@@ -338,7 +330,7 @@ session_start();
         }
     ?>
     <!-- Formulaire -->
-    <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center" style="display: <?php echo $formVisible; ?>">
+    <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center p-0 m-0" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                     <div class="col-xl-12 w-100">
@@ -347,7 +339,7 @@ session_start();
                                 <h2 class="text-center lilasCegep fontCegep fw-bold">Connexion admin</h2>
                             </div>
 
-                            <div class="card-body bg bgLilasCegep border-bleuCegep border-top-0 border-bottom-0">
+                            <div class="card-body bgLilasCegep border-bleuCegep border-top-0 border-bottom-0 d-flex justify-content-evenly flex-column">
                                 <div class="d-flex justify-content-between">
                                     <label for="courriel" class="fw-bold bleuCegep fontCegep">Courriel</label>
                                     <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center border-bleuCegep">
@@ -356,6 +348,10 @@ session_start();
                                 <div class="d-flex justify-content-between mt-3">
                                     <label for="mdp" class="fw-bold bleuCegep fontCegep">Mot de passe</label>
                                     <input type="password" name="mdp" class="rounded border-bleuCegep">
+                                </div>
+                                
+                                <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                    <span class="fw-bold rougeCegep fontCegep"><?php echo $messageErreurConnexion; ?></span>
                                 </div>
                                 
                             </div>
