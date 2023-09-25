@@ -18,9 +18,10 @@ session_start();
 </head>
 <body>
     <?php 
-        $formVisible = "block";
+        $formVisible = "flex";
         $barreMenuAdmin = "none";
         $basAdmin = "none";
+        $messageErreurConnexion = "";
 
         // Événements
         $pageEvent = "none";
@@ -85,6 +86,7 @@ session_start();
                 $result = $conn->query($sql);
 
                 if($result->num_rows > 0) {
+                    $messageErreurConnexion = "";
                     while($row = $result->fetch_assoc()) {
                         if($row["admin"] == 1) {
                             $_SESSION["admin"] = true;
@@ -96,17 +98,7 @@ session_start();
                 }
             }
             else {
-                echo "
-                <div class=\"container-fluid mt-4\">
-                    <div class=\"row\">
-                        <div class=\"offset col-xl-4 col-sm-4\"></div>
-                            <div class=\"col-xl-4 col-sm-4 col-12\">
-                                <div class='alert alert-danger'>Identifiants de connexion invalides</div>
-                            </div>
-                        <div class=\"offset col-xl-4 col-sm-4\"></div>
-                    </div>
-                
-                ";
+                $messageErreurConnexion = "Les identifiants fournis sont invalides";
             }
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){
@@ -177,15 +169,21 @@ session_start();
                     // header("Location: admin.php?page=events&errCreation=1");
                     header("Location: admin.php?page=events&state=1");
                 }
+            }
+            else{
+                $formVisible = "flex";
+                $barreMenuAdmin = "none";
+            }
 
-                // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
+            // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
+            if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
                 if(isset($_POST["nomUser"], $_POST["prenomUser"], $_POST["courriel"], $_POST["mdp1"], $_POST["mdp2"]) && $_POST["nomUser"] != "" && $_POST["prenomUser"] != "" && $_POST["courriel"] != "" && $_POST["mdp1"] != "" && $_POST["mdp2"] != "") {
                     $nomUser = $_POST["nomUser"];
                     $prenomUser = $_POST["prenomUser"];
                     $courriel = $_POST["courriel"];
                     $mdp1 = sha1($_POST["mdp1"]);
                     $mdp2 = sha1($_POST["mdp2"]);
-                    
+                                    
                     $placeQuoteNomUser = stripos($nomUser, '\'');
                     $placeQuotePrenom = stripos($prenomUser, '\'');
                     $placeQuoteCourriel = stripos($courriel, '\'');
@@ -223,7 +221,7 @@ session_start();
                     else{
                         $mdpValide = false;
                     }               
-                   
+                    
                     if(isset($_POST["checkAdmin"]) == true){
                         $adminUser = 1;                       
                     }
@@ -256,10 +254,9 @@ session_start();
                 }
             }
             else{
-                $formVisible = "block";
+                $formVisible = "flex";
                 $barreMenuAdmin = "none";
             }
-            
         }
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -305,7 +302,7 @@ session_start();
                     $basAdmin = "none";}                
             }
             else{
-                $formVisible = "block";
+                $formVisible = "flex";
                 $barreMenuAdmin = "none";
             }
         }
@@ -333,17 +330,16 @@ session_start();
         }
     ?>
     <!-- Formulaire -->
-    <div class="container-fluid contConnex h-100" style="display: <?php echo $formVisible; ?>">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="row pt-4">
-                <div class="offset col-xl-4"></div>
-                    <div class="col-xl-4">
-                        <div class="card">
+    <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center p-0 m-0" style="display: <?php echo $formVisible; ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
+            <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+                    <div class="col-xl-12 w-100">
+                        <div class="card w-100">
                             <div class="card-header bg bg-bleuCegep border-rouge-cegep">
                                 <h2 class="text-center lilasCegep fontCegep fw-bold">Connexion admin</h2>
                             </div>
 
-                            <div class="card-body bg bgLilasCegep border-bleuCegep border-top-0 border-bottom-0">
+                            <div class="card-body bgLilasCegep border-bleuCegep border-top-0 border-bottom-0 d-flex justify-content-evenly flex-column">
                                 <div class="d-flex justify-content-between">
                                     <label for="courriel" class="fw-bold bleuCegep fontCegep">Courriel</label>
                                     <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center border-bleuCegep">
@@ -354,14 +350,17 @@ session_start();
                                     <input type="password" name="mdp" class="rounded border-bleuCegep">
                                 </div>
                                 
+                                <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                    <span class="fw-bold rougeCegep fontCegep"><?php echo $messageErreurConnexion; ?></span>
+                                </div>
+                                
                             </div>
 
                             <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
-                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold">Connexion</button>
+                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Connexion</button>
                             </div>
                         </div>
                     </div>
-                <div class="offset col-xl-4"></div>
             </div>
         </form>
     </div>
@@ -585,6 +584,7 @@ session_start();
                                     <th scope="col" class="font-cegep fw-bold bleuCegep">Lieu</th>
                                     <th scope="col" class="font-cegep fw-bold bleuCegep">Programme</th>
                                     <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -603,6 +603,11 @@ session_start();
                                                     <td>
                                                         <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
                                                             <img src="icones/modifier.png">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href='admin.php?page=events&action=Supprimer&id=<?php echo $row["id"] ?>'>
+                                                            <img src="icones/supprimer.png" class="icons">
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -633,38 +638,30 @@ session_start();
 
     <!-- Bas de page admin : Utilisateurs -->
     <div class="container-fluid h-100 w-100" id="containerUsers" style="display: <?php echo $pageUsers; ?>">
-        <div class="row h-100 d-flex justify-content-center align-items-center" id="rowUsers">
-            <div class="offset col-xl-3"></div>
-            <div class="col-xl-6">
+        <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowUsers">
+            <div class="col-xl-6 h-75 d-flex align-items-center">
                 <!-- Card pour création d'un user -->
-                <div class="card">                                   
+                <div class="card h-75 w-100">                                   
                     <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
                         <img src="icones/admin.png" alt="crUser" id="iconUser">
-                        <h3 class="lilasCegep fontCegep fw-bold p-0 m-0" id="titreUserCr">Création d'un utilisateur</h3>
+                        <h3 class="lilasCegep text-center fontCegep fw-bold p-0 m-0" id="titreUserCr">Création d'un utilisateur</h3>
                     </div> 
                     
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>">
-                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
-   
-                            <div class="row ">
-                                <div class="offset col-4"></div>
-
-                                <div class="col-8 d-flex align-content-center">
-                                    <div class="row w-100 d-flex align-items-center">
-                                        <div class="col-2 d-flex align-items-center" style="height: 30px;">
+                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>" class="h-100">
+                        <div class="card-body h-100 w-100 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">                                    
                                             <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
                                             <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input border-bleuCegep ms-1">  
-                                        </div>
-                                        <div class="col-10 d-flex align-items-center">
+                                </div>     
+                                <div class="col-8 d-flex align-items-center">
                                             <img src="icones/alerte.png" alt="annuler" class="icons">
                                             <h5 class="fontCegep rougeCegep fw-bold fs-6 m-0 p-0">Un admin a tous les droits</h5>
                                             <img src="icones/alerte.png" alt="annuler" class="icons">
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>       
+                             </div>       
 
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="nomUser" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
                                 </div>
@@ -672,7 +669,7 @@ session_start();
                                     <input type="text" name="nomUser" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="prenomUser" class="fontCegep bleuCegep fw-bold fs-6">Prénom</label>
                                 </div>
@@ -680,7 +677,7 @@ session_start();
                                     <input type="text" name="prenomUser" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="courriel" class="fontCegep bleuCegep fw-bold fs-6">Courriel du CTR</label>
                                 </div>
@@ -688,7 +685,7 @@ session_start();
                                     <input type="text" name="courriel" class="form-control border-bleuCegep">
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="mdp1" class="fontCegep bleuCegep fw-bold fs-6">Mot de passe</label>
                                 </div>
@@ -696,7 +693,7 @@ session_start();
                                     <input type="password" name="mdp1" class="form-control border-bleuCegep">
                                 </div>                                    
                             </div>
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="mdp2" class="fontCegep bleuCegep fw-bold fs-6">Confirmation Mdp</label>
                                 </div>
@@ -704,11 +701,9 @@ session_start();
                                     <input type="password" name="mdp2" class="form-control border-bleuCegep">
                                 </div>                                    
                             </div>
-
-
-                            <div class="row d-flex align-items-center pt-3">
+                            <div class="row d-flex align-items-center">
                                 <div class="offset col-4"></div>
-                                <div class="col-8 pt-3">
+                                <div class="col-8">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input border-bleuCegep" name="checkInfos" id="invalidCheck" required>
                                         <label for="invalidCheck" class="form-check-label fontCegep bleuCegep fw-bold">Je confirme que les informations sont exactes</label>
@@ -718,37 +713,33 @@ session_start();
                             </div>
                         </div>
                         
-                        <div class="card-footer bg bg-bleuCegep border-rouge-cegep">
-                            <div class="row d-flex align-items-center">
-                                <div class="col-4 d-flex align-items-center">
-                                    <button type="submit" class="w-100 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="icones/ajouterAdminUser.png" alt="créerUser">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Créer</span>
-                                        </div>
-                                    </button>
-                                </div>
-
-                                <div class="col-4 d-flex align-items-center">
-                                    <a href="admin.php?page=users&action=Modifier" class="btn w-100 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="icones/modifierAdminUser.png" alt="modifierUser">
-                                            <span class="fs-4 fw-bold bleuCegep fontCegep">Liste Utilisateurs</span>
-                                        </div>    
-                                    </a>                                                                       
-                                </div>
-
-                                <div class="col-4 d-flex align-items-center">
-                                    <button type="reset" class="w-100 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="icones/retour.png" alt="annuler">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">
-                                                Annuler
-                                            </span>
-                                        </div>
-                                    </button>
-                                </div>
+                        <div class="card-footer bg bg-bleuCegep d-flex align-items-center justify-content-evenly border-rouge-cegep p-2 m-0">
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="submit" class="w-75 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/ajouterAdminUser.png" alt="créerUser" style="width: 60px; height: 60px">
+                                        <span class="fs-4 fw-bold fontCegep bleuCegep">Créer</span>
+                                    </div>
+                                </button>
                             </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <a href="admin.php?page=users&action=Modifier" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/modifierAdminUser.png" alt="modifierUser" style="width: 60px; height: 60px">
+                                        <span class="fs-4 fw-bold bleuCegep fontCegep">Consulter</span>
+                                    </div>    
+                                </a>                                                                       
+                            </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="reset" class="w-75 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
+                                        <span class="fs-4 fw-bold fontCegep bleuCegep">
+                                            Annuler
+                                        </span>
+                                    </div>
+                                </button>
+                            </div>                           
                         </div>
                     </form>
 
@@ -767,59 +758,66 @@ session_start();
                         </div>
                     </div>
 
-                    <div style="display: <?php echo $listeUsers; ?>">
-                        <div class="card-body bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
-                            <table class="w-100">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Prénom</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Admin</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Courriel</th>
-                                        <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-group-divider">
-                                    <?php
-                                        $sql = "SELECT * FROM users";
-                                        $result = $conn->query($sql);
-                                        if($result->num_rows > 0) {
-                                            while($row = $result->fetch_assoc()) {
-                                                ?>
-                                                    <tr class="text-center border-bottom border-dark">
-                                                        <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"] ?></th>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["prenom"] ?></td>
-                                                        <td class="font-cegep my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
-                                                        <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["email"] ?></td>
-                                                        <td>
-                                                            <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
-                                                                <img src="icones/modifier.png">
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php
-                                            }
+                    
+                    <div class="card-body h-25 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep listeOverflow" style="display: <?php echo $listeUsers; ?>">
+                        <table class="w-100">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Prénom</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Admin</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Courriel</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
+                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <?php
+                                    $sql = "SELECT * FROM users";
+                                    $result = $conn->query($sql);
+                                    if($result->num_rows > 0) {
+                                        while($row = $result->fetch_assoc()) {
+                                            ?>
+                                                <tr class="text-center border-bottom border-dark">
+                                                    <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"] ?></th>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["prenom"] ?></td>
+                                                    <td class="font-cegep my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
+                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["email"] ?></td>
+                                                    <td>
+                                                        <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
+                                                            <img src="icones/modifier.png" class="icons">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href='admin.php?page=users&action=Supprimer&id=<?php echo $row["id"] ?>'>
+                                                            <img src="icones/supprimer.png" class="icons">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php
                                         }
-                                        else {
-                                            echo "<tr><td colspan='5'>Aucun événement</td></tr>";
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
-                            <div class="offset col-4"></div>                        
-                            <div class="col-4 px-1">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold" style="display : <?php echo $boutonRetourUser; ?>"><img src="icones/retour.png" alt="retour" class="me-1">Retour au formulaire</a>
-                            </div>
-                            <div class="offset col-4"></div>
-                        </div>
+                                    }
+                                    else {
+                                        echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer w-100 bg bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
+                        <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
+                            <div class="col-4">
+                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
+                                    <img src="icones/retour.png" alt="retour" class="fontCegep fw-bold" style="width: 60px;">
+                                    <span>Retour au formulaire</span>
+                                </a>
+                            </div>                       
+                        </div>                        
                     </div>
                 </div>
             </div>
-            <div class="offset col-xl-3"></div>
         </div>
     </div>
 

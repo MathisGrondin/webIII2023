@@ -21,13 +21,34 @@ else{
     }
     else{
         //? Si l'utilisateur est connecté et est admin,
-        //? il a accès à la liste des utilsateurs et au formulaire de création
+        //? il a accès à la liste des utilisateurs et au formulaire de création
 
         $pageUsers          = "block";
         $listeUsers         = "none";
         $boutonRetourUser   = "block";
         $formUserCr         = "block";
 
+        //? Si l'utilisateur est connecté et est admin,
+        //? Si l'utilisateur clique sur le bouton "Consulter" à partir du formulaire,
+        //! pas mis le idbarrebas et le titre
+
+        if(isset($_GET["action"])){
+
+            $action = $_GET["action"];
+
+            if($action == "consulter"){
+                $pageUsers      = "block";
+                $listeUsers     = "block";
+                $boutonRetourUser   = "flex";
+                $formUserCr     = "none";                
+            }
+            else{
+                $pageUsers      = "block";
+                $listeUsers     = "none";
+                $boutonRetourUser   = "none";
+                $formUserCr     = "block";
+            }
+        }
         //? Si l'utilisateur est connecté et est admin,
         //? Si l'utilisateur clique sur le bouton "Liste utilisateurs" à partir du formulaire,
 
@@ -42,12 +63,18 @@ else{
             }
         }
 
+        //? Si l'utilisateur est connecté et est admin,
+        //? si l'utilisateur clique sur le bouton "Retour" à partir de la liste des utilisateurs,
+
         if(!isset($_GET["action"]) && $listeUsers == "block"){
-            $pageUsers = "block";
-            $listeUsers = "none";
-            $formUserCr = "block";
+            $pageUsers          = "block";
+            $listeUsers         = "none";
+            $boutonRetourUser   = "none";
+            $formUserCr         = "block";
         }
 
+        //? Si l'utilisateur est connecté et est admin,
+        //? si l'utilisateur clique sur le bouton "Créer" à partir du formulaire,
         if(isset($_GET["state"])){
             $state = $_GET["state"];
 
