@@ -31,6 +31,7 @@ session_start();
         $messageContexte = "";
         $boutonRetourEvent = "none";
         $idBarreBas = "existePas";
+        $titreCarteEvent = "Création d'événement";
 
         // Users
         $pageUsers = "none";
@@ -359,74 +360,77 @@ session_start();
     </div>
 
     <!-- Barre de menu Admin -->
-    <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-        <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
-            <div class="col">
-                <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Événements</h5>
+    <nav class="navbar fixed-top p-0 m-0">
+        <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
+            <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+                <div class="col">
+                    <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Événements</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <div class="col">
-                <a href="admin.php?page=users" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Utilisateurs</h5>
+                <div class="col">
+                    <a href="admin.php?page=users" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Utilisateurs</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <div class="col">
-                <a href="statistiques.php" class="btn btn-light bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Statistiques</h5>
+                <div class="col">
+                    <a href="statistiques.php" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Statistiques</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <div class="col">
-                <a href="admin.php?page=accueil" class="btn btn-light bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Accueil</h5>
+                <div class="col">
+                    <a href="admin.php?page=accueil" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Accueil</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <div class="col">
-                <a href="admin.php?page=deco" class="btn btn-light bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Déconnexion</h5>
+                <div class="col">
+                    <a href="admin.php?page=deco" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Déconnexion</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="admin.php?page=themes" class="btn btn-light bgLilasCegep border-rouge-cegep">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0">Thèmes</h5>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="admin.php?page=themes" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0">Thèmes</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-        </div>        
-    </div>
+                    </a>
+                </div>
+            </div>        
+        </div>
+
+    </nav>
 
     <!-- Bas de page admin : Arrivée -->
     <div class="container-fluid h-100 w-100" id="contWelcome" style="display: <?php echo $basAdmin; ?>">
@@ -455,12 +459,12 @@ session_start();
     <!-- Bas de page admin : Événements -->
     <div class="container-fluid h-100 w-100 " id="containerEvent" style="display: <?php echo $pageEvent; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowEvent">
-            <div class="col-xl-8 h-75">
+            <div class="col-xl-6 h-75 d-flex align-items-center">
                 <!-- Card pour création d'un événement -->
                 <div class="card h-75 w-100">
                     <div class="card-header p-2 bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
                         <img src="icones/event.png" alt="crEvent" id="iconUser">
-                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier">Création d'un événement</h3>
+                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
@@ -531,10 +535,10 @@ session_start();
                                 </div>
 
                                 <div class="col-4 d-flex justify-content-center">
-                                    <a href="admin.php?page=events&action=Modifier" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
+                                    <a href="admin.php?page=events&action=consulter" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Liste événements</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Consulter</span>
                                         </div>
                                     </a>                                                                       
                                 </div>

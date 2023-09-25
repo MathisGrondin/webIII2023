@@ -1,5 +1,19 @@
 <?php
 
+    $tempsAttente = 1000;
+
+    $retourDepart = 
+    '
+        <script>
+            setTimeout
+            (
+                function(){
+                    window.location.href = "admin.php?page=users"
+                }, ' . $tempsAttente . '
+            );
+        </script>
+    ';
+
 // s'il n'est pas connecté
     if($_SERVER["REQUEST_METHOD"] == "GET" &&  !isset($_SESSION["admin"], $_SESSION["user"]))
     {
@@ -9,24 +23,34 @@
 // s'il est connecté
 else{
     if($_SESSION["admin"] == false){
-        $pageUsers = "block";
-        $listeUsers = "block";
-        $boutonRetourUser = "none";
-        $formUserCr = "none";
+        //? Si l'utilisateur est connecté mais n'est pas admin, 
+        //? il a accès à la liste des utilisateurs seulement
+
+        $pageUsers          = "block";
+        $listeUsers         = "block";
+        $boutonRetourUser   = "none" ;
+        $formUserCr         = "none" ;
     }
     else{
-        $pageUsers = "block";
-        $listeUsers = "none";
-        $boutonRetourUser = "block";
-        $formUserCr = "block";
+        //? Si l'utilisateur est connecté et est admin,
+        //? il a accès à la liste des utilsateurs et au formulaire de création
+
+        $pageUsers          = "block";
+        $listeUsers         = "none";
+        $boutonRetourUser   = "block";
+        $formUserCr         = "block";
+
+        //? Si l'utilisateur est connecté et est admin,
+        //? Si l'utilisateur clique sur le bouton "Liste utilisateurs" à partir du formulaire,
 
         if(isset($_GET["action"])){
+
             $action = $_GET["action"];
 
             if($action == "Modifier"){
-                $pageUsers = "block";
-                $listeUsers = "block";
-                $formUserCr = "none";
+                $pageUsers      = "block";
+                $listeUsers     = "block";
+                $formUserCr     = "none";
             }
         }
 
@@ -43,74 +67,44 @@ else{
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Utilisateur créé avec succès";
-                echo '
-                    <script>
-                        setTimeout(function()
-                        {
-                            window.location.href = "admin.php?page=users"
-                        },1000);
-                    </script>';
+                echo $retourDepart;
             }
             else if($state == 1){
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Erreur lors de la création de l'utilisateur";
-
-                echo '
-                    <script>
-                        setTimeout(function()
-                        {
-                            window.location.href = "admin.php?page=users"
-                        },1000);
-                    </script>';
+                echo $retourDepart;
             }
             else if($state == 2){
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Merci de remplir tous les champs";
-
-                echo '
-                    <script>
-                        setTimeout(function()
-                        {
-                            window.location.href = "admin.php?page=users"
-                        },1000);
-                    </script>';
+                retourPage('user', $tempsAttente);
+                // echo $retourDepart;
             }
         }
     }
 }
 
 
+function retourPage($page, $sTemps){
+
+    $jsBack = 
+        '
+            <script>
+                setTimeout
+                (
+                    function(){
+                        window.location.href = "admin.php?page=\'' . $page . '\'"
+                    }, ' . $sTemps . '
+                );
+            </script>
+        ';
 
 
+    echo $jsBack;
 
+}
 
-    // if($page == "users")
-    // {
-    //     $pageUsers = "block";
-    //     $barreMenuAdmin = "block";
-
-    //     if($_SESSION["admin"] == false){
-    //         $listeUsers = "block";
-    //         $boutonRetourUser = "none";
-    //         $formUserCr = "none";
-    //     }
-    //     else{
-    //         $listeUsers = "none";
-    //         $boutonRetourUser = "block";
-    //         $formUserCr = "block";
-    //     }
-
-    //     if(isset($_GET["action"])){
-    //         $action = $_GET["action"];
-
-    //         if($action == "Modifier"){
-    //             $listeUsers = "block";
-    //             $formUserCr = "none";
-    //         }
-    //     }
-
-    // }
 
 ?>

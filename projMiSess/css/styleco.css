@@ -26,14 +26,6 @@ html, body{
     overflow-y: scroll;
 }
 
-#existePas{
-    display: none;
-}
-
-#existe{
-    display: flex;
-}
-
 
 .icons{
     height: 30px;
