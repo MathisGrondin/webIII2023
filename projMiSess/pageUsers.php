@@ -2,18 +2,6 @@
 
     $tempsAttente = 1000;
 
-    $retourDepart = 
-    '
-        <script>
-            setTimeout
-            (
-                function(){
-                    window.location.href = "admin.php?page=users"
-                }, ' . $tempsAttente . '
-            );
-        </script>
-    ';
-
 // s'il n'est pas connecté
     if($_SERVER["REQUEST_METHOD"] == "GET" &&  !isset($_SESSION["admin"], $_SESSION["user"]))
     {
@@ -67,33 +55,25 @@ else{
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Utilisateur créé avec succès";
-                echo $retourDepart;
+                retourPage('users', $tempsAttente);
             }
             else if($state == 1){
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Erreur lors de la création de l'utilisateur";
-                echo $retourDepart;
+                retourPage('users', $tempsAttente);
             }
             else if($state == 2){
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Merci de remplir tous les champs";
                 retourPage('users', $tempsAttente);
-                // echo $retourDepart;
             }
             else if($state == 3){
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Mot de passe différents dans les 2 champs";
-
-                echo '
-                    <script>
-                        setTimeout(function()
-                        {
-                            window.location.href = "admin.php?page=users"
-                        },1000);
-                    </script>';
+                retourPage('users', $tempsAttente);
             }
         }
     }
@@ -108,7 +88,7 @@ function retourPage($page, $sTemps){
                 setTimeout
                 (
                     function(){
-                        window.location.href = "admin.php?page=\'' . $page . '\'"
+                        window.location.href = "admin.php?page=' . $page . '"
                     }, ' . $sTemps . '
                 );
             </script>
