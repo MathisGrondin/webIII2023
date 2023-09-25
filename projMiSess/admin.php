@@ -163,29 +163,35 @@ session_start();
                     echo $result;
     
                     if($result) {
-                        header("Location: admin.php?page=events&state=0");
+                        header("Location: admin.php?page=Event&state=0");
                     }
                     else {
                         // echo $result;
-                        header("Location: admin.php?page=events&state=1");
+                        header("Location: admin.php?page=Event&state=1");
                     }
                 }
                 else if($_POST["dateEvent"] == "" || $_POST["lieuEvent"] == "" || $_POST["nomEvent"] == "" || $_POST["programme"] == ""){
-                    header("Location: admin.php?page=events&state=2");
+                    header("Location: admin.php?page=Event&state=2");
                 }
                 else{
                     // header("Location: admin.php?page=events&errCreation=1");
-                    header("Location: admin.php?page=events&state=1");
+                    header("Location: admin.php?page=Event&state=1");
                 }
+            }
+            else{
+                $formVisible = "block";
+                $barreMenuAdmin = "none";
+            }
 
-                // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
+            // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
+            if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
                 if(isset($_POST["nomUser"], $_POST["prenomUser"], $_POST["courriel"], $_POST["mdp1"], $_POST["mdp2"]) && $_POST["nomUser"] != "" && $_POST["prenomUser"] != "" && $_POST["courriel"] != "" && $_POST["mdp1"] != "" && $_POST["mdp2"] != "") {
                     $nomUser = $_POST["nomUser"];
                     $prenomUser = $_POST["prenomUser"];
                     $courriel = $_POST["courriel"];
                     $mdp1 = sha1($_POST["mdp1"]);
                     $mdp2 = sha1($_POST["mdp2"]);
-                    
+                                    
                     $placeQuoteNomUser = stripos($nomUser, '\'');
                     $placeQuotePrenom = stripos($prenomUser, '\'');
                     $placeQuoteCourriel = stripos($courriel, '\'');
@@ -223,7 +229,7 @@ session_start();
                     else{
                         $mdpValide = false;
                     }               
-                   
+                    
                     if(isset($_POST["checkAdmin"]) == true){
                         $adminUser = 1;                       
                     }
@@ -259,7 +265,6 @@ session_start();
                 $formVisible = "block";
                 $barreMenuAdmin = "none";
             }
-            
         }
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){

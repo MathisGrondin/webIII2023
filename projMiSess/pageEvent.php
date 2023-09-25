@@ -77,19 +77,19 @@ else
                 $formCreation           = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Événement créé avec succès";
-                retourPage("events", $tempsAttente);
+                retourPage("Event", $tempsAttente);
             }
             else if($state == 1){
                 $formCreation           = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Erreur lors de la création de l'événement";
-                retourPage("events", $tempsAttente);
+                retourPage("Event", $tempsAttente);
             }
             else if($state == 2){
                 $formCreation           = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Merci de remplir tous les champs";
-                retourPage("events", $tempsAttente);
+                retourPage("Event", $tempsAttente);
             }
         }
     }

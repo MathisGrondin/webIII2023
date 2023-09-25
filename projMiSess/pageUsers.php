@@ -79,7 +79,7 @@ else{
                 $formUserCr = "none";
                 $contextBodyCreaUser = "flex";
                 $messageCreaUser = "Merci de remplir tous les champs";
-                retourPage('user', $tempsAttente);
+                retourPage('users', $tempsAttente);
                 // echo $retourDepart;
             }
             else if($state == 3){
