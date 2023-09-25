@@ -41,6 +41,7 @@ session_start();
         $contextBodyCreaUser = "none";
         $messageCreaUser = "";
         $boutonRetourUser = "none";
+        $mdpValide = false;
 
         // Alertes
         $stadeAlerte = "";
@@ -215,9 +216,12 @@ session_start();
                         $substringCourriel = $courriel;
                     }  
                 
-                    if($mdp1 != $mdp2){
-                        echo "Veuillez entrer 2 mots de passe identiques";
-                    }                    
+                    if($_POST["mdp1"] == $_POST["mdp2"]){
+                        $mdpValide = true;
+                    }    
+                    else{
+                        $mdpValide = false;
+                    }               
                    
                     if(isset($_POST["checkAdmin"]) == true){
                         $adminUser = 1;                       
@@ -233,15 +237,18 @@ session_start();
                     echo $sql . "<br>";
                     echo $result;
                     
-                    if($result) {
+                    if($result && $mdpValide == true) {
                         header("Location: admin.php?page=users&state=0");
                     }
                     else {
-                        header("Location: admin.php?page=users&state=1");
+                        header("Location: admin.php?page=users&state=3");
                     }
                 }
                 else if($_POST["nomUser"] == "" || $_POST["prenomUser"] == "" || $_POST["courriel"] == "" || $_POST["mdp1"] == "" || $_POST["mdp2"] == ""){
                     header("Location: admin.php?page=users&state=2");
+                }
+                else if($mdpValide == false){
+                    header("Location: admin.php?page=users&state=3");
                 }
                 else{
                     header("Location: admin.php?page=users&state=1");
