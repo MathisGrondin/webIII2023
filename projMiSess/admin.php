@@ -18,7 +18,7 @@ session_start();
 </head>
 <body>
     <?php 
-        $formVisible = "block";
+        $formVisible = "flex";
         $barreMenuAdmin = "none";
         $basAdmin = "none";
 
@@ -179,7 +179,7 @@ session_start();
                 }
             }
             else{
-                $formVisible = "block";
+                $formVisible = "flex";
                 $barreMenuAdmin = "none";
             }
 
@@ -262,7 +262,7 @@ session_start();
                 }
             }
             else{
-                $formVisible = "block";
+                $formVisible = "flex";
                 $barreMenuAdmin = "none";
             }
         }
@@ -310,7 +310,7 @@ session_start();
                     $basAdmin = "none";}                
             }
             else{
-                $formVisible = "block";
+                $formVisible = "flex";
                 $barreMenuAdmin = "none";
             }
         }
@@ -338,12 +338,11 @@ session_start();
         }
     ?>
     <!-- Formulaire -->
-    <div class="container-fluid contConnex h-100" style="display: <?php echo $formVisible; ?>">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="row pt-4">
-                <div class="offset col-xl-4"></div>
-                    <div class="col-xl-4">
-                        <div class="card">
+    <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center" style="display: <?php echo $formVisible; ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
+            <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+                    <div class="col-xl-12 w-100">
+                        <div class="card w-100">
                             <div class="card-header bg bg-bleuCegep border-rouge-cegep">
                                 <h2 class="text-center lilasCegep fontCegep fw-bold">Connexion admin</h2>
                             </div>
@@ -366,7 +365,6 @@ session_start();
                             </div>
                         </div>
                     </div>
-                <div class="offset col-xl-4"></div>
             </div>
         </form>
     </div>
