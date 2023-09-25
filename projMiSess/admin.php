@@ -163,19 +163,19 @@ session_start();
                     echo $result;
     
                     if($result) {
-                        header("Location: admin.php?page=Event&state=0");
+                        header("Location: admin.php?page=events&state=0");
                     }
                     else {
                         // echo $result;
-                        header("Location: admin.php?page=Event&state=1");
+                        header("Location: admin.php?page=events&state=1");
                     }
                 }
                 else if($_POST["dateEvent"] == "" || $_POST["lieuEvent"] == "" || $_POST["nomEvent"] == "" || $_POST["programme"] == ""){
-                    header("Location: admin.php?page=Event&state=2");
+                    header("Location: admin.php?page=events&state=2");
                 }
                 else{
                     // header("Location: admin.php?page=events&errCreation=1");
-                    header("Location: admin.php?page=Event&state=1");
+                    header("Location: admin.php?page=events&state=1");
                 }
             }
             else{
