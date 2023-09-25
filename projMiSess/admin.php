@@ -98,7 +98,7 @@ session_start();
                 }
             }
             else {
-                $messageErreurConnexion = "Les identifiants fournies sont invalides";
+                $messageErreurConnexion = "Les identifiants fournis sont invalides";
             }
         }
         else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){
@@ -357,7 +357,7 @@ session_start();
                             </div>
 
                             <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
-                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold">Connexion</button>
+                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Connexion</button>
                             </div>
                         </div>
                     </div>
