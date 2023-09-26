@@ -28,11 +28,13 @@ session_start();
         $pageAccueil = "none";
         $afficherliste = "none";
         $formCreation = "block";
+        $formModif = "none";
         $contextBodyCreaEvent = "none";
         $messageContexte = "";
         $boutonRetourEvent = "none";
         $idBarreBas = "existePas";
         $titreCarteEvent = "Création d'événement";
+        $valueDateEvent = $valueLieuEvent = $valueNomEvent = $valueProgramme = "";
 
         // Users
         $pageUsers = "none";
@@ -414,7 +416,7 @@ session_start();
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
-                    <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
+                    <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation; ?>" class="h-100" >
                         <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
@@ -455,7 +457,7 @@ session_start();
 
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option name='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
                                                 }
                                             }  
                                             else {
@@ -499,6 +501,101 @@ session_start();
                                 </div>
                         </div>
                     </form>
+
+                    <form method="post" action="pageEvent.php"  style="display: <?php echo $formModif; ?>" class="h-100" >
+                        <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="idEvent" class="fontCegep bleuCegep fw-bold fs-6">ID</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" name="idEventModif" class="form-control border-bleuCegep" value="<?php echo $idEvent; ?>">
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="date" name="dateEventModif" class="form-control border-bleuCegep" value="<?php echo $valueDateEvent; ?>">
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="lieuEvent" class="fontCegep bleuCegep fw-bold fs-6">Lieu</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="lieuEventModif" class="form-control border-bleuCegep" value="<?php echo $valueLieuEvent; ?>">
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="nomEvent" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="nomEventModif" class="form-control border-bleuCegep"  value="<?php echo $valueNomEvent; ?>">
+                                </div>
+                            </div>
+
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="programme" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="programmeModif" class="form-control border-bleuCegep" value="<?php echo $valueProgramme; ?>">
+
+                                        <?php
+
+                                            $sql = "SELECT * FROM programmes";
+                                            $result = $conn->query($sql);
+
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                }
+                                            }  
+                                            else {
+                                                echo "<option value=''>Aucun programme</option>";
+                                            }                                  
+
+                                        ?>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
+
+                                <div class="col-4 d-flex justify-content-center">
+                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-75">
+                                        <div class=" d-flex align-items-center justify-content-center">
+                                            <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Créer</span>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <div class="col-4 d-flex justify-content-center">
+                                    <a href="admin.php?page=events&action=consulter" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Consulter</span>
+                                        </div>
+                                    </a>                                                                       
+                                </div>
+
+                                <div class="col-4 d-flex justify-content-center">
+                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-75">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Annuler</span>
+                                        </div>
+                                    </button>
+                                </div>
+                        </div>
+                    </form>
+
 
                     <!-- Body contexte sur ajout -->
                     <div class="card-body bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep text-center" style="display: <?php echo $contextBodyCreaEvent ?>">

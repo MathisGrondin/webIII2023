@@ -1,12 +1,72 @@
 <?php
 
+    // session_start();
+
     $tempsAttente = 1000;
 
 // Si va sur la page events sans être connecté
-    if($_SERVER["REQUEST_METHOD"] == "GET" &&  !isset($_SESSION["admin"], $_SESSION["user"]))
+    if(!isset($_SESSION["admin"], $_SESSION["user"]))
     {
         header("Location: admin.php");
     }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        $nomEvent = $_POST["nomEventModif"];
+        $dateEvent = $_POST["dateEventModif"];
+        $lieuEvent = $_POST["lieuEventModif"];
+        $programme = $_POST["programmeModif"];
+        $idEvent = $_POST["idEventModif"];
+
+        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($programme) || empty($idEvent))
+        {
+            echo $nomEvent;
+            echo $dateEvent;
+            echo $lieuEvent;
+            echo $programme;
+            echo $idEvent;
+        }
+        else
+        {
+            $servername = "cours.cegep3r.info";
+            $username = "2230572";
+            $password = "2230572";
+            $dbname = "2230572-mathis-grondin";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn->set_charset("utf8");
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+                $sql = "UPDATE evenements SET 
+                            'nom' = '$nomEvent', 
+                            'lieu' = '$lieuEvent', 
+                            'date' = '$dateEvent', 
+                            'programme' = '$programme'
+                        WHERE id = $idEvent";
+
+            $result = $conn->query($sql);
+            echo $sql;
+            // echo $result;
+
+            if ($result === TRUE) {
+                sleep(2);
+                header("Location: admin.php?page=events&state=10");
+            } else {
+                header("Location: admin.php?page=events&state=11");
+            }
+
+            $conn->close();
+        }
+    }
+    
+
+
+
 
 // Sinon, si l'utilisateur est connecté 
 else 
@@ -17,17 +77,18 @@ else
 
         $pageEvent          = "block";
         $afficherliste      = "block";
-        $titreCreation      = "Liste des événements";
+        $titreCarteEvent      = "Liste des événements";
         $boutonRetourEvent  = "flex";
         $formCreation       = "none";
     }
     else{
+
         //? Si l'utilisateur est connecté et est admin,
         //? il a accès à la liste des events et au formulaire de création
 
         $pageEvent          = "block";
         $afficherliste      = "none";
-        $titreCreation      = "Création d'un événement";
+        $titreCarteEvent      = "Création d'un événement";
         $formCreation       = "block";
         $boutonRetourEvent  = "none";
 
@@ -42,10 +103,48 @@ else
             {
                 $pageEvent = "block";
                 $afficherliste = "block";
-                $titreCreation = "Liste des événements";
+                $titreCarteEvent = "Liste des événements";
                 $boutonRetourEvent = "flex";
                 $formCreation = "none";
                 $idBarreBas = "visible";
+            }
+            else if($action = "modifier") {
+                $pageEvent = "block";
+                $afficherliste = "none";
+                $titreCarteEvent = "Modification d'un événement";
+                $boutonRetourEvent = "none";
+                $formCreation = "none";
+                $formModif = "block";
+                $idEvent = $_GET["id"];
+
+                
+                $servername = "cours.cegep3r.info";
+                $username = "2230572";
+                $password = "2230572";
+                $dbname = "2230572-mathis-grondin";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                $conn->set_charset("utf8");
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                $sql = "SELECT * FROM evenements WHERE id = $idEvent";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+
+                        $valueNomEvent = $row["nom"];
+                        $valueDateEvent = $row["date"];
+                        $valueLieuEvent = $row["lieu"];
+                        $valueProgramme = $row["programme"];
+                        $idEvent = $row["id"];
+                    }
+                }
             }
         }
         else{
@@ -76,21 +175,61 @@ else
 
             if($state == 0){
                 $formCreation           = "none";
+                $formModif              = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Événement créé avec succès";
-                retourPage("Event", $tempsAttente);
+                sleep(2);
+                retourPage("events", $tempsAttente);
             }
             else if($state == 1){
                 $formCreation           = "none";
+                $formModif              = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Erreur lors de la création de l'événement";
-                retourPage("Event", $tempsAttente);
+                sleep(2);
+                retourPage("events", $tempsAttente);
             }
             else if($state == 2){
                 $formCreation           = "none";
+                $formModif              = "none";
+                $formModif              = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Merci de remplir tous les champs";
-                retourPage("Event", $tempsAttente);
+                sleep(2);
+                retourPage("events", $tempsAttente);
+            }
+            else if($state == 10){
+                $formCreation           = "none";
+                $formModif              = "none";
+                $contextBodyCreaEvent   = "flex";
+                $messageContexte        = "Événement modifié avec succès";
+                sleep(2);
+                retourPage("events", $tempsAttente);
+            }
+            else if($state == 11){
+                $formCreation           = "none";
+                $formModif              = "none";
+                $contextBodyCreaEvent   = "flex";
+                $messageContexte        = "Erreur lors de la modification de l'événement";
+                // sleep(2);
+                retourPage("events", $tempsAttente);
+                echo $sql;
+            }
+            else if($state == 12){
+                $formCreation           = "none";
+                $formModif              = "none";
+                $contextBodyCreaEvent   = "flex";
+                $messageContexte        = "Merci de remplir tous les champs";
+                sleep(2);
+                retourPage("events", $tempsAttente);
+            }
+            else if($state == 45){
+                $formCreation           = "none";
+                $formModif              = "none";
+                $contextBodyCreaEvent   = "flex";
+                $messageContexte        = "Prolèeme post";
+                sleep(2);
+                retourPage("events", $tempsAttente);
             }
         }
     }
@@ -105,7 +244,7 @@ function retourPage($page, $sTemps){
                 setTimeout
                 (
                     function(){
-                        window.location.href = "admin.php?page="' . $page . '"
+                        window.location.href = "admin.php?page=' . $page . '"
                     }, ' . $sTemps . '
                 );
             </script>
