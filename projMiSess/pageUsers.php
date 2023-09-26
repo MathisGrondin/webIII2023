@@ -16,7 +16,7 @@ else{
 
         $pageUsers          = "block";
         $listeUsers         = "block";
-        $boutonRetourUser   = "none" ;
+        $boutonRetourUser   = "flex" ;
         $formUserCr         = "none" ;
     }
     else{
@@ -25,12 +25,12 @@ else{
 
         $pageUsers          = "block";
         $listeUsers         = "none";
-        $boutonRetourUser   = "block";
         $formUserCr         = "block";
+        $boutonRetourUser   = "none";
 
         //? Si l'utilisateur est connecté et est admin,
         //? Si l'utilisateur clique sur le bouton "Consulter" à partir du formulaire,
-        //! pas mis le idbarrebas et le titre
+        //! pas mis le titre
 
         if(isset($_GET["action"])){
 
@@ -45,21 +45,8 @@ else{
             else{
                 $pageUsers      = "block";
                 $listeUsers     = "none";
-                $boutonRetourUser   = "none";
                 $formUserCr     = "block";
-            }
-        }
-        //? Si l'utilisateur est connecté et est admin,
-        //? Si l'utilisateur clique sur le bouton "Liste utilisateurs" à partir du formulaire,
-
-        if(isset($_GET["action"])){
-
-            $action = $_GET["action"];
-
-            if($action == "Modifier"){
-                $pageUsers      = "block";
-                $listeUsers     = "block";
-                $formUserCr     = "none";
+                $boutonRetourUser   = "none";
             }
         }
 
@@ -69,8 +56,8 @@ else{
         if(!isset($_GET["action"]) && $listeUsers == "block"){
             $pageUsers          = "block";
             $listeUsers         = "none";
-            $boutonRetourUser   = "none";
             $formUserCr         = "block";
+            $boutonRetourUser   = "none";
         }
 
         //? Si l'utilisateur est connecté et est admin,

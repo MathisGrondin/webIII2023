@@ -105,8 +105,7 @@ else
                 $afficherliste = "block";
                 $titreCarteEvent = "Liste des événements";
                 $boutonRetourEvent = "flex";
-                $formCreation = "none";
-                $idBarreBas = "visible";
+                $formCreation = "none";               
             }
             else if($action = "modifier") {
                 $pageEvent = "block";
@@ -152,7 +151,6 @@ else
             $afficherliste = "none";
             $formCreation = "block";
             $boutonRetourEvent = "none";
-            $idBarreBas = "hidden";
             $titreCreation = "Création d'un événement";
         }
 

@@ -51,7 +51,24 @@ session_start();
         $stadeAlerte = "";
         $Message = "";
 
+        // Theme
+        $CardHeader = "bg-bleuCegep border-rouge-cegep";
+        $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+        $CardFooter = "bg-bleuCegep border-rouge-cegep";
+        $Table = "fontCegep bleuCegep";
+        $Bouton = "bgLilasCegep border-rouge-cegep fontCegep bleuCegep fw-bold rounded";
+        $BtnA = "btn bgLilasCegep border-rouge-cegep";
+        $TextBtnA = "fontCegep fw-bold bleuCegep";
+        $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+        $TextCardBody = "bleuCegep fw-bold fontCegep";
+        $TextErreur = "rougeCegep fw-bold fontCegep";
+        $TextBouton = "fontCegep bleuCegep fw-bold";
+        $Label = "fontCegep bleuCegep fw-bold fs-6";
+        $borderInput = "rounded text-center border-bleuCegep";
+        $BarreAdmin = "bg-bleuCegep";
+        $Background = "background1";
 
+        // Connexion à la base de données
         $servername = "cours.cegep3r.info";
         $username = "2230572";
         $password = "2230572";
@@ -254,55 +271,57 @@ session_start();
             $barreMenuAdmin = "none";
             ?>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="offset col-xl-4"></div>
-                        <div class="col-xl-4">
-                            <div class="alert alert-danger">
-                                <h6>La page demandée n'est pas accessible sans être administrateur, merci de vous connecter</h6>
-                                <br>
-                                <a href="index.php">Retour à la page de vote</a>
-                            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="offset col-xl-4"></div>
+                    <div class="col-xl-4">
+                        <div class="alert alert-danger">
+                            <h6>La page demandée n'est pas accessible sans être administrateur, merci de vous connecter</h6>
+                            <br>
+                            <a href="index.php">Retour à la page de vote</a>
                         </div>
-                        <div class="offset col-xl-4"></div>
                     </div>
+                    <div class="offset col-xl-4"></div>
                 </div>
+            </div>
 
             <?php
         }
     ?>
+
     <!-- Formulaire -->
     <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center p-0 m-0" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
-                    <div class="col-xl-12 w-100">
-                        <div class="card w-100">
-                            <div class="card-header bg bg-bleuCegep border-rouge-cegep">
-                                <h2 class="text-center lilasCegep fontCegep fw-bold">Connexion admin</h2>
-                            </div>
-
-                            <div class="card-body bgLilasCegep border-bleuCegep border-top-0 border-bottom-0 d-flex justify-content-evenly flex-column">
-                                <div class="d-flex justify-content-between">
-                                    <label for="courriel" class="fw-bold bleuCegep fontCegep">Courriel</label>
-                                    <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="rounded text-center border-bleuCegep">
-                                </div>
-
-                                <div class="d-flex justify-content-between mt-3">
-                                    <label for="mdp" class="fw-bold bleuCegep fontCegep">Mot de passe</label>
-                                    <input type="password" name="mdp" class="rounded border-bleuCegep">
-                                </div>
-                                
-                                <div class="d-flex justify-content-center mt-3 text-center w-100">
-                                    <span class="fw-bold rougeCegep fontCegep"><?php echo $messageErreurConnexion; ?></span>
-                                </div>
-                                
-                            </div>
-
-                            <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
-                                <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Connexion</button>
-                            </div>
+                <div class="col-xl-12 w-100">
+                    <div class="card w-100">
+                        <!-- Entete -->
+                        <div class="card-header <?php echo $CardHeader; ?>">
+                            <h2 class="<?php echo $TextCardHeader; ?> ">Connexion admin</h2>
                         </div>
+                        <!-- Courriel et MDP  -->
+                        <div class="card-body d-flex justify-content-evenly flex-column <?php echo $CardBody; ?>">
+                            <div class="d-flex justify-content-between">
+                                <label for="courriel" class="<?php echo $Label; ?>">Courriel</label>
+                                <input type="text" name="courriel" placeholder="admin@cegeptr.qc.ca" class="<?php echo $borderInput; ?>">
+                            </div>
+                            <div class="d-flex justify-content-between mt-3">
+                                <label for="mdp" class="<?php echo $Label; ?>">Mot de passe</label>
+                                <input type="password" name="mdp" class="<?php echo $borderInput; ?>">
+                            </div>
+                            
+                            <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
+                            </div>                                
+                        </div>
+
+                        <!-- Bouton de connexion -->
+                        <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
+                            <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Connexion</button>
+                        </div>
+                        
                     </div>
+                </div>
             </div>
         </form>
     </div>
@@ -310,67 +329,67 @@ session_start();
     <!-- Barre de menu Admin -->
     <nav class="navbar fixed-top p-0 m-0">
         <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
-            <div class="row bg-bleuCegep p-3 h-100 d-flex align-items-center" id="rowMenu">
+            <div class="row p-3 h-100 d-flex align-items-center <?php echo $BarreAdmin; ?>" id="rowMenu">
                 <div class="col">
-                    <a href="admin.php?page=events" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
+                    <a href="admin.php?page=events" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Événements</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Événements</h5>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col">
-                    <a href="admin.php?page=users" class="btn btn-light bg bgLilasCegep border-rouge-cegep">
+                    <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Utilisateurs</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col">
-                    <a href="statistiques.php" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                    <a href="statistiques.php" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Statistiques</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col">
-                    <a href="admin.php?page=accueil" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                    <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Accueil</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Accueil</h5>
                             </div>
                         </div>
                     </a>
                 </div>
 
                 <div class="col">
-                    <a href="admin.php?page=deco" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                    <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Déconnexion</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="admin.php?page=themes" class="btn btn-light bgLilasCegep border-rouge-cegep">
+                    <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Thèmes</h5>
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
                             </div>
                         </div>
                     </a>
@@ -381,7 +400,7 @@ session_start();
     </nav>
 
     <!-- Bas de page admin : Arrivée -->
-    <div class="container-fluid h-100 w-100" id="contWelcome" style="display: <?php echo $basAdmin; ?>">
+    <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $basAdmin; ?>">
         <div class="row h-100 d-flex justify-content-center align-items-center" id="rowWelcome">
             <div class="offset col-xl-2 col-2"></div>
             <div class="col-xl-8 col-8">
@@ -405,50 +424,51 @@ session_start();
     </div>
 
     <!-- Bas de page admin : Événements -->
-    <div class="container-fluid h-100 w-100 " id="containerEvent" style="display: <?php echo $pageEvent; ?>">
+    <div class="container-fluid h-100 w-100 <?php echo $Background; ?>"  style="display: <?php echo $pageEvent; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowEvent">
             <div class="col-xl-6 h-75 d-flex align-items-center">
-                <!-- Card pour création d'un événement -->
+                
+            <!-- Entete Création Événement -->
                 <div class="card h-75 w-100">
-                    <div class="card-header p-2 bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
+                    <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/event.png" alt="crEvent" id="iconUser">
-                        <h3 class="p-0 m-0 text-center lilasCegep fontCegep fw-bold" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
+                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
-                    <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation; ?>" class="h-100" >
+                    <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
                         <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
+                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="date" name="dateEvent" class="form-control border-bleuCegep">
+                                    <input type="date" name="dateEvent" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="lieuEvent" class="fontCegep bleuCegep fw-bold fs-6">Lieu</label>
+                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="lieuEvent" class="form-control border-bleuCegep">
+                                    <input type="text" name="lieuEvent" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="nomEvent" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
+                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomEvent" class="form-control border-bleuCegep">
+                                    <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
 
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
+                                    <label for="programme" class="<?php echo $Label; ?>">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programme" class="form-control border-bleuCegep">
+                                    <select name="programme" class="form-control <?php echo $borderInput; ?>">
 
                                         <?php
 
@@ -462,19 +482,17 @@ session_start();
                                             }  
                                             else {
                                                 echo "<option value=''>Aucun programme</option>";
-                                            }                                  
-
+                                            }                                 
                                         ?>
-
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
-
+                        <!-- Bas Création Événement -->
+                        <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
                                 <div class="col-4 d-flex justify-content-center">
-                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-75">
+                                    <button type="submit" class="w-75 <?php echo $Bouton; ?>">
                                         <div class=" d-flex align-items-center justify-content-center">
                                             <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
                                             <span class="fs-4 fw-bold fontCegep bleuCegep" >Créer</span>
@@ -760,7 +778,7 @@ session_start();
                                 </button>
                             </div>
                             <div class="col-4 d-flex justify-content-center">
-                                <a href="admin.php?page=users&action=Modifier" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                <a href="admin.php?page=users&action=consulter" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/modifierAdminUser.png" alt="modifierUser" style="width: 60px; height: 60px">
                                         <span class="fs-4 fw-bold bleuCegep fontCegep">Consulter</span>
@@ -843,10 +861,10 @@ session_start();
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer w-100 bg bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
+                    <div class="card-footer w-100 bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
                             <div class="col-4">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
+                                <a href="admin.php?page=users" class="btn bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
                                     <img src="icones/retour.png" alt="retour" class="fontCegep fw-bold" style="width: 60px;">
                                     <span>Retour au formulaire</span>
                                 </a>
