@@ -38,13 +38,14 @@
 
     ?>
 
-    <div class="container-fluid contStats h-100 w-100">
-        <div class="row">
-            <div class="col-12 p-3 m-0">
-                <div class="card h-75 d-flex justify-content-center">
+    <div class="container-fluid contStats h-100 w-100 d-flex align-items-center justify-content-center">
+        <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+                <div class="card w-75 h-75 d-flex justify-content-center p-0 m-0">
 
                     <div class="card-header py-2 bg bg-bleuCegep">
-                            <h2 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0"><img src="icones/stats.png" alt="stats" class="icons mx-3">Statistiques</h2>        
+                            <h2 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0">
+                                <img src="icones/stats.png" alt="stats" class="icons mx-3">
+                                Statistiques</h2>        
                     </div>
 
                     <div class="card-body bg bgLilasCegep" id="bodyStats">                
@@ -106,8 +107,6 @@
                     </div>
 
                 </div>
-            </div>
- 
         </div>
     </div>
 

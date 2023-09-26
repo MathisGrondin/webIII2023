@@ -108,67 +108,7 @@ session_start();
             // Si un utilisateur (Admin ici) essaie de créer un événement 
             if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
 
-                if(isset($_POST["dateEvent"], $_POST["lieuEvent"], $_POST["nomEvent"], $_POST["programme"]) && $_POST["dateEvent"] != "" && $_POST["lieuEvent"] != "" && $_POST["nomEvent"] != "" && $_POST["programme"] != "") {
-                    $dateEvent = $_POST["dateEvent"];
-                    $lieuEvent = $_POST["lieuEvent"];
-                    $nomEvent = $_POST["nomEvent"];
-                    $programme = $_POST["programme"];
-    
-                    $placeQuoteLieu = stripos($lieuEvent, '\'');
-                    $placeQuoteNom = stripos($nomEvent, '\'');
-                    $placeQuoteProg = stripos($programme, '\'');
-    
-                    if($placeQuoteLieu != null){
-                        $substringLieu = substr($lieuEvent, 0, $placeQuoteLieu);
-                    }
-                    else{
-                        echo $lieuEvent . "<br>";
-                        $substringLieu = $lieuEvent;
-                    }
-    
-                    if($placeQuoteNom != null){
-                        $substringNom = substr($nomEvent, 0, $placeQuoteNom);
-                        echo $substringNom . "<br>";
-                    }
-                    else{
-                        echo $nomEvent . "<br>";
-                        $substringNom = $nomEvent;
-                    }
-                    if($placeQuoteProg != null){
-                        $substringProg = substr($programme, 0, $placeQuoteProg);
-                        $substringProg = $substringProg . "\\";
-                        $substringProg = $substringProg . substr($programme, $placeQuoteProg);
-                        echo $substringProg . "<br>";
-                    }
-                    else{
-                        echo $programme . "<br>";
-                        $substringProg = $programme;
-                    }  
-    
-                    echo $programme . "<br>";
-    
-                    $sql = "INSERT INTO evenements
-                            VALUES (null, '$substringNom', '$substringLieu', '$dateEvent', '$substringProg', 0, 0, 0, 0, 0, 0)";
-                    $result = $conn->query($sql);
-    
-                    echo $sql . "<br>";
-                    echo $result;
-    
-                    if($result) {
-                        header("Location: admin.php?page=events&state=0");
-                    }
-                    else {
-                        // echo $result;
-                        header("Location: admin.php?page=events&state=1");
-                    }
-                }
-                else if($_POST["dateEvent"] == "" || $_POST["lieuEvent"] == "" || $_POST["nomEvent"] == "" || $_POST["programme"] == ""){
-                    header("Location: admin.php?page=events&state=2");
-                }
-                else{
-                    // header("Location: admin.php?page=events&errCreation=1");
-                    header("Location: admin.php?page=events&state=1");
-                }
+                
             }
             else{
                 $formVisible = "flex";
@@ -474,7 +414,7 @@ session_start();
                     </div>
                     
                     <!-- Formulaire de création d'événement -->
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formCreation ?>" class="h-100" >
+                    <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
                         <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
