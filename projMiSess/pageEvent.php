@@ -44,8 +44,7 @@ else
                 $afficherliste = "block";
                 $titreCreation = "Liste des événements";
                 $boutonRetourEvent = "flex";
-                $formCreation = "none";
-                $idBarreBas = "visible";
+                $formCreation = "none";               
             }
         }
         else{
@@ -53,7 +52,6 @@ else
             $afficherliste = "none";
             $formCreation = "block";
             $boutonRetourEvent = "none";
-            $idBarreBas = "hidden";
             $titreCreation = "Création d'un événement";
         }
 

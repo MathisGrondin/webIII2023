@@ -374,7 +374,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Événements</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Événements</h5>
                             </div>
                         </div>
                     </a>
@@ -385,7 +385,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Utilisateurs</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Utilisateurs</h5>
                             </div>
                         </div>
                     </a>
@@ -396,7 +396,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Statistiques</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Statistiques</h5>
                             </div>
                         </div>
                     </a>
@@ -407,7 +407,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Accueil</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Accueil</h5>
                             </div>
                         </div>
                     </a>
@@ -418,7 +418,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Déconnexion</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Déconnexion</h5>
                             </div>
                         </div>
                     </a>
@@ -428,7 +428,7 @@ session_start();
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
                                 <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0">Thèmes</h5>
+                                <h5 class="p-0 m-0 fontCegep fw-bold">Thèmes</h5>
                             </div>
                         </div>
                     </a>
@@ -723,7 +723,7 @@ session_start();
                                 </button>
                             </div>
                             <div class="col-4 d-flex justify-content-center">
-                                <a href="admin.php?page=users&action=Modifier" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                <a href="admin.php?page=users&action=consulter" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/modifierAdminUser.png" alt="modifierUser" style="width: 60px; height: 60px">
                                         <span class="fs-4 fw-bold bleuCegep fontCegep">Consulter</span>
@@ -806,10 +806,10 @@ session_start();
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer w-100 bg bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
+                    <div class="card-footer w-100 bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
                             <div class="col-4">
-                                <a href="admin.php?page=users" class="btn bg bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
+                                <a href="admin.php?page=users" class="btn bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
                                     <img src="icones/retour.png" alt="retour" class="fontCegep fw-bold" style="width: 60px;">
                                     <span>Retour au formulaire</span>
                                 </a>
