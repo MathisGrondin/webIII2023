@@ -33,3 +33,12 @@
     font-family: century gothic;
 }
 
+.background1{
+    background-image: url("../img/background.png");
+    background-color: #DFCCE4;
+}
+
+.background2{
+    background-image: url("../img/backgroundEmp.png");
+    background-color: #092D74;
+}
