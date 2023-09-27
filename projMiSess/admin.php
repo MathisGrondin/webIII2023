@@ -290,7 +290,7 @@ session_start();
     ?>
 
     <!-- Formulaire -->
-    <div class="container-fluid contConnex h-100 w-100 justify-content-center align-items-center p-0 m-0" style="display: <?php echo $formVisible; ?>">
+    <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                 <div class="col-xl-12 w-100">
@@ -437,7 +437,7 @@ session_start();
                     
                     <!-- Formulaire de création d'événement -->
                     <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
-                        <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                        <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <!-- Données du formulaire  -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">

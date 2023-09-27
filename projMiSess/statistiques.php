@@ -42,13 +42,16 @@
         <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                 <div class="card w-75 h-75 d-flex justify-content-center p-0 m-0">
 
-                    <div class="card-header py-2 bg bg-bleuCegep">
+                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
                             <h2 class="text-center py-2 lilasCegep fontCegep fw-bold p-0 my-0">
                                 <img src="icones/stats.png" alt="stats" class="icons mx-3">
-                                Statistiques</h2>        
+                                <span>
+                                    Statistiques
+                                </span> 
+                            </h2>        
                     </div>
 
-                    <div class="card-body bg bgLilasCegep" id="bodyStats">                
+                    <div class="card-body bg bgLilasCegep border-bleuCegep border-top-0 border-bottom-0" id="bodyStats">                
                         <div class="row m-0 p-0">      
                             <table class="m-0 p-0 caption-top">
                                 <caption><span class="bleuCegep fw-bold fontCegep">Étudiants | </span><span class="rougeOrangeCegep fw-bold fontCegep">Employés</span></caption>
@@ -98,7 +101,7 @@
                         </div>                               
                     </div>
 
-                    <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center">
+                    <div class="card-footer bg bg-bleuCegep border-rouge-cegep d-flex justify-content-center align-items-center">
                         <div class="offset col-4"></div>
                         <div class="col-4 px-1 d-flex justify-content-center align-items-center">
                             <a href="admin.php" class="btn w-100 bg bgLilasCegep border-rouge-cegep w-100 bleuCegep fontCegep fw-bold rounded p-0 m-0"><img src="icones/retour.png" alt="retour" class="me-1 icons">Retour</a> 
