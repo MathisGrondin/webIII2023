@@ -284,7 +284,6 @@ session_start();
                     <div class="offset col-xl-4"></div>
                 </div>
             </div>
-
             <?php
         }
     ?>
@@ -318,8 +317,7 @@ session_start();
                         <!-- Bouton de connexion -->
                         <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
                             <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Connexion</button>
-                        </div>
-                        
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -330,79 +328,89 @@ session_start();
     <nav class="navbar fixed-top p-0 m-0">
         <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
             <div class="row p-3 h-100 d-flex align-items-center <?php echo $BarreAdmin; ?>" id="rowMenu">
-                <div class="col">
-                    <a href="admin.php?page=events" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Événements</h5>
-                            </div>
+             
+            <!-- icone Événement -->
+            <div class="col">
+                <a href="admin.php?page=events" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Événements</h5>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
 
-                <div class="col">
-                    <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
-                            </div>
+            <!-- icone users -->
+            <div class="col">
+                <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
 
-                <div class="col">
-                    <a href="statistiques.php" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
-                            </div>
+            <!-- icone stats -->
+            <div class="col">
+                <a href="statistiques.php" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
 
-                <div class="col">
-                    <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Accueil</h5>
-                            </div>
+            <!-- icone accueil -->
+            <div class="col">
+                <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Accueil</h5>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
 
-                <div class="col">
-                    <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
-                            </div>
+            <!-- icone déconnexion -->
+            <div class="col">
+                <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
                         </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
-                        <div class="row ">
-                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
-                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
-                            </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- icone themes -->
+            <div class="col">
+                <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
+                    <div class="row ">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                            <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
+
             </div>        
         </div>
-
     </nav>
 
     <!-- Bas de page admin : Arrivée -->
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $basAdmin; ?>">
         <div class="row h-100 d-flex justify-content-center align-items-center" id="rowWelcome">
             <div class="offset col-xl-2 col-2"></div>
+            
+            <!-- message de bienvenue -->
             <div class="col-xl-8 col-8">
                 <?php 
                     $user = $_SESSION["user"];
@@ -419,6 +427,7 @@ session_start();
                 ?>
                 <h1 class="text-center fontCegep bleuCegep fw-bold">Bienvenue sur la page <br><?php echo $userPrenom . " " . $userNom?></h1>
             </div>
+
             <div class="offset col-xl-2 col-2"></div>
         </div>
     </div>
@@ -490,40 +499,43 @@ session_start();
 
                         <!-- Bas Création Événement -->
                         <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
-                                <div class="col-4 d-flex justify-content-center">
-                                    <button type="submit" class="w-75 <?php echo $Bouton; ?>">
-                                        <div class=" d-flex align-items-center justify-content-center">
-                                            <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="<?php echo $TextBouton; ?>" >Créer</span>
-                                        </div>
-                                    </button>
-                                </div>
+                            
+                            <!-- Bouton Créer Événement -->
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="submit" class="w-75 <?php echo $Bouton; ?>">
+                                    <div class=" d-flex align-items-center justify-content-center">
+                                        <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
+                                        <span class="<?php echo $TextBouton; ?>" >Créer</span>
+                                    </div>
+                                </button>
+                            </div>
 
-                                <!-- Bouton Consulter Liste -->
-                                <div class="col-4 d-flex justify-content-center">
-                                    <a href="admin.php?page=events&action=consulter" class="m-0 p-0 w-75 <?php echo $BtnA; ?>">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
-                                            <span class="fs-4 <?php echo $TextBtnA; ?>">Consulter</span>
-                                        </div>
-                                    </a>                                                                       
-                                </div>
+                            <!-- Bouton Consulter Liste -->
+                            <div class="col-4 d-flex justify-content-center">
+                                <a href="admin.php?page=events&action=consulter" class="m-0 p-0 w-75 <?php echo $BtnA; ?>">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Consulter</span>
+                                    </div>
+                                </a>                                                                       
+                            </div>
 
-                                <!-- Bouton Retour vers l'accueil -->
-                                <div class="col-4 d-flex justify-content-center">
-                                    <button type="reset" class="rounded p-0 m-0 w-75 <?php echo $Bouton; ?>">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="fs-4 <?php echo $TextBtnA; ?>">Annuler</span>
-                                        </div>
-                                    </button>
-                                </div>
+                            <!-- Bouton Retour vers l'accueil -->
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="reset" class="rounded p-0 m-0 w-75 <?php echo $Bouton; ?>">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Annuler</span>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
                     </form>
 
                     <!-- Formulaire de modification -->
                     <form method="post" action="pageEvent.php"  style="display: <?php echo $formModif; ?>" class="h-100" >
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
+                            <!-- données du formulaire -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="idEvent" class="<?php echo $Label; ?>">ID</label>
@@ -556,7 +568,6 @@ session_start();
                                     <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>"  value="<?php echo $valueNomEvent; ?>">
                                 </div>
                             </div>
-
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="programme" class="<?php echo $Label; ?>">Programme</label>
@@ -583,23 +594,23 @@ session_start();
 
                         <!-- Bas Modification Événement -->
                         <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
-                                <div class="col-4 d-flex justify-content-center">
-                                    <button type="submit" class="w-100 <?php echo $Bouton; ?>">
-                                        <div class=" d-flex align-items-center justify-content-center">
-                                            <img src="icones/modifier.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="<?php echo $TextBouton; ?>" >Modifier</span>
-                                        </div>
-                                    </button>
-                                </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="submit" class="w-100 <?php echo $Bouton; ?>">
+                                    <div class=" d-flex align-items-center justify-content-center">
+                                        <img src="icones/modifier.png" alt="créer" style="width: 60px; height: 60px">
+                                        <span class="<?php echo $TextBouton; ?>" >Modifier</span>
+                                    </div>
+                                </button>
+                            </div>
 
-                                <div class="col-4 d-flex justify-content-center">
-                                    <button type="reset" class="p-0 m-0 w-100 <?php echo $Bouton; ?>">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="<?php echo $TextBouton; ?>">Retour</span>
-                                        </div>
-                                    </button>
-                                </div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="reset" class="p-0 m-0 w-100 <?php echo $Bouton; ?>">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
+                                        <span class="<?php echo $TextBouton; ?>">Retour</span>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
                     </form>
 
@@ -665,6 +676,8 @@ session_start();
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- bas du formulaire d'ajout -->
                     <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourEvent; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourEvent; ?>">
                             <div class="col-4">
@@ -675,6 +688,7 @@ session_start();
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -684,6 +698,7 @@ session_start();
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageUsers; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowUsers">
             <div class="col-xl-6 h-75 d-flex align-items-center">
+
                 <!-- Card pour création d'un user -->
                 <div class="card h-75 w-100">                                   
                     <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
@@ -704,7 +719,7 @@ session_start();
                                             <h5 class="fs-6 m-0 p-0 <?php echo $TextErreur; ?>">Un admin a tous les droits</h5>
                                             <img src="icones/alerte.png" alt="annuler" class="icons">
                                 </div>
-                             </div>      
+                            </div>      
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="nomUser" class="<?php echo $Label; ?>">Nom</label>
@@ -853,6 +868,8 @@ session_start();
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- bas du formulaire de la liste -->
                     <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
                             <div class="col-4">
@@ -863,6 +880,7 @@ session_start();
                             </div>                       
                         </div>                        
                     </div>
+
                 </div>
             </div>
         </div>
@@ -876,7 +894,7 @@ session_start();
 
                 <form action="add.php" method="post">
                     <div class="card">
-                        
+                        <!-- entete de l'accueil -->
                         <div class="card-header py-2 <?php echo $CardHeader; ?>">
                             <div class="row w-100 h-50 py-2">
                                 <div class="col-2 d-flex justify-content-center align-items-center w-25">
@@ -892,7 +910,7 @@ session_start();
                                 </div>
                             </div>
                         </div>
-
+                        <!-- données du formulaire -->
                         <div class="card-body p-4 <?php echo $CardBody; ?>">
                             <div class="vstack gap-4">
                                 <div class="row">
@@ -935,6 +953,7 @@ session_start();
                             </div>
                         </div>
 
+                        <!-- bas du formulaire de l'accueil -->
                         <div class="card-footer d-flex justify-content-center align-items-center <?php echo $CardFooter; ?>">
                             <div class="offset col-4"></div>
                             <div class="col-4 px-1 d-flex justify-content-center align-items-center">
