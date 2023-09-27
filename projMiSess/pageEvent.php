@@ -20,14 +20,38 @@
 
         if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($programme) || empty($idEvent))
         {
-            echo $nomEvent;
-            echo $dateEvent;
-            echo $lieuEvent;
-            echo $programme;
-            echo $idEvent;
+            if(!empty($idEvent)){
+                // create connection
+                $servername = "cours.cegep3r.info";
+                $username = "2230572";
+                $password = "2230572";
+                $dbname = "2230572-mathis-grondin";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                $conn->set_charset("utf8");
+
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                $SQL = "SELECT * FROM evenements WHERE id = $idEvent";
+                $result = $conn->query($SQL);
+
+                while($result -> fetch_assoc())
+                {
+                    $nomEvent = $result["nom"];
+                    $dateEvent = $result["date"];
+                    $lieuEvent = $result["lieu"];
+                    $programme = $result["programme"];
+                }
+
+            }
         }
         else
         {
+            
             $servername = "cours.cegep3r.info";
             $username = "2230572";
             $password = "2230572";
@@ -43,10 +67,10 @@
             }
 
                 $sql = "UPDATE evenements SET 
-                            'nom' = '$nomEvent', 
-                            'lieu' = '$lieuEvent', 
-                            'date' = '$dateEvent', 
-                            'programme' = '$programme'
+                            nom = '$nomEvent', 
+                            lieu = '$lieuEvent', 
+                            date = '$dateEvent', 
+                            programme = '$programme'
                         WHERE id = $idEvent";
 
             $result = $conn->query($sql);

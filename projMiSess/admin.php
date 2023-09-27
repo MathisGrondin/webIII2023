@@ -527,7 +527,7 @@ session_start();
                                     <label for="idEvent" class="fontCegep bleuCegep fw-bold fs-6">ID</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" name="idEventModif" class="form-control border-bleuCegep" value="<?php echo $idEvent; ?>">
+                                    <input type="number" name="idEventModif" class="form-control border-bleuCegep" value="<?php echo $idEvent; ?>" readonly>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -586,28 +586,19 @@ session_start();
                         <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
 
                                 <div class="col-4 d-flex justify-content-center">
-                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-75">
+                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-100">
                                         <div class=" d-flex align-items-center justify-content-center">
                                             <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Créer</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Modifier</span>
                                         </div>
                                     </button>
                                 </div>
 
                                 <div class="col-4 d-flex justify-content-center">
-                                    <a href="admin.php?page=events&action=consulter" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Consulter</span>
-                                        </div>
-                                    </a>                                                                       
-                                </div>
-
-                                <div class="col-4 d-flex justify-content-center">
-                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-75">
+                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-100">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Annuler</span>
+                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Retour</span>
                                         </div>
                                     </button>
                                 </div>
