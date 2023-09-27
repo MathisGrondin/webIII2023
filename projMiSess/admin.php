@@ -56,13 +56,13 @@ session_start();
         $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
         $CardFooter = "bg-bleuCegep border-rouge-cegep";
         $Table = "fontCegep bleuCegep";
-        $Bouton = "bgLilasCegep border-rouge-cegep fontCegep bleuCegep fw-bold rounded";
+        $Bouton = "bgLilasCegep border-rouge-cegep rounded";
+        $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
         $BtnA = "btn bgLilasCegep border-rouge-cegep";
         $TextBtnA = "fontCegep fw-bold bleuCegep";
         $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
         $TextCardBody = "bleuCegep fw-bold fontCegep";
         $TextErreur = "rougeCegep fw-bold fontCegep";
-        $TextBouton = "fontCegep bleuCegep fw-bold";
         $Label = "fontCegep bleuCegep fw-bold fs-6";
         $borderInput = "rounded text-center border-bleuCegep";
         $BarreAdmin = "bg-bleuCegep";
@@ -438,6 +438,7 @@ session_start();
                     <!-- Formulaire de création d'événement -->
                     <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
                         <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                            <!-- Données du formulaire  -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
@@ -462,14 +463,12 @@ session_start();
                                     <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
-
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="programme" class="<?php echo $Label; ?>">Programme</label>
                                 </div>
                                 <div class="col-8">
                                     <select name="programme" class="form-control <?php echo $borderInput; ?>">
-
                                         <?php
 
                                             $sql = "SELECT * FROM programmes";
@@ -495,75 +494,76 @@ session_start();
                                     <button type="submit" class="w-75 <?php echo $Bouton; ?>">
                                         <div class=" d-flex align-items-center justify-content-center">
                                             <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Créer</span>
+                                            <span class="<?php echo $TextBouton; ?>" >Créer</span>
                                         </div>
                                     </button>
                                 </div>
 
+                                <!-- Bouton Consulter Liste -->
                                 <div class="col-4 d-flex justify-content-center">
-                                    <a href="admin.php?page=events&action=consulter" class="btn rounded bgLilasCegep border-rouge-cegep m-0 p-0 w-75">
+                                    <a href="admin.php?page=events&action=consulter" class="m-0 p-0 w-75 <?php echo $BtnA; ?>">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Consulter</span>
+                                            <span class="fs-4 <?php echo $TextBtnA; ?>">Consulter</span>
                                         </div>
                                     </a>                                                                       
                                 </div>
 
+                                <!-- Bouton Retour vers l'accueil -->
                                 <div class="col-4 d-flex justify-content-center">
-                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-75">
+                                    <button type="reset" class="rounded p-0 m-0 w-75 <?php echo $Bouton; ?>">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Annuler</span>
+                                            <span class="fs-4 <?php echo $TextBtnA; ?>">Annuler</span>
                                         </div>
                                     </button>
                                 </div>
                         </div>
                     </form>
 
+                    <!-- Formulaire de modification -->
                     <form method="post" action="pageEvent.php"  style="display: <?php echo $formModif; ?>" class="h-100" >
-                        <div class="card-body h-100 w-100 bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                        <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="idEvent" class="fontCegep bleuCegep fw-bold fs-6">ID</label>
+                                    <label for="idEvent" class="<?php echo $Label; ?>">ID</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="number" name="idEventModif" class="form-control border-bleuCegep" value="<?php echo $idEvent; ?>" readonly>
+                                    <input type="number" name="idEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $idEvent; ?>" readonly>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="dateEvent" class="fontCegep bleuCegep fw-bold fs-6">Date</label>
+                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="date" name="dateEventModif" class="form-control border-bleuCegep" value="<?php echo $valueDateEvent; ?>">
+                                    <input type="date" name="dateEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueDateEvent; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="lieuEvent" class="fontCegep bleuCegep fw-bold fs-6">Lieu</label>
+                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="lieuEventModif" class="form-control border-bleuCegep" value="<?php echo $valueLieuEvent; ?>">
+                                    <input type="text" name="lieuEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueLieuEvent; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="nomEvent" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
+                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomEventModif" class="form-control border-bleuCegep"  value="<?php echo $valueNomEvent; ?>">
+                                    <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>"  value="<?php echo $valueNomEvent; ?>">
                                 </div>
                             </div>
 
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme" class="fontCegep bleuCegep fw-bold fs-6">Programme</label>
+                                    <label for="programme" class="<?php echo $Label; ?>">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programmeModif" class="form-control border-bleuCegep" value="<?php echo $valueProgramme; ?>">
-
+                                    <select name="programmeModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgramme; ?>">
                                         <?php
-
                                             $sql = "SELECT * FROM programmes";
                                             $result = $conn->query($sql);
 
@@ -575,62 +575,60 @@ session_start();
                                             else {
                                                 echo "<option value=''>Aucun programme</option>";
                                             }                                  
-
                                         ?>
-
                                     </select>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Bas Modification Événement -->
                         <div class="card-footer p-2 m-0 bg-bleuCegep d-flex align-items-center justify-content-evenly">
-
                                 <div class="col-4 d-flex justify-content-center">
-                                    <button type="submit" class="rounded bgLilasCegep border-rouge-cegep w-100">
+                                    <button type="submit" class="w-100 <?php echo $Bouton; ?>">
                                         <div class=" d-flex align-items-center justify-content-center">
-                                            <img src="icones/ajouter.png" alt="créer" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep" >Modifier</span>
+                                            <img src="icones/modifier.png" alt="créer" style="width: 60px; height: 60px">
+                                            <span class="<?php echo $TextBouton; ?>" >Modifier</span>
                                         </div>
                                     </button>
                                 </div>
 
                                 <div class="col-4 d-flex justify-content-center">
-                                    <button type="reset" class="rounded bgLilasCegep border-rouge-cegep p-0 m-0 w-100">
+                                    <button type="reset" class="p-0 m-0 w-100 <?php echo $Bouton; ?>">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                            <span class="fs-4 fw-bold fontCegep bleuCegep">Retour</span>
+                                            <span class="<?php echo $TextBouton; ?>">Retour</span>
                                         </div>
                                     </button>
                                 </div>
                         </div>
                     </form>
 
-
                     <!-- Body contexte sur ajout -->
-                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep text-center" style="display: <?php echo $contextBodyCreaEvent ?>">
-                        <div class="row text-center w-100">
-                            <div class="col-12 text-center d-flex justify-content-center align-items-center">
-                                <h4 class="text-center"><?php echo $messageContexte; ?></h4>
+                    <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaEvent ?>">
+                        <div class="row w-100">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <h4 class="<?php echo $TextCardBody; ?>"><?php echo $messageContexte; ?></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg bg-bleuCegep border-rouge-cegep" style="display: <?php echo $contextBodyCreaEvent ?>">
+                    
+                    <div class="card-footer <?php echo $CardFooter; ?>p" style="display: <?php echo $contextBodyCreaEvent ?>">
                         <div class="row d-flex align-items-center">
                             <br>
                         </div>
                     </div>
                         
-                    <div class="card-body h-25 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep listeOverflow" style="display: <?php echo $afficherliste; ?>">
+                    <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $afficherliste; ?>">
                         <table class="w-100">
                             <thead>
                                 <tr class="text-center">
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Date</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Lieu</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Programme</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Supprimer</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -641,11 +639,11 @@ session_start();
                                         while($row = $result->fetch_assoc()) {
                                             ?>
                                                 <tr class="text-center border-bottom border-dark">
-                                                    <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"]; ?></th>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"]; ?></td>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["date"]; ?></td>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["lieu"]; ?></td>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["programme"]; ?></td>
+                                                    <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
                                                     <td>
                                                         <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
                                                             <img src="icones/modifier.png">
@@ -667,12 +665,12 @@ session_start();
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer bg-bleuCegep w-100 align-items-center justify-content-center" style="display: <?php echo $boutonRetourEvent; ?>">
+                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourEvent; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourEvent; ?>">
                             <div class="col-4">
-                                <a href="admin.php?page=events" class="btn bgLilasCegep border-rouge-cegep w-100 d-flex align-items-center justify-content-center">
-                                    <img src="icones/retour.png" alt="annuler" class="fontCegep fw-bold" style="width: 60px;">
-                                    <span>Retour au formulaire</span>
+                                <a href="admin.php?page=events" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
+                                    <img src="icones/retour.png" alt="annuler" style="width: 60px;">
+                                    <span class="<?php echo $TextBtnA; ?>" >Retour au formulaire</span>
                                 </a>
                             </div>
                         </div>
@@ -683,104 +681,108 @@ session_start();
     </div>
 
     <!-- Bas de page admin : Utilisateurs -->
-    <div class="container-fluid h-100 w-100" id="containerUsers" style="display: <?php echo $pageUsers; ?>">
+    <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageUsers; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowUsers">
             <div class="col-xl-6 h-75 d-flex align-items-center">
                 <!-- Card pour création d'un user -->
                 <div class="card h-75 w-100">                                   
-                    <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep d-flex align-items-center justify-content-center">
+                    <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/admin.png" alt="crUser" id="iconUser">
-                        <h3 class="lilasCegep text-center fontCegep fw-bold p-0 m-0" id="titreUserCr">Création d'un utilisateur</h3>
+                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr">Création d'un utilisateur</h3>
                     </div> 
                     
+                    <!-- formulaire de création d'un utilisateur -->
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>" class="h-100">
-                        <div class="card-body h-100 w-100 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep d-flex flex-column justify-content-evenly">
+                        <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">                                    
-                                            <label for="checkAdmin" class="fontCegep bleuCegep fw-bold fs-6 form-check-label">Admin</label>                                   
-                                            <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input border-bleuCegep ms-1">  
+                                            <label for="checkAdmin" class="form-check-label <?php echo $Label; ?>">Admin</label>                                   
+                                            <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input ms-1 <?php echo $borderInput; ?>">  
                                 </div>     
                                 <div class="col-8 d-flex align-items-center">
                                             <img src="icones/alerte.png" alt="annuler" class="icons">
-                                            <h5 class="fontCegep rougeCegep fw-bold fs-6 m-0 p-0">Un admin a tous les droits</h5>
+                                            <h5 class="fs-6 m-0 p-0 <?php echo $TextErreur; ?>">Un admin a tous les droits</h5>
                                             <img src="icones/alerte.png" alt="annuler" class="icons">
                                 </div>
-                             </div>       
-
+                             </div>      
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="nomUser" class="fontCegep bleuCegep fw-bold fs-6">Nom</label>
+                                    <label for="nomUser" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomUser" class="form-control border-bleuCegep">
+                                    <input type="text" name="nomUser" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="prenomUser" class="fontCegep bleuCegep fw-bold fs-6">Prénom</label>
+                                    <label for="prenomUser" class="<?php echo $Label; ?>">Prénom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="prenomUser" class="form-control border-bleuCegep">
+                                    <input type="text" name="prenomUser" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="courriel" class="fontCegep bleuCegep fw-bold fs-6">Courriel du CTR</label>
+                                    <label for="courriel" class="<?php echo $Label; ?>">Courriel du CTR</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="courriel" class="form-control border-bleuCegep">
+                                    <input type="text" name="courriel" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="mdp1" class="fontCegep bleuCegep fw-bold fs-6">Mot de passe</label>
+                                    <label for="mdp1" class="<?php echo $Label; ?>">Mot de passe</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="password" name="mdp1" class="form-control border-bleuCegep">
+                                    <input type="password" name="mdp1" class="form-control <?php echo $borderInput; ?>">
                                 </div>                                    
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="mdp2" class="fontCegep bleuCegep fw-bold fs-6">Confirmation Mdp</label>
+                                    <label for="mdp2" class="<?php echo $Label; ?>">Confirmation Mdp</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="password" name="mdp2" class="form-control border-bleuCegep">
+                                    <input type="password" name="mdp2" class="form-control <?php echo $borderInput; ?>">
                                 </div>                                    
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="offset col-4"></div>
                                 <div class="col-8">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input border-bleuCegep" name="checkInfos" id="invalidCheck" required>
-                                        <label for="invalidCheck" class="form-check-label fontCegep bleuCegep fw-bold">Je confirme que les informations sont exactes</label>
-                                        <div class="invalid-feedback fontCegep rougeCegep fw-bold">Vous devez confirmer les informations</div>
+                                        <input type="checkbox" class="form-check-input <?php echo $borderInput; ?>" name="checkInfos" id="invalidCheck" required>
+                                        <label for="invalidCheck" class="form-check-label <?php echo $Label; ?>">Je confirme que les informations sont exactes</label>
+                                        <div class="invalid-feedback <?php echo $TextErreur; ?>">Vous devez confirmer les informations</div>
                                     </div>
                                 </div>                                    
                             </div>
                         </div>
                         
-                        <div class="card-footer bg bg-bleuCegep d-flex align-items-center justify-content-evenly border-rouge-cegep p-2 m-0">
+                        <!-- bas formulaire utilisateur -->
+                        <div class="card-footer d-flex align-items-center justify-content-evenly p-2 m-0 <?php echo $CardFooter; ?>">
                             <div class="col-4 d-flex justify-content-center">
-                                <button type="submit" class="w-75 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                <!-- bouton création -->
+                                <button type="submit" class="w-75 p-0 m-0 <?php echo $Bouton; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/ajouterAdminUser.png" alt="créerUser" style="width: 60px; height: 60px">
-                                        <span class="fs-4 fw-bold fontCegep bleuCegep">Créer</span>
+                                        <span class="<?php echo $TextBouton; ?>">Créer</span>
                                     </div>
                                 </button>
                             </div>
+                            <!-- bouton de la liste -->
                             <div class="col-4 d-flex justify-content-center">
-                                <a href="admin.php?page=users&action=consulter" class="btn w-75 rounded bgLilasCegep border-rouge-cegep m-0 p-0">
+                                <a href="admin.php?page=users&action=consulter" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/modifierAdminUser.png" alt="modifierUser" style="width: 60px; height: 60px">
-                                        <span class="fs-4 fw-bold bleuCegep fontCegep">Consulter</span>
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Consulter</span>
                                     </div>    
                                 </a>                                                                       
                             </div>
+                            <!-- bouton retour a l'accueil -->
                             <div class="col-4 d-flex justify-content-center">
-                                <button type="reset" class="w-75 rounded bgLilasCegep border-rouge-cegep p-0 m-0">
+                                <button type="reset" class="w-75 p-0 m-0 <?php echo $Bouton; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                        <span class="fs-4 fw-bold fontCegep bleuCegep">
+                                        <span class="<?php echo $TextBouton; ?>">
                                             Annuler
                                         </span>
                                     </div>
@@ -789,33 +791,32 @@ session_start();
                         </div>
                     </form>
 
-
-                    <!-- Body contexte sur ajout -->
-                    <div class="card-body bgLilasCegep border-top-0 border-bottom-0 boder-bleuCegep text-center" style="display: <?php echo $contextBodyCreaUser ?>">
-                        <div class="row text-center w-100">
-                            <div class="col-12 text-center d-flex justify-content-center align-items-center">
-                                <h4 class="text-center"><?php echo $messageCreaUser; ?></h4>
+                    <!-- Body sur ajout Users -->
+                    <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
+                        <div class="row w-100">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
+                                <h4 class="<?php echo $TextCardBody; ?>"><?php echo $messageCreaUser; ?></h4>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer bg bg-bleuCegep border-rouge-cegep" style="display: <?php echo $contextBodyCreaUser ?>">
+                    <div class="card-footer <?php echo $CardFooter; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
                         <div class="row d-flex align-items-center">
                             <br>
                         </div>
                     </div>
-
                     
-                    <div class="card-body h-25 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep listeOverflow" style="display: <?php echo $listeUsers; ?>">
+                    <!-- Body liste Users -->
+                    <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $listeUsers; ?>">
                         <table class="w-100">
                             <thead>
                                 <tr class="text-center">
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">#</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Nom</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Prénom</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Admin</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Courriel</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Modifier</th>
-                                    <th scope="col" class="font-cegep fw-bold bleuCegep">Supprimer</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Prénom</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Admin</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Courriel</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
+                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -826,11 +827,11 @@ session_start();
                                         while($row = $result->fetch_assoc()) {
                                             ?>
                                                 <tr class="text-center border-bottom border-dark">
-                                                    <th scope="row" class="font-cegep bleuCegep"><?php echo $row["id"] ?></th>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["nom"] ?></td>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["prenom"] ?></td>
-                                                    <td class="font-cegep my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
-                                                    <td class="font-cegep bleuCegep my-3 py-3"><?php echo $row["email"] ?></td>
+                                                    <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"] ?></th>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["nom"] ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["prenom"] ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["email"] ?></td>
                                                     <td>
                                                         <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
                                                             <img src="icones/modifier.png" class="icons">
@@ -852,12 +853,12 @@ session_start();
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer w-100 bg-bleuCegep justify-content-center align-items-center border-rouge-cegep" style="display: <?php echo $boutonRetourUser; ?>">
+                    <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
                             <div class="col-4">
-                                <a href="admin.php?page=users" class="btn bgLilasCegep border-rouge-cegep w-100 fontCegep fw-bold d-flex align-items-center justify-content-center">
-                                    <img src="icones/retour.png" alt="retour" class="fontCegep fw-bold" style="width: 60px;">
-                                    <span>Retour au formulaire</span>
+                                <a href="admin.php?page=users" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
+                                    <img src="icones/retour.png" alt="retour" style="width: 60px;">
+                                    <span class="<?php echo $TextBtnA; ?>">Retour au formulaire</span>
                                 </a>
                             </div>                       
                         </div>                        
@@ -868,7 +869,7 @@ session_start();
     </div>
 
     <!-- Bas de page admin : Accueil -->
-    <div class="container-fluid h-100 w-100" id="containerAccueil" style="display: <?php echo $pageAccueil; ?>;">
+    <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageAccueil; ?>;">
         <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
         <div class="offset col-xl-3"></div>
             <div class="col-xl-6">
@@ -876,30 +877,30 @@ session_start();
                 <form action="add.php" method="post">
                     <div class="card">
                         
-                        <div class="card-header py-2 bg bg-bleuCegep border-rouge-cegep">
+                        <div class="card-header py-2 <?php echo $CardHeader; ?>">
                             <div class="row w-100 h-50 py-2">
                                 <div class="col-2 d-flex justify-content-center align-items-center w-25">
-                                    <img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">
+                                    <img src="icones/alerte.png" alt="infoImp" style="width: 40px; height: 40px">
                                 </div>
                                 <div class="col-9 d-flex justify-content-center align-items-center w-50">
-                                    <h3 class="text-center lilasCegep fontCegep fw-bold p-0 my-0">
+                                    <h3 class="p-0 my-0 <?php echo $TextCardHeader; ?>">
                                         Renseignements importants
                                     </h3>
                                 </div>
                                 <div class="col-2 d-flex justify-content-center align-items-center w-25">
-                                    <img src="icones/alerte.png" alt="infoImp" class="iconInfos mx-3">
+                                    <img src="icones/alerte.png" alt="infoImp" style="width: 40px; height: 40px">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card-body p-4 bg bgLilasCegep border-top-0 border-bottom-0 border-bleuCegep">
+                        <div class="card-body p-4 <?php echo $CardBody; ?>">
                             <div class="vstack gap-4">
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="eventvotes" class="fontCegep bleuCegep fw-bold fs-6">Événement auquel envoyer les votes</label>
+                                        <label for="eventvotes" class="<?php echo $Label; ?>">Événement auquel envoyer les votes</label>
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
-                                        <select name="quelEvent" id="eventvotes" class="w-75 text-center bleuCegep border-bleuCegep rounded">
+                                        <select name="quelEvent" id="eventvotes" class="w-75 bleuCegep <?php echo $borderInput; ?>">
                                             <?php
                                                 $sql = "SELECT * FROM evenements";
                                                 $result = $conn->query($sql);
@@ -917,10 +918,10 @@ session_start();
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="quiRepond" class="fontCegep bleuCegep fw-bold fs-6">Qui répondera au sondage sur cet appareil ? </label>
+                                        <label for="quiRepond" class="<?php echo $Label; ?>">Qui répondera au sondage sur cet appareil ? </label>
                                     </div>
                                     <div class="col-6 d-flex justify-content-end">
-                                        <select name="quiRepond" id="quiRepond" class="w-75 text-center bleuCegep border-bleuCegep rounded">
+                                        <select name="quiRepond" id="quiRepond" class="w-75 bleuCegep <?php echo $borderInput; ?>">
                                             <option value="etudiant">Étudiants</option>
                                             <option value="employeur">Employeurs</option>
                                         </select>
@@ -928,16 +929,23 @@ session_start();
                                 </div>
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <span class="text-center p-0 m-0 rougeCegep fw-bold">Vous serez déconnecté pour vous rendre à la page de vote</span>
+                                        <span class="p-0 m-0 <?php echo $TextErreur; ?>">Vous serez déconnecté pour vous rendre à la page de vote</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card-footer bg bg-bleuCegep d-flex justify-content-center align-items-center border-rouge-cegep">
+                        <div class="card-footer d-flex justify-content-center align-items-center <?php echo $CardFooter; ?>">
                             <div class="offset col-4"></div>
                             <div class="col-4 px-1 d-flex justify-content-center align-items-center">
-                                <button type="submit" class="w-100 bg bgLilasCegep border-rouge-cegep w-100 bleuCegep fontCegep fw-bold rounded p-0 m-0"><img src="icones/deconnexion.png" alt="deco" class="me-1">Page de votes</button>
+                                <button type="submit" class="w-100 w-100 bleuCegep fontCegep fw-bold p-0 m-0 <?php echo $Bouton; ?>">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/deconnexion.png" alt="deco" class="me-1">
+                                        <span class="<?php echo $TextBouton; ?>">
+                                            Page de votes
+                                        </span>
+                                    </div>
+                                </button>
                             </div>
                             <div class="offset col-4"></div>
                         </div>

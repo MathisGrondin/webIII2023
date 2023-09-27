@@ -29,6 +29,10 @@
     background-color: #DFCCE4;
 }
 
+.border-lilas-cegep{
+    border: 2px solid #DFCCE4;
+}
+
 .fontCegep{
     font-family: century gothic;
 }

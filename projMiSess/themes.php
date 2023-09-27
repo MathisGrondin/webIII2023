@@ -21,7 +21,7 @@
             $Table = "fontCegep bleuCegep";
 
             $Bouton = "bgLilasCegep border-rouge-cegep rounded";
-            $TextBouton = "fontCegep bleuCegep fw-bold";
+            $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
 
             $BtnA = "btn bgLilasCegep border-rouge-cegep";
             $TextBtnA = "fontCegep fw-bold bleuCegep";
@@ -38,7 +38,27 @@
            
         }    
         else{
-            
+            $CardHeader = "bgLilasCegep border-rouge-cegep";
+            $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
+            $CardFooter = "bgLilasCegep border-rouge-cegep";
+
+            $Table = "fontCegep lilasCegep";
+
+            $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
+            $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
+
+            $BtnA = "btn bg-bleuCegep border-rouge-cegep";
+            $TextBtnA = "fontCegep fw-bold lilasCegep";
+
+            $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
+            $TextCardBody = "lilasCegep fw-bold fontCegep";
+            $TextErreur = "rougeCegep fw-bold fontCegep";
+            $Label = "fontCegep lilasCegep fw-bold fs-6";
+
+            $borderInput = "rounded text-center border-lilas-cegep";
+
+            $BarreAdmin = "bgLilasCegep";
+            $Background = "background2";
         }
     }     
 

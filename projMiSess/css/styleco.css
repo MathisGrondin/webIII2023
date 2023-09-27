@@ -12,10 +12,6 @@ html, body{
     background-image: url("../img/background.png");
 }
 
-#containerEvent, #containerUsers, #containerAccueil, #contWelcome{
-    background-image: url("../img/background.png");
-}
-
 #iconUser, .iconInfos, #icons{
     height: 60px;
     width: auto;
