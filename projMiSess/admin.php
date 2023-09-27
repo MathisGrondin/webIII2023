@@ -46,6 +46,7 @@ session_start();
         $messageCreaUser = "";
         $boutonRetourUser = "none";
         $mdpValide = false;
+        $formModifUser = "none";
 
         // Alertes
         $stadeAlerte = "";
@@ -806,6 +807,45 @@ session_start();
                         </div>
                     </form>
 
+                    <!-- Formulaire de modifification users -->
+                    <form action="post" action="pageUsers.php" style="display : <?php echo $formModifUser?>" class="h-100">
+                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
+                            <!-- données a modifier -->
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="idUser" class="<?php echo $Label; ?>">ID</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="number" name="idUserModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $idUser; ?>" readonly>
+                                </div>          
+                            </div>  
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="nomUser" class="<?php echo $Label; ?>">Nom</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="nomUserModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueNomUser; ?>">
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="prenomUser" class="<?php echo $Label; ?>">Prénom</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="prenomUserModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valuePrenomUser; ?>">
+                                </div>
+                            </div>
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="courrielUser" class="<?php echo $Label; ?>">Courriel du CTR</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="courrielUserModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueCourrielUser; ?>">
+                                </div>
+                            </div>
+                         </div>           
+                    </form>
+                    
                     <!-- Body sur ajout Users -->
                     <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
                         <div class="row w-100">
@@ -819,7 +859,7 @@ session_start();
                             <br>
                         </div>
                     </div>
-                    
+
                     <!-- Body liste Users -->
                     <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $listeUsers; ?>">
                         <table class="w-100">
