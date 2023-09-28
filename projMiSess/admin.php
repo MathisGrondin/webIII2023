@@ -442,7 +442,7 @@ session_start();
             <!-- Entete Création Événement -->
                 <div class="card h-75 w-100">
                     <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
-                        <img src="icones/event.png" alt="crEvent" id="iconUser">
+                        <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
                     </div>
                     
@@ -704,7 +704,7 @@ session_start();
                 <!-- Card pour création d'un user -->
                 <div class="card h-75 w-100">                                   
                     <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
-                        <img src="icones/admin.png" alt="crUser" id="iconUser">
+                        <img src="icones/admin.png" alt="crUser" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr">Création d'un utilisateur</h3>
                     </div> 
                     
@@ -713,13 +713,13 @@ session_start();
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">                                    
-                                            <label for="checkAdmin" class="form-check-label <?php echo $Label; ?>">Admin</label>                                   
-                                            <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input ms-1 <?php echo $borderInput; ?>">  
+                                    <label for="checkAdmin" class="form-check-label <?php echo $Label; ?>">Admin</label>                                   
+                                    <input type="checkbox" id="checkAdmin" name="checkAdmin" class="form-check-input ms-1 <?php echo $borderInput; ?>">  
                                 </div>     
                                 <div class="col-8 d-flex align-items-center">
-                                            <img src="icones/alerte.png" alt="annuler" class="icons">
-                                            <h5 class="fs-6 m-0 p-0 <?php echo $TextErreur; ?>">Un admin a tous les droits</h5>
-                                            <img src="icones/alerte.png" alt="annuler" class="icons">
+                                    <img src="icones/alerte.png" alt="annuler" class="icons">
+                                    <h5 class="fs-6 m-0 p-0 <?php echo $TextErreur; ?>">Un admin a tous les droits</h5>
+                                    <img src="icones/alerte.png" alt="annuler" class="icons">
                                 </div>
                             </div>      
                             <div class="row d-flex align-items-center">
