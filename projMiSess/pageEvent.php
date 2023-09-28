@@ -214,7 +214,6 @@ else
             else if($state == 2){
                 $formCreation           = "none";
                 $formModif              = "none";
-                $formModif              = "none";
                 $contextBodyCreaEvent   = "flex";
                 $messageContexte        = "Merci de remplir tous les champs";
                 sleep(2);
@@ -249,7 +248,7 @@ else
                 $formCreation           = "none";
                 $formModif              = "none";
                 $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Prolèeme post";
+                $messageContexte        = "Problème post";
                 sleep(2);
                 retourPage("events", $tempsAttente);
             }
