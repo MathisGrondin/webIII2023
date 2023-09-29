@@ -48,6 +48,9 @@ session_start();
         $boutonRetourUser = "none";
         $mdpValide = false;
         $formModifUser = "none";
+        $titreCarteUser = "Création d'un utilisateur";
+        $valuenomUser = $valueprenomUser = $valueCourrielUser = $idUser = "";
+        
 
         // Alertes
         $stadeAlerte = "";
@@ -696,6 +699,15 @@ session_start();
         </div>
     </div>
 
+            <!-- Entete Création Événement -->
+            <div class="card h-75 w-100">
+                    <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
+                        <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
+                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
+                    </div>
+
+
+
     <!-- Bas de page admin : Utilisateurs -->
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageUsers; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowUsers">
@@ -705,9 +717,10 @@ session_start();
                 <div class="card h-75 w-100">                                   
                     <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/admin.png" alt="crUser" style="width: 60px; height: 60px;">
-                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr">Création d'un utilisateur</h3>
+                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr"><?php echo $titreCarteUser; ?></h3>
                     </div> 
                     
+                
                     <!-- formulaire de création d'un utilisateur -->
                     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>" class="h-100">
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
@@ -844,30 +857,30 @@ session_start();
                                     <input type="text" name="courrielUserModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueCourrielUser; ?>">
                                 </div>
                             </div>
-                         </div>           
+                         </div>                          
+
+                        <!-- Bas du formulaire de modification -->
+                        <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="submit" class="w-100 <?php echo $Bouton; ?>">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px;">
+                                        <span class="<?php echo $TextBouton; ?>">Modifier</span>
+                                    </div>
+                                </button>
+                            </div>       
+                            
+                            <div class="col-4 d-flex justify-content-center">
+                                <a href="admin.php?page=users" class="w-100 m-0 p-0 <?php echo $BtnA; ?>">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px;">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
+                                    </div>        
+                                </a>
+                            </div>
+                        </div>
                     </form>
 
-                    <!-- Bas du formulaire de modification -->
-                    <div class="card-footer p-2 m-0 bg-d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
-                        <div class="col-6 d-flex justify-content center">
-                            <button type="submit" class="w-100 <?php echo $Bouton; ?>">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <img src="icones/modifier.png" alt="modifier" style="width: 60px; height: 60px;">
-                                    <span class="<?php echo $TextBouton; ?>">Modifier</span>
-                                </div>
-                            </button>
-                        </div>       
-                        
-                        <div class="col-6 d-flex justify-content-center">
-                            <a href="admin.php?page=users" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px;">
-                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
-                                </div>        
-                            </a>
-                        </div>
-                    </div>
-                    
                     <!-- Body sur ajout Users -->
                     <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
                         <div class="row w-100">

@@ -86,11 +86,7 @@
 
             $conn->close();
         }
-    }
-    
-
-
-
+    } 
 
 // Sinon, si l'utilisateur est connecté 
 else 

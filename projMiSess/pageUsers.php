@@ -12,11 +12,11 @@
     {
         $nomUser = $_POST["nomUserModif"];
         $prenomUser = $_POST["prenomUserModif"];
-        $emailUser = $_POST["emailUserModif"];
+        $emailUser = $_POST["courrielUserModif"];
         $idUser = $_POST["idUserModif"];
 
-        if(empty($nomUser) || empty($prenomUser) || empty($emailUser) || empty($id)){
-            if(!empty($id)){
+        if(empty($nomUser) || empty($prenomUser) || empty($emailUser) || empty($idUser)){
+            if(!empty($idUser)){
                 // create connection
                 $servername = "cours.cegep3r.info";
                 $username = "2230572";
@@ -58,10 +58,10 @@
             }
 
             $sql = "UPDATE users 
-                    SET nom = '$nomUser',
-                        prenom = '$prenomUser',
-                        email = '$emailUser'
-                    WHERE id = $idUser";
+                    SET nom     = '$nomUser',
+                        prenom  = '$prenomUser',
+                        email   = '$emailUser'
+                    WHERE id    = $idUser";
 
             $result = $conn->query($sql);
             echo $sql;
@@ -86,9 +86,9 @@
 
             $pageUsers          = "block";
             $listeUsers         = "block";
+            $titreCarteUser     = "Liste des utilisateurs" ;
             $boutonRetourUser   = "flex" ;
             $formUserCr         = "none" ;
-            $titreCarteUser     = "Liste des utilisateurs" ;
         }
         else{
             //? Si l'utilisateur est connecté et est admin,
@@ -96,9 +96,9 @@
 
             $pageUsers          = "block";
             $listeUsers         = "none";
+            $titreCarteUser     = "Création d'un utilisateur";
             $formUserCr         = "block";
             $boutonRetourUser   = "none";
-            $titreCarteUser     = "Création d'un utilisateur";
 
             //? Si l'utilisateur est connecté et est admin,
             //? Si l'utilisateur clique sur le bouton "Consulter" à partir du formulaire,
@@ -110,9 +110,9 @@
             if($action == "consulter"){
                 $pageUsers          = "block";
                 $listeUsers         = "block";
+                $titreCarteUser     = "Liste des utilisateurs";               
                 $boutonRetourUser   = "flex";
                 $formUserCr         = "none"; 
-                $titreCarteUser     = "Liste des utilisateurs";               
             }
             else if($action == "modifier"){
                 $pageUsers          = "block";
