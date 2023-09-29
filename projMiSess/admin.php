@@ -18,6 +18,7 @@
         $barreMenuAdmin = "none";
         $basAdmin = "none";
         $messageErreurConnexion = "";
+        $erreur = "";
 
         // Événements
         $pageEvent = "none";
@@ -44,8 +45,7 @@
         $boutonRetourUser = "none";
         $mdpValide = false;
         $titreCarteUser = "Création d'un utilisateur";
-        $valuenomUser = $valueprenomUser = $valueCourrielUser = $idUser = "";
-        
+        $valueNomUser = $valuePrenomUser = $valueCourrielUser = $idUser = "";        
 
         // Alertes
         $stadeAlerte = "";
@@ -721,7 +721,7 @@
                     </form>
 
                     <!-- Formulaire de modifification users -->
-                    <form action="post" action="pageUsers.php" style="display : <?php echo $formModifUser?>" class="h-100">
+                    <form action="pageUsers.php" method="post" style="display : <?php echo $formModifUser?>" class="h-100">
                          <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <!-- données a modifier -->
                             <div class="row d-flex align-items-center">

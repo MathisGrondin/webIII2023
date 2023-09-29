@@ -50,8 +50,7 @@
             }
         }
         else
-        {
-            
+        {            
             $servername = "cours.cegep3r.info";
             $username = "2230572";
             $password = "2230572";

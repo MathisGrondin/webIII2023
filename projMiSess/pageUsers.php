@@ -57,22 +57,21 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "UPDATE users 
-                    SET nom     = '$nomUser',
-                        prenom  = '$prenomUser',
-                        email   = '$emailUser'
-                    WHERE id    = $idUser";
+            $sql = "UPDATE users SET 
+                        nom = '$nomUser',
+                        prenom = '$prenomUser',
+                        email = '$emailUser'
+                    WHERE id = $idUser";
 
             $result = $conn->query($sql);
-            echo $sql;
 
-            if ($result == true){
+            if ($result === true){
                 sleep(2);
                 header("Location: admin.php?page=users&state=10");
             }
             else {
-                sleep(2);
                 header("Location: admin.php?page=users&state=11");
+
             }
 
             $conn->close();
@@ -220,7 +219,7 @@
                 $formModifUser          = "none";
                 $contextBodyCreaUser    = "flex";
                 $messageCreaUser        = "Erreur lors de la modification de l'utilisateur";
-                sleep(2);
+                // sleep(2); les messages d'erreur ne disparaissent pas
                 retourPage('users', $tempsAttente);
             }
             else if($state == 12)
@@ -243,7 +242,6 @@
         }
     }
 }
-
 
 function retourPage($page, $sTemps){
 
