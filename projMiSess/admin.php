@@ -1,9 +1,5 @@
 <?php
-session_start();
-
-// Check if user is already logged in
-
-// Display login form
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +83,6 @@ session_start();
             die("Connection failed: " . $conn->connect_error);
         }
 
-
         // Si la page est appelée en POST
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["courriel"]) && isset($_POST["mdp"])) {
 
@@ -95,8 +90,7 @@ session_start();
             $mdp = sha1($_POST["mdp"]);
 
             $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
-            $result = $conn->query($sql);
-            
+            $result = $conn->query($sql);            
 
             if($result->num_rows > 0) {
                 $_SESSION["user"] = $courriel;
@@ -129,98 +123,12 @@ session_start();
             //SET permissions selon rôle
 
             // Si un utilisateur (Admin ici) essaie de créer un événement 
-            if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
-
-                
-            }
-            else{
-                $formVisible = "flex";
-                $barreMenuAdmin = "none";
-            }
-
-            // Si un utilisateur (Admin ici) essaie de créer un utilisateur 
-            if(isset($_SESSION["user"]) && $_SESSION["admin"] == true){
-                if(isset($_POST["nomUser"], $_POST["prenomUser"], $_POST["courriel"], $_POST["mdp1"], $_POST["mdp2"]) && $_POST["nomUser"] != "" && $_POST["prenomUser"] != "" && $_POST["courriel"] != "" && $_POST["mdp1"] != "" && $_POST["mdp2"] != "") {
-                    $nomUser = $_POST["nomUser"];
-                    $prenomUser = $_POST["prenomUser"];
-                    $courriel = $_POST["courriel"];
-                    $mdp1 = sha1($_POST["mdp1"]);
-                    $mdp2 = sha1($_POST["mdp2"]);
-                                    
-                    $placeQuoteNomUser = stripos($nomUser, '\'');
-                    $placeQuotePrenom = stripos($prenomUser, '\'');
-                    $placeQuoteCourriel = stripos($courriel, '\'');
-                    
-                    if($placeQuoteNomUser != null){
-                        $substringNomUser = substr($nomUser, 0, $placeQuoteNomUser);
-                        echo $substringNomUser . "<br>";
-                    }
-                    else{
-                        echo $nomUser . "<br>";
-                        $substringNomUser = $nomUser;
-                    }
-                    
-                    if($placeQuotePrenom != null){
-                        $substringPrenom = substr($prenomUser, 0, $placeQuotePrenom);
-                        echo $substringPrenom . "<br>";
-                    }
-                    else{
-                        echo $prenomUser . "<br>";
-                        $substringPrenom = $prenomUser;
-                    }
-                
-                    if($placeQuoteCourriel != null){
-                        $substringCourriel = substr($courriel, 0, $placeQuoteCourriel);
-                        echo $substringCourriel . "<br>";
-                    }
-                    else{
-                        echo $courriel . "<br>";
-                        $substringCourriel = $courriel;
-                    }  
-                
-                    if($_POST["mdp1"] == $_POST["mdp2"]){
-                        $mdpValide = true;
-                    }    
-                    else{
-                        $mdpValide = false;
-                    }               
-                    
-                    if(isset($_POST["checkAdmin"]) == true){
-                        $adminUser = 1;                       
-                    }
-                    else{
-                        $adminUser = 0;                        
-                    }
-
-                    $sql = "INSERT INTO users
-                        VALUES (null, '$substringNomUser', '$substringPrenom', '$adminUser', '$substringCourriel', '$mdp1')";
-                    $result = $conn->query($sql);
-                    
-                    echo $sql . "<br>";
-                    echo $result;
-                    
-                    if($result && $mdpValide == true) {
-                        header("Location: admin.php?page=users&state=0");
-                    }
-                    else {
-                        header("Location: admin.php?page=users&state=3");
-                    }
-                }
-                else if($_POST["nomUser"] == "" || $_POST["prenomUser"] == "" || $_POST["courriel"] == "" || $_POST["mdp1"] == "" || $_POST["mdp2"] == ""){
-                    header("Location: admin.php?page=users&state=2");
-                }
-                else if($mdpValide == false){
-                    header("Location: admin.php?page=users&state=3");
-                }
-                else{
-                    header("Location: admin.php?page=users&state=1");
-                }
-            }
-            else{
-                $formVisible = "flex";
-                $barreMenuAdmin = "none";
-            }
+            // if(!isset($_SESSION["user"]) && $_SESSION["admin"] != true){
+            //     $formVisible = "flex";
+            //     $barreMenuAdmin = "none";
+            //  }
         }
+        
         // Si la page est appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
@@ -713,7 +621,7 @@ session_start();
                     
                 
                     <!-- formulaire de création d'un utilisateur -->
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  style="display: <?php echo $formUserCr ?>" class="h-100">
+                    <form method="post" action="creaUser.php" style="display: <?php echo $formUserCr ?>" class="h-100">
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">                                    
