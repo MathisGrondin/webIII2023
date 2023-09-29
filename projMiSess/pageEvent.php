@@ -97,7 +97,7 @@ else
         $pageEvent          = "block";
         $afficherliste      = "block";
         $titreCarteEvent      = "Liste des événements";
-        $boutonRetourEvent  = "flex";
+        $boutonRetourEvent  = "none";
         $formCreation       = "none";
     }
     else{
@@ -134,7 +134,6 @@ else
                 $formCreation = "none";
                 $formModif = "block";
                 $idEvent = $_GET["id"];
-
                 
                 $servername = "cours.cegep3r.info";
                 $username = "2230572";

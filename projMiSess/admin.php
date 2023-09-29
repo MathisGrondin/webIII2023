@@ -434,13 +434,13 @@
 
                             <!-- Bouton Retour vers l'accueil -->
                             <div class="col-4 d-flex justify-content-center">
-                                <button type="reset" class="rounded p-0 m-0 w-75 <?php echo $Bouton; ?>">
+                                <a href="admin.php" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Annuler</span>
-                                    </div>
-                                </button>
-                            </div>
+                                        <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
+                                    </div>    
+                                </a>                                                                       
+                            </div>   
                         </div>
                     </form>
 
@@ -590,9 +590,9 @@
                     </div>
 
                     <!-- bas du formulaire d'ajout -->
-                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourEvent; ?>">
-                        <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourEvent; ?>">
-                            <div class="col-4">
+                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>">
+                        <div class="row d-flex align-items-center justify-content-center w-100">
+                            <div class="col-4" style="display : <?php echo $boutonRetourEvent; ?>">
                                 <a href="admin.php?page=events" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
                                     <img src="icones/retour.png" alt="annuler" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>" >Retour au formulaire</span>
@@ -708,15 +708,13 @@
                             </div>
                             <!-- bouton retour a l'accueil -->
                             <div class="col-4 d-flex justify-content-center">
-                                <button type="reset" class="w-75 p-0 m-0 <?php echo $Bouton; ?>">
+                                <a href="admin.php" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                        <span class="<?php echo $TextBouton; ?>">
-                                            Annuler
-                                        </span>
-                                    </div>
-                                </button>
-                            </div>                           
+                                        <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
+                                    </div>    
+                                </a>                                                                       
+                            </div>                          
                         </div>
                     </form>
 
@@ -844,9 +842,9 @@
                     </div>
 
                     <!-- bas du formulaire de la liste -->
-                    <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
-                        <div class="row d-flex align-items-center justify-content-center w-100"  style="display : <?php echo $boutonRetourUser; ?>">
-                            <div class="col-4">
+                    <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>">
+                        <div class="row d-flex align-items-center justify-content-center w-100">
+                            <div class="col-4" style="display: <?php echo $boutonRetourUser; ?>">
                                 <a href="admin.php?page=users" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
                                     <img src="icones/retour.png" alt="retour" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>">Retour au formulaire</span>
