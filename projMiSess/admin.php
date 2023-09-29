@@ -47,7 +47,6 @@ session_start();
         $messageCreaUser = "";
         $boutonRetourUser = "none";
         $mdpValide = false;
-        $formModifUser = "none";
         $titreCarteUser = "Création d'un utilisateur";
         $valuenomUser = $valueprenomUser = $valueCourrielUser = $idUser = "";
         
