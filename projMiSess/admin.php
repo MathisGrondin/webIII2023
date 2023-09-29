@@ -698,14 +698,6 @@ session_start();
         </div>
     </div>
 
-            <!-- Entete Création Événement -->
-            <div class="card h-75 w-100">
-                    <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
-                        <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
-                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
-                    </div>
-
-
 
     <!-- Bas de page admin : Utilisateurs -->
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageUsers; ?>">

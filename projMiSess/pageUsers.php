@@ -114,7 +114,7 @@
                 $boutonRetourUser   = "flex";
                 $formUserCr         = "none"; 
             }
-            else if($action == "modifier"){
+            else if($action == "Modifier"){
                 $pageUsers          = "block";
                 $listeUsers         = "none";
                 $titreCarteUser     = "Modification d'un utilisateur";
