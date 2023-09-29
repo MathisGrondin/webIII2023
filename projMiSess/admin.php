@@ -639,7 +639,7 @@
                                     <label for="nomUser" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomUser" class="form-control <?php echo $borderInput; ?>" required aria-required="REMPLIR CE CHAMP">
+                                    <input type="text" name="nomUser" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -647,7 +647,7 @@
                                     <label for="prenomUser" class="<?php echo $Label; ?>">Prénom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="prenomUser" class="form-control <?php echo $borderInput; ?>" required aria-required="REMPLIR CE CHAMP">
+                                    <input type="text" name="prenomUser" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -655,7 +655,7 @@
                                     <label for="courriel" class="<?php echo $Label; ?>">Courriel du CTR</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="courriel" class="form-control <?php echo $borderInput; ?>" required aria-required="REMPLIR CE CHAMP">
+                                    <input type="text" name="courriel" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -663,7 +663,7 @@
                                     <label for="mdp1" class="<?php echo $Label; ?>">Mot de passe</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="password" name="mdp1" class="form-control <?php echo $borderInput; ?>" required aria-required="REMPLIR CE CHAMP">
+                                    <input type="password" name="mdp1" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>                                    
                             </div>
                             <div class="row d-flex align-items-center">
@@ -671,7 +671,7 @@
                                     <label for="mdp2" class="<?php echo $Label; ?>">Confirmation Mdp</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="password" name="mdp2" class="form-control <?php echo $borderInput; ?>" required aria-required="REMPLIR CE CHAMP">
+                                    <input type="password" name="mdp2" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>                                    
                             </div>
                             <div class="row d-flex align-items-center">
