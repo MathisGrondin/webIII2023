@@ -677,15 +677,40 @@
                     <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $afficherliste; ?>">
                         <table class="w-100">
                             <thead>
-                                <tr class="text-center">
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
-                                </tr>
+                                <?php
+
+                                    if($_SESSION["admin"] == true){
+                                        ?>
+
+                                            <tr class="text-center">
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
+                                            </tr>
+
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
+
+                                            <tr class="text-center">
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
+                                            </tr>
+
+                                        <?php
+                                    }
+
+
+                                ?>
+                                
                             </thead>
                             <tbody class="table-group-divider">
                                 <?php
@@ -693,25 +718,41 @@
                                     $result = $conn->query($sql);
                                     if($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            ?>
-                                                <tr class="text-center border-bottom border-dark">
-                                                    <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
-                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
-                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
-                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
-                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
-                                                    <td>
-                                                        <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
-                                                            <img src="icones/modifier.png">
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a href='admin.php?page=events&action=Supprimer&id=<?php echo $row["id"] ?>'>
-                                                            <img src="icones/supprimer.png" class="icons">
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php
+                                            if($_SESSION["admin"] == true){
+                                                ?>
+                                                    <tr class="text-center border-bottom border-dark">
+                                                        <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
+
+                                                        
+                                                        <td>
+                                                            <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
+                                                                <img src="icones/modifier.png">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href='admin.php?page=events&action=Supprimer&id=<?php echo $row["id"] ?>'>
+                                                                <img src="icones/supprimer.png" class="icons">
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                
+                                                    <tr class="text-center border-bottom border-dark">
+                                                        <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
+                                                        <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
+                                                    </tr>
+                                                <?php
+                                            }
                                         }
                                     }
                                     else {
@@ -725,8 +766,8 @@
                     <!-- bas du formulaire d'ajout -->
                     <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display : <?php echo $boutonRetourEvent; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
-                            <div class="col-4">
-                                <a href="admin.php?page=events" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
+                            <div class="col-4" >
+                                <a href="admin.php?page=events" class="w-100 align-items-center justify-content-center <?php echo $BtnA; ?>" style="display : <?php  if($_SESSION["admin"] == true){echo "flex";}else{echo "none";}  ?> ">
                                     <img src="icones/retour.png" alt="annuler" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>" >Retour au formulaire</span>
                                 </a>
@@ -935,8 +976,21 @@
                                     <th scope="col" class="fw-bold <?php echo $Table; ?>">Prénom</th>
                                     <th scope="col" class="fw-bold <?php echo $Table; ?>">Admin</th>
                                     <th scope="col" class="fw-bold <?php echo $Table; ?>">Courriel</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
-                                    <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
+
+                                    <?php
+
+                                        if($_SESSION["admin"] == true){
+
+                                            ?>
+
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
+                                                <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
+
+                                            <?php
+
+                                        }
+
+                                    ?>
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
@@ -945,7 +999,10 @@
                                     $result = $conn->query($sql);
                                     if($result->num_rows > 0) {
                                         while($row = $result->fetch_assoc()) {
-                                            ?>
+
+                                            if($_SESSION["admin"] == true){
+                                                ?>
+                                                
                                                 <tr class="text-center border-bottom border-dark">
                                                     <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"] ?></th>
                                                     <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["nom"] ?></td>
@@ -963,7 +1020,22 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            <?php
+                                                
+                                                <?php
+                                            }
+                                            else{
+                                               ?>
+                                               
+                                                <tr class="text-center border-bottom border-dark">
+                                                    <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"] ?></th>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["nom"] ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["prenom"] ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3 fw-bold <?php echo $row["admin"] == 1?"rougeCegep":"bleuCegep" ?>"><?php echo $row["admin"] == 1?"Administrateur":"Utilisateur standard" ?></td>
+                                                    <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["email"] ?></td>
+                                                </tr>
+                                               
+                                               <?php
+                                            }
                                         }
                                     }
                                     else {
@@ -978,7 +1050,7 @@
                     <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
                             <div class="col-4">
-                                <a href="admin.php?page=users" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
+                                <a href="admin.php?page=users" class="w-100 align-items-center justify-content-center <?php echo $BtnA; ?>" style="display: <?php if($_SESSION["admin"] == true){echo "flex";}else{echo "none";} ?>">
                                     <img src="icones/retour.png" alt="retour" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>">Retour au formulaire</span>
                                 </a>

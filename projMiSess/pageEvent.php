@@ -59,7 +59,7 @@ else
         $pageEvent          = "block";
         $afficherliste      = "block";
         $titreCarteEvent      = "Liste des événements";
-        $boutonRetourEvent  = "none";
+        $boutonRetourEvent  = "flex";
         $formCreation       = "none";
     }
     else{

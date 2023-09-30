@@ -57,7 +57,7 @@
             $pageUsers          = "block";
             $listeUsers         = "block";
             $titreCarteUser     = "Liste des utilisateurs" ;
-            $boutonRetourUser   = "none" ;
+            $boutonRetourUser   = "flex" ;
             $formUserCr         = "none" ;
         }
         else{
