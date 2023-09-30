@@ -69,7 +69,7 @@ else
 
         $pageEvent          = "block";
         $afficherliste      = "none";
-        $titreCarteEvent      = "Création d'un événement";
+        $titreCarteEvent    = "Création d'un événement";
         $formCreation       = "block";
         $boutonRetourEvent  = "none";
 
