@@ -9,7 +9,7 @@
     $messageConfirm = "none";
 
     if(isset($_GET["ajout"]) && $_GET["ajout"] == "ok"){
-        $resultAjout = "Merci ! <br><br>Votre appréciation a bien été ajoutée.";
+        $resultAjout = "Merci ! <br><br>Votre réponse a été ajoutée 🙂";
         $voirBoutons = "none";
         $messageConfirm = "flex";
         echo '

@@ -25,19 +25,8 @@
             $event = $_SESSION["event"];
             $type = $_SESSION["type"];
 
-            // Connexion à la base de données
-            $servername = "cours.cegep3r.info";
-            $username = "2230572";
-            $password = "2230572";
-            $dbname = "2230572-mathis-grondin";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            // Connexion à la BD
+            include("connBD.php");
                 
 
             if($type == "etudiant") {
