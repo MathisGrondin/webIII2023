@@ -19,6 +19,7 @@
         $basAdmin = "none";
         $messageErreurConnexion = "";
         $erreur = "";
+        $btnModifSuppr = "none";
 
         // Événements
         $pageEvent = "none";

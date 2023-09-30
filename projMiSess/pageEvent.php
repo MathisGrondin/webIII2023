@@ -96,7 +96,7 @@ else
 
         $pageEvent          = "block";
         $afficherliste      = "block";
-        $titreCarteEvent      = "Liste des événements";
+        $titreCarteEvent    = "Liste des événements";
         $boutonRetourEvent  = "none";
         $formCreation       = "none";
     }
@@ -107,7 +107,7 @@ else
 
         $pageEvent          = "block";
         $afficherliste      = "none";
-        $titreCarteEvent      = "Création d'un événement";
+        $titreCarteEvent    = "Création d'un événement";
         $formCreation       = "block";
         $boutonRetourEvent  = "none";
 
@@ -120,20 +120,20 @@ else
         
             if($action == "consulter") 
             {
-                $pageEvent = "block";
-                $afficherliste = "block";
-                $titreCarteEvent = "Liste des événements";
-                $boutonRetourEvent = "flex";
-                $formCreation = "none";               
+                $pageEvent              = "block";
+                $afficherliste          = "block";
+                $titreCarteEvent        = "Liste des événements";
+                $boutonRetourEvent      = "flex";
+                $formCreation           = "none";               
             }
             else if($action = "modifier") {
-                $pageEvent = "block";
-                $afficherliste = "none";
-                $titreCarteEvent = "Modification d'un événement";
-                $boutonRetourEvent = "none";
-                $formCreation = "none";
-                $formModif = "block";
-                $idEvent = $_GET["id"];
+                $pageEvent              = "block";
+                $afficherliste          = "none";
+                $titreCarteEvent        = "Modification d'un événement";
+                $boutonRetourEvent      = "none";
+                $formCreation           = "none";
+                $formModif              = "block";
+                $idEvent                = $_GET["id"];
                 
                 $servername = "cours.cegep3r.info";
                 $username = "2230572";
