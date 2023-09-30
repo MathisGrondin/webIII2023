@@ -187,6 +187,15 @@
                             else if($erreur == 2){
                                 $messageErreurConnexion = "Merci d'entrer un courriel";
                             }
+                            else if ($erreur == 4){
+                                $messageErreurConnexion = "Impossible de rejoindre le serveur";
+                            }
+                            else if ($erreur == 5){
+                                $messageErreurConnexion = "Les mots de passe ne correspondent pas";
+                            }
+                            else if ($erreur == 6){
+                                $messageErreurConnexion = "Merci de remplir tous les champs";
+                            }
                         }
 
                          else if(isset($_GET["mdp"]) && $_GET["mdp"] != ""){
