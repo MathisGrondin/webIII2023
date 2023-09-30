@@ -15,11 +15,14 @@
 <body>
     <?php 
         $formVisible = "flex";
+        $formMDPVisible = "none";
         $barreMenuAdmin = "none";
         $basAdmin = "none";
         $messageErreurConnexion = "";
         $erreur = "";
-        $btnModifSuppr = "none";
+        $formReinit = "none";
+        $etapeReinit = "Envoyer";
+        $idReinit = "";
 
         // Événements
         $pageEvent = "none";
@@ -69,20 +72,9 @@
         $BarreAdmin = "bg-bleuCegep";
         $Background = "background1";
 
-        // Connexion à la base de données
-        $servername = "cours.cegep3r.info";
-        $username = "2230572";
-        $password = "2230572";
-        $dbname = "2230572-mathis-grondin";
-        
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        $conn->set_charset("utf8");
 
-        // Check connection
-        if($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        // Connexion BD
+        include("connBD.php");
 
         // Si la page est appelée en POST
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["courriel"]) && isset($_POST["mdp"])) {
@@ -174,8 +166,69 @@
                     $basAdmin = "none";}                
             }
             else{
-                $formVisible = "flex";
-                $barreMenuAdmin = "none";
+                if(isset($_GET["action"])){
+                    $action = $_GET["action"];
+
+                    if($action == "mdpOublie"){
+
+                        if(isset($_GET["erreurMDP"])){
+                            $erreur = $_GET["erreurMDP"];
+
+                            if($erreur == 0){
+                                $formMDPVisible = "none";
+                                $formVisible = "flex";
+                                $messageErreurConnexion = "Le mot de passe a été changé";
+                            }
+                            
+
+                            if($erreur == 1){
+                                $messageErreurConnexion = "Le courriel n'existe pas";
+                            }
+                            else if($erreur == 2){
+                                $messageErreurConnexion = "Merci d'entrer un courriel";
+                            }
+                            else if ($erreur == 4){
+                                $messageErreurConnexion = "Impossible de rejoindre le serveur";
+                            }
+                            else if ($erreur == 5){
+                                $messageErreurConnexion = "Les mots de passe ne correspondent pas";
+                            }
+                            else if ($erreur == 6){
+                                $messageErreurConnexion = "Merci de remplir tous les champs";
+                            }
+                        }
+
+                         else if(isset($_GET["mdp"]) && $_GET["mdp"] != ""){
+                            $mdp = $_GET["mdp"];
+                            $sql = "SELECT * FROM users WHERE MDP = '$mdp'";
+                            $result = $conn->query($sql);
+
+                            if($result->num_rows > 0){
+                                $row = $result->fetch_assoc();
+                                $idReinit = $row["id"];
+                                $formVisible = "none";
+                                $formMDPVisible = "none";
+                                $formReinit = "flex";
+                            }
+                        }
+                        else{
+                            $formVisible = "none";
+                            $barreMenuAdmin = "none";
+                            $formMDPVisible = "flex";
+                            $formReinit = "none";
+                        }
+
+                        // $formVisible = "none";
+                        // $barreMenuAdmin = "none";
+                        // $formMDPVisible = "flex";
+                        // $formReinit = "none";
+
+                    }
+                }
+                else{
+                    $formVisible = "flex";
+                    $barreMenuAdmin = "none";
+                }
             }
         }
         // sinon
@@ -224,6 +277,10 @@
                             
                             <div class="d-flex justify-content-center mt-3 text-center w-100">
                                 <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
+                            </div>    
+
+                            <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                <a href="admin.php?action=mdpOublie">Mot de passe oublié ? </a>
                             </div>                                
                         </div>
 
@@ -237,6 +294,81 @@
         </form>
     </div>
 
+    <!-- FORMULAIRE OUBLI MOT DE PASSE -->
+    <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formMDPVisible; ?>">
+        <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
+            <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+                <div class="col-xl-12 w-100">
+                    <div class="card w-100">
+                        <!-- Entete -->
+                        <div class="card-header <?php echo $CardHeader; ?>">
+                            <h2 class="<?php echo $TextCardHeader; ?> ">Oubli du mot de passe</h2>
+                        </div>
+                        <!-- Courriel et MDP  -->
+                        <div class="card-body justify-content-evenly flex-column <?php echo $CardBody; ?>">
+                            <div class="d-flex justify-content-between">
+                                <label for="courrielReset" class="<?php echo $Label; ?>">Courriel associé au compte</label>
+                                <input type="text" name="courrielReset" placeholder="admin@cegeptr.qc.ca" class="<?php echo $borderInput; ?>">
+                            </div>
+                            
+                            <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
+                            </div>    
+                        </div>
+
+                        <!-- Bouton de connexion -->
+                        <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
+                            <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Envoyer le courriel</button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- FORMULAIRE Reinitialisation MOT DE PASSE -->
+    <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formReinit; ?>">
+        <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
+            <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
+                <div class="col-xl-12 w-100">
+                    <div class="card w-100">
+                        <!-- Entete -->
+                        <div class="card-header <?php echo $CardHeader; ?>">
+                            <h2 class="<?php echo $TextCardHeader; ?> ">Changement de mot de passe</h2>
+                        </div>
+                        <!-- Courriel et MDP  -->
+                        <div class="card-body justify-content-evenly flex-column <?php echo $CardBody; ?>">
+                            <div class="d-flex justify-content-between">
+                                <label for="idCompte" class="<?php echo $Label; ?>">ID du compte</label>
+                                <input type="number" name="idCompte" class="<?php echo $borderInput; ?>" value="<?php echo $idReinit; ?>" readonly>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center text-center w-100">
+                                <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
+                            </div>   
+
+                            <div class="d-flex justify-content-between">
+                                <label for="nouvMDP" class="<?php echo $Label; ?>">Nouveau mot de passe</label>
+                                <input type="password" name="nouvMDP" class="<?php echo $borderInput; ?>" required>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <label for="courriel" class="<?php echo $Label; ?>">Confirmation mot de passe</label>
+                                <input type="password" name="confirmMDP" class="<?php echo $borderInput; ?>" required>
+                            </div> 
+                        </div>
+
+                            
+
+                        <!-- Bouton de connexion -->
+                        <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
+                            <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Changer le mot de passe</button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     <!-- Barre de menu Admin  -->
     <nav class="navbar fixed-top p-0 m-0">
         <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
@@ -591,9 +723,9 @@
                     </div>
 
                     <!-- bas du formulaire d'ajout -->
-                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>">
+                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display : <?php echo $boutonRetourEvent; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
-                            <div class="col-4" style="display : <?php echo $boutonRetourEvent; ?>">
+                            <div class="col-4">
                                 <a href="admin.php?page=events" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
                                     <img src="icones/retour.png" alt="annuler" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>" >Retour au formulaire</span>
@@ -843,9 +975,9 @@
                     </div>
 
                     <!-- bas du formulaire de la liste -->
-                    <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>">
+                    <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
-                            <div class="col-4" style="display: <?php echo $boutonRetourUser; ?>">
+                            <div class="col-4">
                                 <a href="admin.php?page=users" class="w-100 d-flex align-items-center justify-content-center <?php echo $BtnA; ?>">
                                     <img src="icones/retour.png" alt="retour" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>">Retour au formulaire</span>

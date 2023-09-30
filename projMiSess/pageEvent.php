@@ -1,7 +1,5 @@
 <?php
-
-    // session_start();
-
+    include("connBD.php");
     $tempsAttente = 1000;
 
 // Si va sur la page events sans être connecté
@@ -21,20 +19,6 @@
         if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($programme) || empty($idEvent))
         {
             if(!empty($idEvent)){
-                // create connection
-                $servername = "cours.cegep3r.info";
-                $username = "2230572";
-                $password = "2230572";
-                $dbname = "2230572-mathis-grondin";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                $conn->set_charset("utf8");
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
 
                 $SQL = "SELECT * FROM evenements WHERE id = $idEvent";
                 $result = $conn->query($SQL);
@@ -51,33 +35,11 @@
         }
         else
         {            
-            $servername = "cours.cegep3r.info";
-            $username = "2230572";
-            $password = "2230572";
-            $dbname = "2230572-mathis-grondin";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            $conn->set_charset("utf8");
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-                $sql = "UPDATE evenements SET 
-                            nom = '$nomEvent', 
-                            lieu = '$lieuEvent', 
-                            date = '$dateEvent', 
-                            programme = '$programme'
-                        WHERE id = $idEvent";
+            $sql = "UPDATE evenements SET nom = '$nomEvent', lieu = '$lieuEvent', date = '$dateEvent', programme = '$programme' WHERE id = $idEvent";
 
             $result = $conn->query($sql);
-            echo $sql;
-            // echo $result;
 
             if ($result === TRUE) {
-                sleep(2);
                 header("Location: admin.php?page=events&state=10");
             } else {
                 header("Location: admin.php?page=events&state=11");
@@ -126,50 +88,57 @@ else
                 $boutonRetourEvent      = "flex";
                 $formCreation           = "none";               
             }
-            else if($action = "modifier") {
-                $pageEvent              = "block";
-                $afficherliste          = "none";
-                $titreCarteEvent        = "Modification d'un événement";
-                $boutonRetourEvent      = "none";
-                $formCreation           = "none";
-                $formModif              = "block";
-                $idEvent                = $_GET["id"];
+            else if($action == "Modifier") {
+                $pageEvent          = "block";
+                $afficherliste      = "none";
+                $titreCarteEvent    = "Modification d'un événement";
+                $boutonRetourEvent  = "none";
+                $formCreation       = "none";
+                $formModif          = "block";
+                $idEvent            = $_GET["id"];
                 
-                $servername = "cours.cegep3r.info";
-                $username = "2230572";
-                $password = "2230572";
-                $dbname = "2230572-mathis-grondin";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                $conn->set_charset("utf8");
-
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                $sql = "SELECT * FROM evenements WHERE id = $idEvent";
+                
+                $sql    = "SELECT * FROM evenements WHERE id = $idEvent";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
+
                     while($row = $result->fetch_assoc()) {
 
-                        $valueNomEvent = $row["nom"];
+                        $valueNomEvent  = $row["nom"];
                         $valueDateEvent = $row["date"];
                         $valueLieuEvent = $row["lieu"];
                         $valueProgramme = $row["programme"];
-                        $idEvent = $row["id"];
+                        $idEvent        = $row["id"];
                     }
                 }
             }
+            else if($action == "Supprimer"){
+                $pageEvent          = "block";
+                $afficherliste      = "block";
+                $titreCarteEvent    = "Liste des événements";
+                $boutonRetourEvent  = "flex";
+                $formCreation       = "none";
+                $idEvent            = $_GET["id"];
+
+                $sql    = "DELETE FROM evenements WHERE id = $idEvent";
+                $result = $conn->query($sql);
+
+                if ($result == TRUE) {
+                    header("Location: admin.php?page=events&state=20");
+                } else {
+                    header("Location: admin.php?page=events&state=21");
+                }
+
+                $conn->close();
+            }
         }
         else{
-            $pageEvent = "block";
-            $afficherliste = "none";
-            $formCreation = "block";
-            $boutonRetourEvent = "none";
-            $titreCreation = "Création d'un événement";
+            $pageEvent          = "block";
+            $afficherliste      = "none";
+            $formCreation       = "block";
+            $boutonRetourEvent  = "none";
+            $titreCreation      = "Création d'un événement";
         }
 
         //? Si l'utilisateur est connecté et est admin,
@@ -189,62 +158,100 @@ else
         if(isset($_GET["state"])){
             $state = $_GET["state"];
 
-            if($state == 0){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Événement créé avec succès";
-                sleep(2);
-                retourPage("events", $tempsAttente);
-            }
-            else if($state == 1){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Erreur lors de la création de l'événement";
-                sleep(2);
-                retourPage("events", $tempsAttente);
-            }
-            else if($state == 2){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Merci de remplir tous les champs";
-                sleep(2);
-                retourPage("events", $tempsAttente);
-            }
-            else if($state == 10){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Événement modifié avec succès";
-                sleep(2);
-                retourPage("events", $tempsAttente);
-            }
-            else if($state == 11){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Erreur lors de la modification de l'événement";
-                // sleep(2);
-                retourPage("events", $tempsAttente);
-                echo $sql;
-            }
-            else if($state == 12){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Merci de remplir tous les champs";
-                sleep(2);
-                retourPage("events", $tempsAttente);
-            }
-            else if($state == 45){
-                $formCreation           = "none";
-                $formModif              = "none";
-                $contextBodyCreaEvent   = "flex";
-                $messageContexte        = "Problème post";
-                sleep(2);
-                retourPage("events", $tempsAttente);
+
+            switch($state){
+            
+                case 0 : 
+                    {
+                        // 0 : Création effectuée avec succès
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Événement créé avec succès";
+                        retourPage("events", $tempsAttente);
+                        break;
+                    }
+
+                case 1 : 
+                    {
+                        // 1 : Erreur lors de la création de l'événement
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Erreur lors de la création de l'événement";
+                        retourPage("events", $tempsAttente);
+                        break;
+                    }
+                    
+                case 2 : 
+                    {
+                        // 2 : Champs manquants
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Merci de remplir tous les champs";
+                        retourPage("events", $tempsAttente);
+                        break;
+                    }
+
+                case 10 : 
+                    {
+                        // 10 : Modification effectuée avec succès
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Événement modifié avec succès";
+                        retourPage("events", $tempsAttente);
+                    }
+
+                case 11 : 
+                    {
+                        // 11 : Erreur lors de la modification de l'événement
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Erreur lors de la modification de l'événement";
+                        retourPage("events", $tempsAttente);
+                    }
+
+                case 12 : 
+                    {
+                        // 12 : Champs manquants
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Merci de remplir tous les champs";
+                        retourPage("events", $tempsAttente);
+                    }
+
+                case 20 : 
+                    {
+                        // 20 : Suppression effectuée avec succès
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Événement supprimé avec succès";
+                        retourPage("events", $tempsAttente);
+                    }
+
+                case 21 : 
+                    {
+                        // 21 : Erreur lors de la suppression de l'événement
+
+                        $formCreation           = "none";
+                        $formModif              = "none";
+                        $contextBodyCreaEvent   = "flex";
+                        $messageContexte        = "Erreur lors de la suppression de l'événement";
+                        retourPage("events", $tempsAttente);
+                    }
+
             }
         }
     }
