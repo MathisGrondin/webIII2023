@@ -398,9 +398,11 @@
                             </div>    
 
                         <!-- Mot de passe oublié -->
-                            <div class="d-flex justify-content-center mt-3 text-center w-100">
-                                <a href="admin.php?action=mdpOublie">Mot de passe oublié ? </a>
-                            </div>                                
+                            <!-- 
+                                <div class="d-flex justify-content-center mt-3 text-center w-100">
+                                    <a href="admin.php?action=mdpOublie">Mot de passe oublié ? </a>
+                                </div>        
+                            -->                        
                         </div>
 
                         <!-- Bouton de connexion -->
