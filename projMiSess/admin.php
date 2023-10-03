@@ -178,8 +178,7 @@
                                 $formMDPVisible = "none";
                                 $formVisible = "flex";
                                 $messageErreurConnexion = "Le mot de passe a été changé";
-                            }
-                            
+                            }                            
 
                             if($erreur == 1){
                                 $messageErreurConnexion = "Le courriel n'existe pas";
@@ -356,9 +355,7 @@
                                 <label for="courriel" class="<?php echo $Label; ?>">Confirmation mot de passe</label>
                                 <input type="password" name="confirmMDP" class="<?php echo $borderInput; ?>" required>
                             </div> 
-                        </div>
-
-                            
+                        </div>                            
 
                         <!-- Bouton de connexion -->
                         <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
@@ -369,6 +366,7 @@
             </div>
         </form>
     </div>
+
     <!-- Barre de menu Admin  -->
     <nav class="navbar fixed-top p-0 m-0">
         <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
@@ -410,13 +408,13 @@
                 </a>
             </div>
 
-            <!-- icone accueil -->
+            <!-- icone page de votes -->
             <div class="col">
                 <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
                     <div class="row ">
                         <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/accueil.png" alt="Accueil" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Accueil</h5>
+                            <img src="icones/votes.png" alt="Votes" class=" p-0 m-0 icone-menu">
+                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Page de votes</h5>
                         </div>
                     </div>
                 </a>
@@ -498,7 +496,7 @@
                                     <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="date" name="dateEvent" class="form-control <?php echo $borderInput; ?>">
+                                    <input type="date" name="dateEvent" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -506,7 +504,7 @@
                                     <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="lieuEvent" class="form-control <?php echo $borderInput; ?>">
+                                    <input type="text" name="lieuEvent" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -514,7 +512,7 @@
                                     <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>">
+                                    <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -522,7 +520,7 @@
                                     <label for="programme" class="<?php echo $Label; ?>">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programme" class="form-control <?php echo $borderInput; ?>">
+                                    <select name="programme" class="form-control <?php echo $borderInput; ?>" required>
                                         <?php
 
                                             $sql = "SELECT * FROM programmes";
@@ -594,7 +592,7 @@
                                     <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="date" name="dateEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueDateEvent; ?>">
+                                    <input type="date" name="dateEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueDateEvent; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -602,7 +600,7 @@
                                     <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="lieuEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueLieuEvent; ?>">
+                                    <input type="text" name="lieuEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueLieuEvent; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -610,7 +608,7 @@
                                     <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>"  value="<?php echo $valueNomEvent; ?>">
+                                    <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>"  value="<?php echo $valueNomEvent; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -618,7 +616,7 @@
                                     <label for="programme" class="<?php echo $Label; ?>">Programme</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programmeModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgramme; ?>">
+                                    <select name="programmeModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgramme; ?>" required>
                                         <?php
                                             $sql = "SELECT * FROM programmes";
                                             $result = $conn->query($sql);
@@ -678,7 +676,6 @@
                         <table class="w-100">
                             <thead>
                                 <?php
-
                                     if($_SESSION["admin"] == true){
                                         ?>
 
@@ -707,8 +704,6 @@
 
                                         <?php
                                     }
-
-
                                 ?>
                                 
                             </thead>
@@ -742,8 +737,7 @@
                                                 <?php
                                             }
                                             else{
-                                                ?>
-                                                
+                                                ?>                                                
                                                     <tr class="text-center border-bottom border-dark">
                                                         <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
                                                         <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
@@ -791,8 +785,7 @@
                     <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/admin.png" alt="crUser" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr"><?php echo $titreCarteUser; ?></h3>
-                    </div> 
-                    
+                    </div>                     
                 
                     <!-- formulaire de création d'un utilisateur -->
                     <form method="post" action="creaUser.php" style="display: <?php echo $formUserCr ?>" class="h-100">
@@ -978,18 +971,14 @@
                                     <th scope="col" class="fw-bold <?php echo $Table; ?>">Courriel</th>
 
                                     <?php
-
                                         if($_SESSION["admin"] == true){
 
                                             ?>
-
                                                 <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
                                                 <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
-
                                             <?php
 
                                         }
-
                                     ?>
                                 </tr>
                             </thead>
