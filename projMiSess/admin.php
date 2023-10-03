@@ -66,6 +66,7 @@
             $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
             $CardFooter = "bg-bleuCegep border-rouge-cegep";
             $Table = "fontCegep bleuCegep";
+            $TableBorder = "text-center border-bottom border-dark";
             $Bouton = "bgLilasCegep border-rouge-cegep rounded";
             $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
             $BtnA = "btn bgLilasCegep border-rouge-cegep";
@@ -85,6 +86,7 @@
             $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
             $CardFooter = "bgLilasCegep border-rouge-cegep";
             $Table = "fontCegep lilasCegep";
+            $TableBorder = "text-center border-bottom border-light";
             $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
             $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
             $BtnA = "btn bg-bleuCegep border-rouge-cegep";
@@ -161,6 +163,7 @@
                     $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
                     $CardFooter = "bg-bleuCegep border-rouge-cegep";
                     $Table = "fontCegep bleuCegep";
+                    $TableBorder = "text-center border-bottom border-dark";
                     $Bouton = "bgLilasCegep border-rouge-cegep rounded";
                     $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
                     $BtnA = "btn bgLilasCegep border-rouge-cegep";
@@ -180,6 +183,7 @@
                     $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
                     $CardFooter = "bgLilasCegep border-rouge-cegep";
                     $Table = "fontCegep lilasCegep";
+                    $TableBorder = "text-center border-bottom border-light";
                     $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
                     $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
                     $BtnA = "btn bg-bleuCegep border-rouge-cegep";
@@ -204,6 +208,7 @@
                     $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
                     $CardFooter = "bg-bleuCegep border-rouge-cegep";
                     $Table = "fontCegep bleuCegep";
+                    $TableBorder = "text-center border-bottom border-dark";
                     $Bouton = "bgLilasCegep border-rouge-cegep rounded";
                     $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
                     $BtnA = "btn bgLilasCegep border-rouge-cegep";
@@ -223,6 +228,7 @@
                     $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
                     $CardFooter = "bgLilasCegep border-rouge-cegep";
                     $Table = "fontCegep lilasCegep";
+                    $TableBorder = "text-center border-bottom border-light";
                     $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
                     $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
                     $BtnA = "btn bg-bleuCegep border-rouge-cegep";
@@ -487,8 +493,8 @@
                         </div>                            
 
                         <!-- Bouton de changement de MDP -->
-                        <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
-                            <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Changer le mot de passe</button>
+                        <div class="card-footer d-flex justify-content-center <?php echo $CardFooter; ?>">
+                            <button type="submit" class="btn w-50 fontCegep bleuCegep fw-bold <?php echo $Bouton; ?>" >Changer le mot de passe</button>
                         </div>                        
                     </div>
                 </div>
@@ -938,7 +944,7 @@
                                 ?>
                                 
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody class="table-group-divider <?php echo $TableBorder; ?>">
                                 <?php
                                     $sql = "SELECT * FROM evenements";
                                     $result = $conn->query($sql);
@@ -946,7 +952,7 @@
                                         while($row = $result->fetch_assoc()) {
                                             if($_SESSION["admin"] == true){
                                                 ?>
-                                                    <tr class="text-center border-bottom border-dark">
+                                                    <tr class="<?php echo $TableBorder; ?>">
                                                         <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
                                                         <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
                                                         <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
@@ -969,7 +975,7 @@
                                             }
                                             else{
                                                 ?>                                                
-                                                    <tr class="text-center border-bottom border-dark">
+                                                    <tr class="<?php echo $TableBorder; ?>">
                                                         <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
                                                         <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
                                                         <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
@@ -1226,7 +1232,7 @@
                                     ?>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider">
+                            <tbody class="table-group-divider <?php echo $TableBorder; ?>">
                                 <?php
                                     $sql = "SELECT * FROM users";
                                     $result = $conn->query($sql);
@@ -1236,7 +1242,7 @@
                                             if($_SESSION["admin"] == true){
                                                 ?>
                                                 
-                                                <tr class="text-center border-bottom border-dark">
+                                                <tr class="<?php echo $TableBorder; ?>">
                                                     <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"] ?></th>
                                                     <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["nom"] ?></td>
                                                     <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["prenom"] ?></td>
@@ -1259,7 +1265,7 @@
                                             else{
                                                ?>
                                                
-                                                <tr class="text-center border-bottom border-dark">
+                                                <tr class="<?php echo $TableBorder; ?>">
                                                     <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"] ?></th>
                                                     <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["nom"] ?></td>
                                                     <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["prenom"] ?></td>
