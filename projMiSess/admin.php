@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/styleco.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
+    <link rel="stylesheet" href="css/styleco.css">
     <title>Connexion admin</title>
 </head>
 
@@ -650,12 +650,14 @@
                                     <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
+
+                            <!-- Premier choix de programme (name=programme1) -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme" class="<?php echo $Label; ?>">Programme</label>
+                                    <label for="programme" class="<?php echo $Label; ?>">Programme #1</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programme" class="form-control <?php echo $borderInput; ?>" required>
+                                    <select name="programme" id="selectProg1" class="form-control <?php echo $borderInput; ?>" required>
                                         <?php
 
                                             $sql = "SELECT * FROM programmes";
@@ -663,16 +665,102 @@
 
                                             if($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                    echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
                                                 }
                                             }  
                                             else {
                                                 echo "<option value=''>Aucun programme</option>";
                                             }                                 
                                         ?>
+                                        <option value="ajout">Ajouter un programme</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <!-- Autre programme 1-->
+                            <div class="row align-items-center dispNone" id="inputNouvProg">
+                                <div class="col-4">
+                                    <label for="programmeAjout" class="<?php echo $Label; ?>">Programme #1 à ajouter</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="programmeAjout" id="progAjout" class="form-control <?php echo $borderInput; ?>">
+                                </div>
+                            </div>
+
+                            <!-- Deuxième choix de programme (name = programme2) -->
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="programme2" class="<?php echo $Label; ?>">Programme #2 (facultatif)</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="programme2" id="selectProg2" class="form-control <?php echo $borderInput; ?>">
+                                    <option value="aucun">Choisir un programme</option>
+                                    <?php
+
+                                        $sql = "SELECT * FROM programmes";
+                                        $result = $conn->query($sql);
+
+                                        if($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                            }
+                                        }  
+                                        else {
+                                            echo "<option value=''>Aucun programme</option>";
+                                        }                                 
+                                    ?>
+                                    <option value="ajout">Ajouter un programme</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Autre programme 2-->
+                            <div class="row align-items-center dispNone" id="inputNouvProg2">
+                                <div class="col-4">
+                                    <label for="programmeAjout2" class="<?php echo $Label; ?>">Programme #2 à ajouter</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="programmeAjout2" id="progAjout2" class="form-control <?php echo $borderInput; ?>">
+                                </div>
+                            </div>
+                            
+                            <!-- Troisième choix de programme (name = programme3) -->
+                            <div class="row d-flex align-items-center">
+                                <div class="col-4">
+                                    <label for="programme3" class="<?php echo $Label; ?>">Programme #3 (facultatif)</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="programme3" id="selectProg3" class="form-control <?php echo $borderInput; ?>">
+                                        <option value="aucun">Choisir un programme</option>
+                                        <?php
+
+                                            $sql = "SELECT * FROM programmes";
+                                            $result = $conn->query($sql);
+
+                                            if($result->num_rows > 0) {
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "<option value='" . $row["id"] . "'>" . $row["nom"] . "</option>";
+                                                }
+                                            }  
+                                            else {
+                                                echo "<option value=''>Aucun programme</option>";
+                                            }                                 
+                                        ?>
+                                        <option value="ajout">Ajouter un programme</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Autre programme 3-->
+                            <div class="row align-items-center dispNone" id="inputNouvProg3">
+                                <div class="col-4">
+                                    <label for="programmeAjout3" class="<?php echo $Label; ?>">Programme #3 à ajouter</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="programmeAjout3" id="progAjout3" class="form-control <?php echo $borderInput; ?>">
+                                </div>
+                            </div>
+
                         </div>
 
                     <!-- Footer -->
@@ -1353,5 +1441,6 @@
     </div>                                            
 
     <script src="js/bootstrap.js"></script>
+    <script src="js/scriptPerso.js"></script>
 </body>
 </html>

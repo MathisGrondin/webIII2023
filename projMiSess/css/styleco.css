@@ -27,6 +27,14 @@ html, body{
     height: 30px;
     width: auto;
 }
+
+#inputNouvProg{
+    display: none;
+}
+
+.dispNone{
+    display: none;
+}
 /* #rowMenu, #contMenu, #colMenu{
     height: 8vh;
 }
