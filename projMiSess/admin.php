@@ -12,8 +12,12 @@
     <link rel="stylesheet" href="css/cegepCSS.css">
     <title>Connexion admin</title>
 </head>
+
 <body>
     <?php 
+
+    //TODO Variables 
+        //? Variables globales
         $formVisible = "flex";
         $formMDPVisible = "none";
         $barreMenuAdmin = "none";
@@ -24,7 +28,7 @@
         $etapeReinit = "Envoyer";
         $idReinit = "";
 
-        // Événements
+        //? Variables partie Événements
         $pageEvent = "none";
         $pageAccueil = "none";
         $afficherliste = "none";
@@ -37,7 +41,7 @@
         $titreCarteEvent = "Création d'événement";
         $valueDateEvent = $valueLieuEvent = $valueNomEvent = $valueProgramme = "";
 
-        // Users
+        //? Variable partie Users
         $pageUsers = "none";
         $listeUsers = "none";
         $formModifUser = "none";
@@ -51,11 +55,11 @@
         $titreCarteUser = "Création d'un utilisateur";
         $valueNomUser = $valuePrenomUser = $valueCourrielUser = $idUser = "";        
 
-        // Alertes
+        //? Variables des alertes
         $stadeAlerte = "";
         $Message = "";
 
-        // Theme
+        //? Variable pour le thème
         $CardHeader = "bg-bleuCegep border-rouge-cegep";
         $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
         $CardFooter = "bg-bleuCegep border-rouge-cegep";
@@ -72,11 +76,11 @@
         $BarreAdmin = "bg-bleuCegep";
         $Background = "background1";
 
-
-        // Connexion BD
+    //TODO Base de données
+        //? Connexion BD
         include("connBD.php");
 
-        // Si la page est appelée en POST
+        //? Page appelée en POST
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["courriel"]) && isset($_POST["mdp"])) {
 
             $courriel = $_POST["courriel"];
@@ -91,7 +95,7 @@
                 $barreMenuAdmin = "block";
                 $basAdmin = "block";
 
-                // check if user is admin
+                //* Regarde si l'utilisateur est admin ou non
                 $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
                 $result = $conn->query($sql);
 
@@ -122,14 +126,13 @@
             //  }
         }
         
-        // Si la page est appelée en GET
+        //? Page appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_SESSION["user"])){
                 $formVisible = "none";
                 $barreMenuAdmin = "block";
-
-                // page de création d'événement
+                
                 if(isset($_GET["page"])){
                     $page = $_GET["page"];
 
@@ -197,7 +200,7 @@
                             }
                         }
 
-                         else if(isset($_GET["mdp"]) && $_GET["mdp"] != ""){
+                        else if(isset($_GET["mdp"]) && $_GET["mdp"] != ""){
                             $mdp = $_GET["mdp"];
                             $sql = "SELECT * FROM users WHERE MDP = '$mdp'";
                             $result = $conn->query($sql);
@@ -210,6 +213,7 @@
                                 $formReinit = "flex";
                             }
                         }
+
                         else{
                             $formVisible = "none";
                             $barreMenuAdmin = "none";
@@ -230,12 +234,13 @@
                 }
             }
         }
-        // sinon
+       
         else{
             $formVisible = "none";
             $barreMenuAdmin = "none";
             ?>
 
+        //TODO Si une personne essaie de se rendre sur la page admin sans être connecté
             <div class="container-fluid">
                 <div class="row">
                     <div class="offset col-xl-4"></div>
@@ -252,7 +257,7 @@
             <?php
         }
     ?>
-
+     
     <!-- Formulaire -->
     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
