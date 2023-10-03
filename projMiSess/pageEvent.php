@@ -10,14 +10,15 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $nomEvent = $_POST["nomEventModif"];
-        $dateEvent = $_POST["dateEventModif"];
-        $lieuEvent = $_POST["lieuEventModif"];
-        $programme = $_POST["programmeModif"];
-        $idEvent = $_POST["idEventModif"];
+        $nomEvent   = test_input($_POST["nomEventModif"]);
+        $dateEvent  = test_input($_POST["dateEventModif"]);
+        $lieuEvent  = test_input($_POST["lieuEventModif"]);
+        $programme  = test_input($_POST["programmeModif"]);
+        $idEvent    = test_input($_POST["idEventModif"]);
 
-        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($programme) || empty($idEvent))
+        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent))
         {
+            
             if(!empty($idEvent)){
 
                 $SQL = "SELECT * FROM evenements WHERE id = $idEvent";
@@ -274,6 +275,12 @@ function retourPage($page, $sTemps){
 
 }
 
+function test_input($data){
+    $data = trim($data);
+    $data = addslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 
 ?>
