@@ -17,13 +17,13 @@
 
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    $mdp = $row["MDP"];
                     $to = $courrielReset;
                     $subject = "Mot de passe oublié";
-                    $message = "Voici le lien pour réinitialiser votre mot de passe : http://localhost:81/webIII2023-1/projMiSess/admin.php?action=mdpOublie&mdp=$mdp";
+                    $message = "Voici le lien pour réinitialiser votre mot de passe : https://cours.cegep3r.info/A2023/420326RI/GR01/m_grondin/admin.php?action=mdpOublie";
                     $headers = "From: Les Événements du Cégep de Trois-Rivières";
-                    // mail($to,$subject,$message,$headers); --> Ne fonctionne pas sur localhost
-                    echo $message;
+                    // mail($to,$subject,$message,$headers);
+                    // echo $message;
+                    header("Location: admin.php");
                 }
                 else{
                     header("Location: admin.php?action=mdpOublie&erreurMDP=1");
