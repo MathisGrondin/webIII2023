@@ -32,9 +32,12 @@
             $Label = "fontCegep bleuCegep fw-bold fs-6";
 
             $borderInput = "rounded text-center border-bleuCegep";
+            $borderImg = "rounded border-bleuCegep";
 
             $BarreAdmin = "bg-bleuCegep";
             $Background = "background1";
+
+            header("Location: admin.php");
            
         }    
         else{
@@ -56,9 +59,11 @@
             $Label = "fontCegep lilasCegep fw-bold fs-6";
 
             $borderInput = "rounded text-center border-lilas-cegep";
+            $borderImg = "rounded border-lilas-cegep";
 
             $BarreAdmin = "bgLilasCegep";
             $Background = "background2";
+
         }
     }     
 

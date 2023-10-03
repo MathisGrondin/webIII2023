@@ -60,21 +60,44 @@
         $Message = "";
 
         //? Variable pour le thème
-        $CardHeader = "bg-bleuCegep border-rouge-cegep";
-        $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
-        $CardFooter = "bg-bleuCegep border-rouge-cegep";
-        $Table = "fontCegep bleuCegep";
-        $Bouton = "bgLilasCegep border-rouge-cegep rounded";
-        $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
-        $BtnA = "btn bgLilasCegep border-rouge-cegep";
-        $TextBtnA = "fontCegep fw-bold bleuCegep";
-        $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
-        $TextCardBody = "bleuCegep fw-bold fontCegep";
-        $TextErreur = "rougeCegep fw-bold fontCegep";
-        $Label = "fontCegep bleuCegep fw-bold fs-6";
-        $borderInput = "rounded text-center border-bleuCegep";
-        $BarreAdmin = "bg-bleuCegep";
-        $Background = "background1";
+        if(!isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
+            $_SESSION['style'] == 0;
+            $CardHeader = "bg-bleuCegep border-rouge-cegep";
+            $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+            $CardFooter = "bg-bleuCegep border-rouge-cegep";
+            $Table = "fontCegep bleuCegep";
+            $Bouton = "bgLilasCegep border-rouge-cegep rounded";
+            $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+            $BtnA = "btn bgLilasCegep border-rouge-cegep";
+            $TextBtnA = "fontCegep fw-bold bleuCegep";
+            $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+            $TextCardBody = "bleuCegep fw-bold fontCegep";
+            $TextErreur = "rougeCegep fw-bold fontCegep";
+            $Label = "fontCegep bleuCegep fw-bold fs-6";
+            $borderInput = "rounded text-center border-bleuCegep";
+            $BarreAdmin = "bg-bleuCegep";
+            $Background = "background1";
+            $borderImg = "rounded border-bleuCegep";
+        }
+        else if ($_SESSION['style'] == 1){
+            $_SESSION['style'] == 1;
+            $CardHeader = "bgLilasCegep border-rouge-cegep";
+            $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
+            $CardFooter = "bgLilasCegep border-rouge-cegep";
+            $Table = "fontCegep lilasCegep";
+            $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
+            $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
+            $BtnA = "btn bg-bleuCegep border-rouge-cegep";
+            $TextBtnA = "fontCegep fw-bold lilasCegep";
+            $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
+            $TextCardBody = "lilasCegep fw-bold fontCegep";
+            $TextErreur = "rougeCegep fw-bold fontCegep";
+            $Label = "fontCegep lilasCegep fw-bold fs-6";
+            $borderInput = "rounded text-center border-lilas-cegep";
+            $borderImg = "rounded border-lilas-cegep";
+            $BarreAdmin = "bgLilasCegep";
+            $Background = "background2";
+        } 
 
     //! Base de données
         //? Connexion BD
@@ -129,6 +152,92 @@
         //? Page appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
 
+            if(isset($_GET['style'])){
+                $style = $_GET['style'];
+                
+                if($style == 0){
+                    $_SESSION['style'] = 0;
+                    $CardHeader = "bg-bleuCegep border-rouge-cegep";
+                    $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bg-bleuCegep border-rouge-cegep";
+                    $Table = "fontCegep bleuCegep";
+                    $Bouton = "bgLilasCegep border-rouge-cegep rounded";
+                    $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+                    $BtnA = "btn bgLilasCegep border-rouge-cegep";
+                    $TextBtnA = "fontCegep fw-bold bleuCegep";
+                    $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "bleuCegep fw-bold fontCegep";
+                    $TextErreur = "rougeCegep fw-bold fontCegep";
+                    $Label = "fontCegep bleuCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-bleuCegep";
+                    $BarreAdmin = "bg-bleuCegep";
+                    $Background = "background1";
+                    $borderImg = "rounded border-bleuCegep";
+                }
+                else if ($style == 1){
+                    $_SESSION['style'] = 1;
+                    $CardHeader = "bgLilasCegep border-rouge-cegep";
+                    $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bgLilasCegep border-rouge-cegep";
+                    $Table = "fontCegep lilasCegep";
+                    $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
+                    $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
+                    $BtnA = "btn bg-bleuCegep border-rouge-cegep";
+                    $TextBtnA = "fontCegep fw-bold lilasCegep";
+                    $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "lilasCegep fw-bold fontCegep";
+                    $TextErreur = "rougeCegep fw-bold fontCegep";
+                    $Label = "fontCegep lilasCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-lilas-cegep";
+                    $borderImg = "rounded border-lilas-cegep";
+                    $BarreAdmin = "bgLilasCegep";
+                    $Background = "background2";
+                }
+            }
+
+            if(!isset($_GET['style'])){
+
+                
+                if($_SESSION['style'] == 0){
+                    $_SESSION['style'] = 0;
+                    $CardHeader = "bg-bleuCegep border-rouge-cegep";
+                    $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bg-bleuCegep border-rouge-cegep";
+                    $Table = "fontCegep bleuCegep";
+                    $Bouton = "bgLilasCegep border-rouge-cegep rounded";
+                    $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+                    $BtnA = "btn bgLilasCegep border-rouge-cegep";
+                    $TextBtnA = "fontCegep fw-bold bleuCegep";
+                    $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "bleuCegep fw-bold fontCegep";
+                    $TextErreur = "rougeCegep fw-bold fontCegep";
+                    $Label = "fontCegep bleuCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-bleuCegep";
+                    $BarreAdmin = "bg-bleuCegep";
+                    $Background = "background1";
+                    $borderImg = "rounded border-bleuCegep";
+                }
+                else if ($_SESSION['style'] == 1){
+                    $_SESSION['style'] = 1;
+                    $CardHeader = "bgLilasCegep border-rouge-cegep";
+                    $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bgLilasCegep border-rouge-cegep";
+                    $Table = "fontCegep lilasCegep";
+                    $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
+                    $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
+                    $BtnA = "btn bg-bleuCegep border-rouge-cegep";
+                    $TextBtnA = "fontCegep fw-bold lilasCegep";
+                    $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "lilasCegep fw-bold fontCegep";
+                    $TextErreur = "rougeCegep fw-bold fontCegep";
+                    $Label = "fontCegep lilasCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-lilas-cegep";
+                    $borderImg = "rounded border-lilas-cegep";
+                    $BarreAdmin = "bgLilasCegep";
+                    $Background = "background2";
+                }
+            }
+
             if(isset($_SESSION["user"])){
                 $formVisible = "none";
                 $barreMenuAdmin = "block";
@@ -154,7 +263,7 @@
                         header("Location: admin.php");
                     }
                     else if($page == "themes") {
-                        include("themes.php");
+                        // include("themes.php");
                     }
                     else if($page == "stats"){
                         $formVisible = "none";
@@ -1191,6 +1300,57 @@
             <div class="offset col-xl-3"></div>
         </div>
     </div>
+
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Bas de page : Thèmes  ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ --> 
+    <div class="container-fluid h-100 w-100 <?php echo $Background; ?>">
+        <div class="row h-100 w-100 d-flex justify-content-center align-items-center">
+            <div class="col-xl-6 h-75 d-flex align-items-center">
+                <div class="card h-75 w-100">
+
+                <!-- Entete -->
+                    <div class="card-header d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
+                        <h3 class="m-0 p-0 <?php echo $TextCardHeader; ?>">Choix des thèmes</h3>                        
+                    </div>   
+                    
+                <!-- Images des thèmes -->
+                        <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
+                            <div class="row">
+                                <div class="col-6 d-flex align-items-center justify-content-center">
+                                    <img src="img/background.png" alt="Theme 1" style="width:400px; height:300px;" class="<?php echo $borderImg; ?>">
+                                </div>
+                                <div class="col-6 d-flex align-items-center justify-content-center">
+                                    <img src="img/backgroundEmp.png" alt="Theme 2" style="width:400px; height:300px;" class="<?php echo $borderImg; ?>">
+                                </div>
+                            </div>                   
+                        </div>
+
+                    <!-- Footer -->
+                        <div class="card-footer d-flex align-items-center justify-content-evenly p-2 m-0 <?php echo $CardFooter; ?>">
+
+                            <!-- Theme 1 - theme bleu -->
+                            <div class="col-6 d-flex justify-content-center align-items-center">
+                                <a href="admin.php?style=0" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
+                                    <img src="icones/theme.png" alt="Theme bleu">                       
+                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème bleu</span>
+                                </a>
+                            </div>  
+
+                            <!-- Theme 2 - theme lilas -->
+                            <div class="col-6 d-flex justify-content-center align-items-center">
+                                <a href="admin.php?style=1" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
+                                    <img src="icones/theme.png" alt="Theme lilas">                       
+                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème lilas</span>
+                                </a>
+                            </div>  
+
+                        </div>
+                             
+                </div>
+            </div>
+        </div>                                          
+    </div>                                            
 
     <script src="js/bootstrap.js"></script>
 </body>
