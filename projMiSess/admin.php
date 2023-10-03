@@ -16,7 +16,7 @@
 <body>
     <?php 
 
-    //TODO Variables 
+    //! Variables 
         //? Variables globales
         $formVisible = "flex";
         $formMDPVisible = "none";
@@ -76,7 +76,7 @@
         $BarreAdmin = "bg-bleuCegep";
         $Background = "background1";
 
-    //TODO Base de données
+    //! Base de données
         //? Connexion BD
         include("connBD.php");
 
@@ -240,7 +240,7 @@
             $barreMenuAdmin = "none";
             ?>
 
-        //TODO Si une personne essaie de se rendre sur la page admin sans être connecté
+        //! Si une personne essaie de se rendre sur la page admin sans être connecté
             <div class="container-fluid">
                 <div class="row">
                     <div class="offset col-xl-4"></div>
@@ -258,17 +258,21 @@
         }
     ?>
      
-    <!-- Formulaire -->
-    <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formVisible; ?>">
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Connexion Page Admin   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formVisible; ?>">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                 <div class="col-xl-12 w-100">
                     <div class="card w-100">
+
                         <!-- Entete -->
                         <div class="card-header <?php echo $CardHeader; ?>">
                             <h2 class="<?php echo $TextCardHeader; ?> ">Connexion admin</h2>
                         </div>
-                        <!-- Courriel et MDP  -->
+
+                        <!-- Connexion avec Courriel et MDP  -->
                         <div class="card-body d-flex justify-content-evenly flex-column <?php echo $CardBody; ?>">
                             <div class="d-flex justify-content-between">
                                 <label for="courriel" class="<?php echo $Label; ?>">Courriel</label>
@@ -278,11 +282,13 @@
                                 <label for="mdp" class="<?php echo $Label; ?>">Mot de passe</label>
                                 <input type="password" name="mdp" class="<?php echo $borderInput; ?>">
                             </div>
-                            
+
+                        <!-- Message d'erreur (Mauvais MDP ou courriel) -->
                             <div class="d-flex justify-content-center mt-3 text-center w-100">
                                 <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
                             </div>    
 
+                        <!-- Mot de passe oublié -->
                             <div class="d-flex justify-content-center mt-3 text-center w-100">
                                 <a href="admin.php?action=mdpOublie">Mot de passe oublié ? </a>
                             </div>                                
@@ -298,29 +304,34 @@
         </form>
     </div>
 
-    <!-- FORMULAIRE OUBLI MOT DE PASSE -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Mot de passe oublié   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formMDPVisible; ?>">
         <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                 <div class="col-xl-12 w-100">
                     <div class="card w-100">
+
                         <!-- Entete -->
                         <div class="card-header <?php echo $CardHeader; ?>">
                             <h2 class="<?php echo $TextCardHeader; ?> ">Oubli du mot de passe</h2>
                         </div>
-                        <!-- Courriel et MDP  -->
+
+                        <!-- Courriel associé -->
                         <div class="card-body justify-content-evenly flex-column <?php echo $CardBody; ?>">
                             <div class="d-flex justify-content-between">
                                 <label for="courrielReset" class="<?php echo $Label; ?>">Courriel associé au compte</label>
                                 <input type="text" name="courrielReset" placeholder="admin@cegeptr.qc.ca" class="<?php echo $borderInput; ?>">
                             </div>
                             
+                        <!-- Message d'erreur (Mauvais MDP ou courriel) -->
                             <div class="d-flex justify-content-center mt-3 text-center w-100">
                                 <span class="<?php echo $TextErreur; ?>"><?php echo $messageErreurConnexion; ?></span>
                             </div>    
                         </div>
 
-                        <!-- Bouton de connexion -->
+                        <!-- Bouton d'envoi du courriel -->
                         <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
                             <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Envoyer le courriel</button>
                         </div>                        
@@ -329,18 +340,22 @@
             </div>
         </form>
     </div>
-
-    <!-- FORMULAIRE Reinitialisation MOT DE PASSE -->
+ 
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Réinitialisation Mot de passe   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formReinit; ?>">
         <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
             <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
                 <div class="col-xl-12 w-100">
                     <div class="card w-100">
+
                         <!-- Entete -->
                         <div class="card-header <?php echo $CardHeader; ?>">
                             <h2 class="<?php echo $TextCardHeader; ?> ">Changement de mot de passe</h2>
                         </div>
-                        <!-- Courriel et MDP  -->
+
+                        <!-- ID et Changement du MDP  -->
                         <div class="card-body justify-content-evenly flex-column <?php echo $CardBody; ?>">
                             <div class="d-flex justify-content-between">
                                 <label for="idCompte" class="<?php echo $Label; ?>">ID du compte</label>
@@ -362,7 +377,7 @@
                             </div> 
                         </div>                            
 
-                        <!-- Bouton de connexion -->
+                        <!-- Bouton de changement de MDP -->
                         <div class="card-footer d-flex justify-content-center bg bg-bleuCegep border-rouge-cegep">
                             <button type="submit" class="btn bgLilasCegep border-rouge-cegep w-50 fontCegep bleuCegep fw-bold" >Changer le mot de passe</button>
                         </div>                        
@@ -372,93 +387,97 @@
         </form>
     </div>
 
-    <!-- Barre de menu Admin  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Menu Admin   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <nav class="navbar fixed-top p-0 m-0">
         <div class="container-fluid h-auto" style="display: <?php echo $barreMenuAdmin; ?>" id="contMenu" id="contNav">
             <div class="row p-3 h-100 d-flex align-items-center <?php echo $BarreAdmin; ?>" id="rowMenu">
              
-            <!-- icone Événement -->
-            <div class="col">
-                <a href="admin.php?page=events" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Événements</h5>
+                <!-- Événement -->
+                <div class="col">
+                    <a href="admin.php?page=events" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/event.png" alt="Événements" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Événements</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <!-- icone users -->
-            <div class="col">
-                <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
+                <!-- Utilisateurs -->
+                <div class="col">
+                    <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <!-- icone stats -->
-            <div class="col">
-                <a href="statistiques.php" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
+                <!-- Statistiques -->
+                <div class="col">
+                    <a href="statistiques.php" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <!-- icone page de votes -->
-            <div class="col">
-                <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/votes.png" alt="Votes" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Page de votes</h5>
+                <!-- Page de votes -->
+                <div class="col">
+                    <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/votes.png" alt="Votes" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Page de votes</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <!-- icone déconnexion -->
-            <div class="col">
-                <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
+                <!-- Déconnexion -->
+                <div class="col">
+                    <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-            <!-- icone themes -->
-            <div class="col">
-                <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
-                    <div class="row ">
-                        <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                            <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
-                            <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
+                <!-- Thèmes -->
+                <div class="col">
+                    <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
+                        <div class="row ">
+                            <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
+                                <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
+                                <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
             </div>        
         </div>
     </nav>
 
-    <!-- Bas de page admin : Arrivée -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Bas de page : Arrivée   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->    
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $basAdmin; ?>">
         <div class="row h-100 d-flex justify-content-center align-items-center" id="rowWelcome">
             <div class="offset col-xl-2 col-2"></div>
             
-            <!-- message de bienvenue -->
+            <!-- Message de bienvenue -->
             <div class="col-xl-8 col-8">
                 <?php 
                     $user = $_SESSION["user"];
@@ -480,22 +499,24 @@
         </div>
     </div>
 
-    <!-- Bas de page admin : Événements -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Bas de page : Événements    ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->   
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>"  style="display: <?php echo $pageEvent; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowEvent">
             <div class="col-xl-6 h-75 d-flex align-items-center">
                 
-            <!-- Entete Création Événement -->
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Création d'un événement   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->            
+            <!-- Entete -->
                 <div class="card h-75 w-100">
                     <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
                     </div>
                     
-                    <!-- Formulaire de création d'événement -->
+                <!-- Données -->
                     <form method="post" action="creaEvent.php"  style="display: <?php echo $formCreation ?>" class="h-100" >
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
-                            <!-- Données du formulaire  -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
@@ -545,10 +566,10 @@
                             </div>
                         </div>
 
-                        <!-- Bas Création Événement -->
+                    <!-- Footer -->
                         <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
                             
-                            <!-- Bouton Créer Événement -->
+                        <!-- Bouton Créer -->
                             <div class="col-4 d-flex justify-content-center">
                                 <button type="submit" class="w-75 <?php echo $Bouton; ?>">
                                     <div class=" d-flex align-items-center justify-content-center">
@@ -558,7 +579,7 @@
                                 </button>
                             </div>
 
-                            <!-- Bouton Consulter Liste -->
+                        <!-- Bouton Consulter -->
                             <div class="col-4 d-flex justify-content-center">
                                 <a href="admin.php?page=events&action=consulter" class="m-0 p-0 w-75 <?php echo $BtnA; ?>">
                                     <div class="d-flex align-items-center justify-content-center">
@@ -568,7 +589,7 @@
                                 </a>                                                                       
                             </div>
 
-                            <!-- Bouton Retour vers l'accueil -->
+                        <!-- Bouton Retour -->
                             <div class="col-4 d-flex justify-content-center">
                                 <a href="admin.php" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
@@ -580,10 +601,11 @@
                         </div>
                     </form>
 
-                    <!-- Formulaire de modification --> 
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Modification d'un événement   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->    
                     <form method="post" action="pageEvent.php"  style="display: <?php echo $formModif; ?>" class="h-100" >
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
-                            <!-- données du formulaire -->
+                        
+                        <!-- Données -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="idEvent" class="<?php echo $Label; ?>">ID</label>
@@ -640,9 +662,11 @@
                             </div>
                         </div>
 
-                        <!-- Bas Modification Événement -->
+                    <!-- Footer -->
                         <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
-                            <div class="col-4 d-flex justify-content-center">
+                        
+                        <!-- Bouton Modifier -->                             
+                            <div class="col-4 d-flex justify-content-center">                               
                                 <button type="submit" class="w-100 <?php echo $Bouton; ?>">
                                     <div class=" d-flex align-items-center justify-content-center">
                                         <img src="icones/modifier.png" alt="créer" style="width: 60px; height: 60px">
@@ -651,6 +675,7 @@
                                 </button>
                             </div>
 
+                        <!-- Bouton Retour --> 
                             <div class="col-4 d-flex justify-content-center">
                                 <button type="reset" class="p-0 m-0 w-100 <?php echo $Bouton; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
@@ -662,7 +687,9 @@
                         </div>
                     </form>
 
-                    <!-- Body contexte sur ajout -->
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Body Contexte Ajout Événements ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  --> 
+                
+                <!-- Body -->
                     <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaEvent ?>">
                         <div class="row w-100">
                             <div class="col-12 d-flex justify-content-center align-items-center">
@@ -670,13 +697,15 @@
                             </div>
                         </div>
                     </div>
-                    
+
+                <!-- Footer -->    
                     <div class="card-footer <?php echo $CardFooter; ?>p" style="display: <?php echo $contextBodyCreaEvent ?>">
                         <div class="row d-flex align-items-center">
                             <br>
                         </div>
                     </div>
-                        
+                
+                <!-- Liste -->
                     <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $afficherliste; ?>">
                         <table class="w-100">
                             <thead>
@@ -762,7 +791,7 @@
                         </table>
                     </div>
 
-                    <!-- bas du formulaire d'ajout -->
+                <!-- footer liste -->
                     <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display : <?php echo $boutonRetourEvent; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
                             <div class="col-4" >
@@ -780,19 +809,23 @@
     </div>
 
 
-    <!-- Bas de page admin : Utilisateurs -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Bas de page : Utilisateurs     ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->  
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageUsers; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowUsers">
             <div class="col-xl-6 h-75 d-flex align-items-center">
 
-                <!-- Card pour création d'un user -->
-                <div class="card h-75 w-100">                                   
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Création d'un utilisateur  ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->  
+                <div class="card h-75 w-100">   
+                
+                <!-- Entete -->
                     <div class="card-header py-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/admin.png" alt="crUser" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreUserCr"><?php echo $titreCarteUser; ?></h3>
                     </div>                     
                 
-                    <!-- formulaire de création d'un utilisateur -->
+                <!-- Données -->
                     <form method="post" action="creaUser.php" style="display: <?php echo $formUserCr ?>" class="h-100">
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
@@ -858,10 +891,11 @@
                             </div>
                         </div>
                         
-                        <!-- bas formulaire utilisateur -->
+                    <!-- Footer -->
                         <div class="card-footer d-flex align-items-center justify-content-evenly p-2 m-0 <?php echo $CardFooter; ?>">
+                        
+                        <!-- bouton Créer --> 
                             <div class="col-4 d-flex justify-content-center">
-                                <!-- bouton création -->
                                 <button type="submit" class="w-75 p-0 m-0 <?php echo $Bouton; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/ajouterAdminUser.png" alt="créerUser" style="width: 60px; height: 60px">
@@ -869,7 +903,8 @@
                                     </div>
                                 </button>
                             </div>
-                            <!-- bouton de la liste -->
+
+                        <!-- bouton Consulter -->
                             <div class="col-4 d-flex justify-content-center">
                                 <a href="admin.php?page=users&action=consulter" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
@@ -878,7 +913,8 @@
                                     </div>    
                                 </a>                                                                       
                             </div>
-                            <!-- bouton retour a l'accueil -->
+
+                        <!-- bouton Retour -->
                             <div class="col-4 d-flex justify-content-center">
                                 <a href="admin.php" class="w-75 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
@@ -886,14 +922,16 @@
                                         <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
                                     </div>    
                                 </a>                                                                       
-                            </div>                          
+                            </div> 
+
                         </div>
                     </form>
 
-                    <!-- Formulaire de modifification users -->
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Modification d'un utilisateur  ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->  
                     <form action="pageUsers.php" method="post" style="display : <?php echo $formModifUser?>" class="h-100">
                          <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
-                            <!-- données a modifier -->
+                            
+                        <!-- Données -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
                                     <label for="idUser" class="<?php echo $Label; ?>">ID</label>
@@ -928,7 +966,7 @@
                             </div>
                          </div>                          
 
-                        <!-- Bas du formulaire de modification -->
+                    <!-- Footer -->
                         <div class="card-footer p-2 m-0 d-flex align-items-center justify-content-evenly <?php echo $CardFooter; ?>">
                             <div class="col-4 d-flex justify-content-center">
                                 <button type="submit" class="w-100 <?php echo $Bouton; ?>">
@@ -950,7 +988,9 @@
                         </div>
                     </form>
 
-                    <!-- Body sur ajout Users -->
+        <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Body Contexte Ajout Utilisateurs ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  --> 
+                
+                <!-- Body -->
                     <div class="card-body <?php echo $CardBody; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
                         <div class="row w-100">
                             <div class="col-12 d-flex justify-content-center align-items-center">
@@ -958,13 +998,15 @@
                             </div>
                         </div>
                     </div>
+
+                <!-- Footer -->
                     <div class="card-footer <?php echo $CardFooter; ?>" style="display: <?php echo $contextBodyCreaUser ?>">
                         <div class="row d-flex align-items-center">
                             <br>
                         </div>
                     </div>
 
-                    <!-- Body liste Users -->
+                <!-- Liste -->
                     <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $listeUsers; ?>">
                         <table class="w-100">
                             <thead>
@@ -1040,7 +1082,7 @@
                         </table>
                     </div>
 
-                    <!-- bas du formulaire de la liste -->
+                <!-- Footer liste -->
                     <div class="card-footer w-100 justify-content-center align-items-center <?php echo $CardFooter; ?>" style="display: <?php echo $boutonRetourUser; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
                             <div class="col-4">
@@ -1057,7 +1099,9 @@
         </div>
     </div>
 
-    <!-- Bas de page admin : Accueil -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Bas de page : Page de votes   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ --> 
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageAccueil; ?>;">
         <div class="row h-100 w-100 d-flex align-items-center justify-content-center">
         <div class="offset col-xl-3"></div>
@@ -1065,7 +1109,8 @@
 
                 <form action="add.php" method="post">
                     <div class="card">
-                        <!-- entete de l'accueil -->
+                    
+                    <!-- Entete -->
                         <div class="card-header py-2 <?php echo $CardHeader; ?>">
                             <div class="row w-100 h-50 py-2">
                                 <div class="col-2 d-flex justify-content-center align-items-center w-25">
@@ -1081,7 +1126,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- données du formulaire -->
+
+                    <!-- Données -->
                         <div class="card-body p-4 <?php echo $CardBody; ?>">
                             <div class="vstack gap-4">
                                 <div class="row">
@@ -1124,7 +1170,7 @@
                             </div>
                         </div>
 
-                        <!-- bas du formulaire de l'accueil -->
+                    <!-- Footer Page de votes -->
                         <div class="card-footer d-flex justify-content-center align-items-center <?php echo $CardFooter; ?>">
                             <div class="offset col-4"></div>
                             <div class="col-4 px-1 d-flex justify-content-center align-items-center">
