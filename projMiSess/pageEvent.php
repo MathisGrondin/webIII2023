@@ -18,18 +18,17 @@
 
         if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent))
         {
-            
-            if(!empty($idEvent)){
-
-                $SQL = "SELECT * FROM evenements WHERE id = $idEvent";
+            if(!empty($idEvent))
+            {
+                $SQL    = "SELECT * FROM evenements WHERE id = $idEvent";
                 $result = $conn->query($SQL);
 
                 while($result -> fetch_assoc())
                 {
-                    $nomEvent = $result["nom"];
-                    $dateEvent = $result["date"];
-                    $lieuEvent = $result["lieu"];
-                    $programme = $result["programme"];
+                    $nomEvent   = $result["nom"];
+                    $dateEvent  = $result["date"];
+                    $lieuEvent  = $result["lieu"];
+                    $programme  = $result["programme"];
                 }
 
             }

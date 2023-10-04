@@ -11,27 +11,27 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $nomUser = $_POST["nomUserModif"];
-        $prenomUser = $_POST["prenomUserModif"];
-        $emailUser = $_POST["courrielUserModif"];
-        $idUser = $_POST["idUserModif"];
+        $nomUser    = test_input($_POST["nomUserModif"]     );
+        $prenomUser = test_input($_POST["prenomUserModif"]  );
+        $emailUser  = test_input($_POST["courrielUserModif"]);
+        $idUser     = test_input($_POST["idUserModif"]      );
 
-        if(empty($nomUser) || empty($prenomUser) || empty($emailUser) || empty($idUser)){
-            if(!empty($idUser)){
-
-                $sql = "SELECT * FROM users WHERE id = $idUser";
+        if(empty($nomUser) || empty($prenomUser) || empty($emailUser) || empty($idUser))
+        {
+            if(!empty($idUser))
+            {
+                $sql    = "SELECT * FROM users WHERE id = $idUser";
                 $result = $conn->query($sql);
 
-                while($result -> fetch_assoc()){
-                    $nomUser = $result["nom"];
+                while($result -> fetch_assoc())
+                {
+                    $nomUser    = $result["nom"];
                     $prenomUser = $result["prenom"];
-                    $emailUser = $result["email"];
+                    $emailUser  = $result["email"];
                 }
             }
         }
         else{
-
-            include("connBD.php");
 
             $sql = "UPDATE users SET nom = '$nomUser', prenom = '$prenomUser', email = '$emailUser' WHERE id = $idUser";
 
@@ -290,6 +290,15 @@ echo'
                 );
             </script>
         ';
+}
+
+
+
+function test_input($data){
+    $data = trim($data);
+    $data = addslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 ?>

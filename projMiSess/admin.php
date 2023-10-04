@@ -18,49 +18,66 @@
 
     //! Variables 
         //? Variables globales
-        $formVisible = "flex";
-        $formMDPVisible = "none";
-        $barreMenuAdmin = "none";
-        $basAdmin = "none";
-        $messageErreurConnexion = "";
-        $erreur = "";
-        $formReinit = "none";
-        $etapeReinit = "Envoyer";
-        $idReinit = "";
+        $formVisible                = "flex";
+        $formMDPVisible             = "none";
+        $barreMenuAdmin             = "none";
+        $basAdmin                   = "none";
+        $messageErreurConnexion     = "";
+        $erreur                     = "";
+        $formReinit                 = "none";
+        $etapeReinit                = "Envoyer";
+        $idReinit                   = "";
 
         //? Variables partie Événements
-        $pageEvent = "none";
-        $pageAccueil = "none";
-        $afficherliste = "none";
-        $formCreation = "block";
-        $formModif = "none";
-        $contextBodyCreaEvent = "none";
-        $messageContexte = "";
-        $boutonRetourEvent = "none";
-        $idBarreBas = "existePas";
-        $titreCarteEvent = "Création d'événement";
-        $valueDateEvent = $valueLieuEvent = $valueNomEvent = $valueProgramme = "";
+        $pageEvent                  = "none";
+        $pageAccueil                = "none";
+        $afficherliste              = "none";
+        $formCreation               = "block";
+        $formModif                  = "none";
+        $contextBodyCreaEvent       = "none";
+        $messageContexte            = "";
+        $boutonRetourEvent          = "none";
+        $idBarreBas                 = "existePas";
+        $titreCarteEvent            = "Création d'événement";
+        $valueDateEvent             = "";
+        $valueLieuEvent             = "";
+        $valueNomEvent              = "";
+        $valueProgramme             = "";
 
         //? Variable partie Users
-        $pageUsers = "none";
-        $listeUsers = "none";
-        $formModifUser = "none";
-        $formUserCr = "block";
-        $boutonRetourUser = "none";
-        $adminUser = 0;
-        $contextBodyCreaUser = "none";
-        $messageCreaUser = "";
-        $boutonRetourUser = "none";
-        $mdpValide = false;
-        $titreCarteUser = "Création d'un utilisateur";
-        $valueNomUser = $valuePrenomUser = $valueCourrielUser = $idUser = "";        
+        $pageUsers                  = "none";
+        $listeUsers                 = "none";
+        $formModifUser              = "none";
+        $formUserCr                 = "block";
+        $boutonRetourUser           = "none";
+        $adminUser                  = 0;
+        $contextBodyCreaUser        = "none";
+        $messageCreaUser            = "";
+        $boutonRetourUser           = "none";
+        $mdpValide                  = false;
+        $titreCarteUser             = "Création d'un utilisateur";
+        $valueNomUser               = "";
+        $valuePrenomUser            = "";
+        $valueCourrielUser          = "";
+        $idUser                     = "";        
 
-        //? Variables des alertes
-        $stadeAlerte = "";
-        $Message = "";
 
         //? Variable pour le thème
-        if(!isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
+        if(!isset($_SESSION['style'])){
+            $_SESSION['style'] = 0;
+        }
+        else if(isset($_SESSION['style']) && $_SESSION['style'] == 0){
+            $_SESSION['style'] = 0;
+        }
+        else if(isset($_SESSION['style']) && $_SESSION['style'] == 1){
+            $_SESSION['style'] = 1;
+        }
+        else{
+            $_SESSION['style'] = 0;
+        }
+
+
+        if(isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
             $_SESSION['style'] == 0;
             $CardHeader = "bg-bleuCegep border-rouge-cegep";
             $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
@@ -106,53 +123,52 @@
         include("connBD.php");
 
         //? Page appelée en POST
-        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["courriel"]) && isset($_POST["mdp"])) {
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            $courriel = $_POST["courriel"];
-            $mdp = sha1($_POST["mdp"]);
+            if(isset($_POST["courriel"]) && isset($_POST["mdp"])) {
+                $courriel = test_input($_POST["courriel"]);
+                $mdp = sha1($_POST["mdp"]);
 
-            $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
-            $result = $conn->query($sql);            
-
-            if($result->num_rows > 0) {
-                $_SESSION["user"] = $courriel;
-                $formVisible = "none";
-                $barreMenuAdmin = "block";
-                $basAdmin = "block";
-
-                //* Regarde si l'utilisateur est admin ou non
                 $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
-                $result = $conn->query($sql);
+                $result = $conn->query($sql);            
 
                 if($result->num_rows > 0) {
-                    $messageErreurConnexion = "";
-                    while($row = $result->fetch_assoc()) {
-                        if($row["admin"] == 1) {
-                            $_SESSION["admin"] = true;
-                        }
-                        else {
-                            $_SESSION["admin"] = false;
+                    
+                    $_SESSION["user"]   = $courriel;    /* Définir le courriel de l'utilisateur en variable de session              */
+                    $formVisible        = "none";       /* Retire le formulaire de connexion (mets le display à none)               */
+                    $barreMenuAdmin     = "block";      /* Affiche la barre de boutons dans le haut de l'écran une fois connecté    */
+                    $basAdmin           = "block";      /* Mets le bas de l'écran "par défaut" qui contient un message de bienvenu  */
+    
+                    //* Regarde si l'utilisateur est admin ou non
+                    $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
+                    $result = $conn->query($sql);
+    
+                    if($result->num_rows > 0) {
+
+                        $messageErreurConnexion     = ""; /* Message qui serait affiché si un problème serait survenu */
+                        
+                        while($row = $result->fetch_assoc()) 
+                        {
+                            $_SESSION["admin"]  = $row["admin"]? true : false;
                         }
                     }
                 }
-            }
-            else {
-                $messageErreurConnexion = "Les identifiants fournis sont invalides";
-            }
-        }
-        else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){
+                else {
+                    $messageErreurConnexion     = "Les identifiants fournis sont invalides";
+                }
 
-            //SET permissions selon rôle
+            }
 
-            // Si un utilisateur (Admin ici) essaie de créer un événement 
-            // if(!isset($_SESSION["user"]) && $_SESSION["admin"] != true){
-            //     $formVisible = "flex";
-            //     $barreMenuAdmin = "none";
-            //  }
+
+            
+            
         }
+        else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION["user"])){}
         
         //? Page appelée en GET
         else if($_SERVER["REQUEST_METHOD"] == "GET"){
+
+            //? STYLE
 
             if(isset($_GET['style'])){
                 $style = $_GET['style'];
@@ -244,44 +260,64 @@
                 }
             }
 
-            if(isset($_SESSION["user"])){
-                $formVisible = "none";
-                $barreMenuAdmin = "block";
-                
-                if(isset($_GET["page"])){
-                    $page = $_GET["page"];
+            //? Est-ce qu'un utilisateur est connecté
 
-                    if($page == "events"){ include("pageEvent.php"); }
-                    else if($page == "users"){ include("pageUsers.php"); }
-                    else if($page == "accueil") {
-                        $pageAccueil = "block";
-                        $barreMenuAdmin = "block";
-                        $formCreation = "none";
+            if(isset($_SESSION["user"])){
+
+                $formVisible    = "none";      /* Retire le formulaire de connexion (mets le display à none)    */
+                $barreMenuAdmin = "block";     /* Affiche la barre de menu en haut de l'écran avec les options  */
+                
+                // SI admin.php?page=____
+                if(isset($_GET["page"])){
+
+                    $page = $_GET["page"];      /* Enregistrement de la page désirée dans une variable          */
+
+                    if($page == "events")
+                    { 
+                        include("pageEvent.php"); /* Code PHP pour la page (menu) événement */
                     }
-                    else if($page == "deco") {
-                        try{
+                    else if($page == "users")
+                    { 
+                        include("pageUsers.php"); /* Code PHP pour la page (menu) utilisateurs */
+                    }
+                    else if($page == "accueil") 
+                    {
+                        $pageAccueil    = "block";  /* Affiche le menu pour sélectionner l'événement et le groupe qui réponds */
+                        $barreMenuAdmin = "block";  /* Affiche la barre de menu dans le haut de l'écran */
+                        $formCreation   = "none";   /* Retire le formulaire de création  */
+                    }
+                    else if($page == "deco") 
+                    {
+                        try
+                        {
                             session_unset();
                             session_destroy();
+                            header("Location: admin.php");
                         }
-                        catch(Exception $e){
+                        catch(Exception $e)
+                        {
                             echo "Erreur lors de la déconnexion";
                         }
-                        header("Location: admin.php");
                     }
-                    else if($page == "themes") {
-                        // include("themes.php");
-                    }
-                    else if($page == "stats"){
-                        $formVisible = "none";
-                        $barreMenuAdmin = "none";                        
+                    // else if($page == "themes") {
+                    //     // include("themes.php");
+                    // }
+                    else if($page == "stats")
+                    {
+                        $formVisible    = "none";   /* Retire le formulaire de connexion */
+                        $barreMenuAdmin = "none";   /* Retire la barre de menu en haut de l'écran */                        
                     }
                 }
 
-                if(!isset($_GET["page"])){
+                // Si aucune page n'est mentionnée en GET
+                if(!isset($_GET["page"]))
+                {
                     $basAdmin = "block";
                 }
-                else{
-                    $basAdmin = "none";}                
+                else
+                {
+                    $basAdmin = "none";
+                }                
             }
             else{
                 if(isset($_GET["action"])){
@@ -460,6 +496,7 @@
  
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Réinitialisation Mot de passe   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    RETIRÉ - Pas accès au serveur WEB CTR   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formReinit; ?>">
         <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
@@ -1448,6 +1485,21 @@
         </div>                                          
     </div>                                            
 
+
+
+<?php
+
+    // FONCTION
+
+    function test_input($data){
+        $data = trim($data);
+        $data = addslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
+?>
     <script src="js/bootstrap.js"></script>
     <script src="js/scriptPerso.js"></script>
 </body>
