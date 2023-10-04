@@ -49,10 +49,14 @@
 /* Image en background */
 .background1{
     background-image: url("../img/background.png");
-    background-color: #DFCCE4;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
 .background2{
     background-image: url("../img/backgroundEmp.png");
-    background-color: #092D74;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
