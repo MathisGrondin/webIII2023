@@ -1485,6 +1485,21 @@
         </div>                                          
     </div>                                            
 
+
+
+<?php
+
+    // FONCTION
+
+    function test_input($data){
+        $data = trim($data);
+        $data = addslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+
+?>
     <script src="js/bootstrap.js"></script>
     <script src="js/scriptPerso.js"></script>
 </body>
