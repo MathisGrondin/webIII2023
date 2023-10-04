@@ -18,49 +18,66 @@
 
     //! Variables 
         //? Variables globales
-        $formVisible = "flex";
-        $formMDPVisible = "none";
-        $barreMenuAdmin = "none";
-        $basAdmin = "none";
-        $messageErreurConnexion = "";
-        $erreur = "";
-        $formReinit = "none";
-        $etapeReinit = "Envoyer";
-        $idReinit = "";
+        $formVisible                = "flex";
+        $formMDPVisible             = "none";
+        $barreMenuAdmin             = "none";
+        $basAdmin                   = "none";
+        $messageErreurConnexion     = "";
+        $erreur                     = "";
+        $formReinit                 = "none";
+        $etapeReinit                = "Envoyer";
+        $idReinit                   = "";
 
         //? Variables partie Événements
-        $pageEvent = "none";
-        $pageAccueil = "none";
-        $afficherliste = "none";
-        $formCreation = "block";
-        $formModif = "none";
-        $contextBodyCreaEvent = "none";
-        $messageContexte = "";
-        $boutonRetourEvent = "none";
-        $idBarreBas = "existePas";
-        $titreCarteEvent = "Création d'événement";
-        $valueDateEvent = $valueLieuEvent = $valueNomEvent = $valueProgramme = "";
+        $pageEvent                  = "none";
+        $pageAccueil                = "none";
+        $afficherliste              = "none";
+        $formCreation               = "block";
+        $formModif                  = "none";
+        $contextBodyCreaEvent       = "none";
+        $messageContexte            = "";
+        $boutonRetourEvent          = "none";
+        $idBarreBas                 = "existePas";
+        $titreCarteEvent            = "Création d'événement";
+        $valueDateEvent             = "";
+        $valueLieuEvent             = "";
+        $valueNomEvent              = "";
+        $valueProgramme             = "";
 
         //? Variable partie Users
-        $pageUsers = "none";
-        $listeUsers = "none";
-        $formModifUser = "none";
-        $formUserCr = "block";
-        $boutonRetourUser = "none";
-        $adminUser = 0;
-        $contextBodyCreaUser = "none";
-        $messageCreaUser = "";
-        $boutonRetourUser = "none";
-        $mdpValide = false;
-        $titreCarteUser = "Création d'un utilisateur";
-        $valueNomUser = $valuePrenomUser = $valueCourrielUser = $idUser = "";        
+        $pageUsers                  = "none";
+        $listeUsers                 = "none";
+        $formModifUser              = "none";
+        $formUserCr                 = "block";
+        $boutonRetourUser           = "none";
+        $adminUser                  = 0;
+        $contextBodyCreaUser        = "none";
+        $messageCreaUser            = "";
+        $boutonRetourUser           = "none";
+        $mdpValide                  = false;
+        $titreCarteUser             = "Création d'un utilisateur";
+        $valueNomUser               = "";
+        $valuePrenomUser            = "";
+        $valueCourrielUser          = "";
+        $idUser                     = "";        
 
-        //? Variables des alertes
-        $stadeAlerte = "";
-        $Message = "";
 
         //? Variable pour le thème
-        if(!isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
+        if(!isset($_SESSION['style'])){
+            $_SESSION['style'] = 0;
+        }
+        else if(isset($_SESSION['style']) && $_SESSION['style'] == 0){
+            $_SESSION['style'] = 0;
+        }
+        else if(isset($_SESSION['style']) && $_SESSION['style'] == 1){
+            $_SESSION['style'] = 1;
+        }
+        else{
+            $_SESSION['style'] = 0;
+        }
+
+
+        if(isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
             $_SESSION['style'] == 0;
             $CardHeader = "bg-bleuCegep border-rouge-cegep";
             $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
@@ -460,6 +477,7 @@
  
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    Réinitialisation Mot de passe   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
+    <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤    RETIRÉ - Pas accès au serveur WEB CTR   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <div class="container-fluid h-100 w-100 justify-content-center align-items-center p-0 m-0 <?php echo $Background; ?>" style="display: <?php echo $formReinit; ?>">
         <form method="post" action="mdpOublie.php" class="w-25 d-flex align-items-center justify-content-center">
