@@ -82,22 +82,22 @@
         }
         else if ($_SESSION['style'] == 1){
             $_SESSION['style'] == 1;
-            $CardHeader = "bgLilasCegep border-rouge-cegep";
-            $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
-            $CardFooter = "bgLilasCegep border-rouge-cegep";
-            $Table = "fontCegep lilasCegep";
-            $TableBorder = "text-center border-bottom border-light";
-            $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
-            $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
-            $BtnA = "btn bg-bleuCegep border-rouge-cegep";
-            $TextBtnA = "fontCegep fw-bold lilasCegep";
-            $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
-            $TextCardBody = "lilasCegep fw-bold fontCegep";
-            $TextErreur = "rougeCegep fw-bold fontCegep";
-            $Label = "fontCegep lilasCegep fw-bold fs-6";
-            $borderInput = "rounded text-center border-lilas-cegep";
-            $borderImg = "rounded border-lilas-cegep";
-            $BarreAdmin = "bgLilasCegep";
+            $CardHeader = "bg-rougeCegep border-bleuCegep";
+            $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+            $CardFooter = "bg-rougeCegep border-bleuCegep";
+            $Table = "fontCegep bleuCegep";
+            $TableBorder = "text-center border-bottom border-danger";
+            $Bouton = "bgLilasCegep border-bleuCegep rounded";
+            $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+            $BtnA = "btn bgLilasCegep border-bleuCegep";
+            $TextBtnA = "fontCegep fw-bold bleuCegep";
+            $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+            $TextCardBody = "rougeCegep fw-bold fontCegep";
+            $TextErreur = "rougeOrangeCegep fw-bold fontCegep";
+            $Label = "fontCegep rougeCegep fw-bold fs-6";
+            $borderInput = "rounded text-center border-bleuCegep";
+            $borderImg = "rounded border-rouge-cegep";
+            $BarreAdmin = "bg-rougeCegep";
             $Background = "background2";
         } 
 
@@ -179,22 +179,22 @@
                 }
                 else if ($style == 1){
                     $_SESSION['style'] = 1;
-                    $CardHeader = "bgLilasCegep border-rouge-cegep";
-                    $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
-                    $CardFooter = "bgLilasCegep border-rouge-cegep";
-                    $Table = "fontCegep lilasCegep";
-                    $TableBorder = "text-center border-bottom border-light";
-                    $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
-                    $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
-                    $BtnA = "btn bg-bleuCegep border-rouge-cegep";
-                    $TextBtnA = "fontCegep fw-bold lilasCegep";
-                    $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
-                    $TextCardBody = "lilasCegep fw-bold fontCegep";
-                    $TextErreur = "rougeCegep fw-bold fontCegep";
-                    $Label = "fontCegep lilasCegep fw-bold fs-6";
-                    $borderInput = "rounded text-center border-lilas-cegep";
-                    $borderImg = "rounded border-lilas-cegep";
-                    $BarreAdmin = "bgLilasCegep";
+                    $CardHeader = "bg-rougeCegep border-bleuCegep";
+                    $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bg-rougeCegep border-bleuCegep";
+                    $Table = "fontCegep bleuCegep";
+                    $TableBorder = "text-center border-bottom border-danger";
+                    $Bouton = "bgLilasCegep border-bleuCegep rounded";
+                    $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+                    $BtnA = "btn bgLilasCegep border-bleuCegep";
+                    $TextBtnA = "fontCegep fw-bold bleuCegep";
+                    $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "rougeCegep fw-bold fontCegep";
+                    $TextErreur = "rougeOrangeCegep fw-bold fontCegep";
+                    $Label = "fontCegep rougeCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-bleuCegep";
+                    $borderImg = "rounded border-rouge-cegep";
+                    $BarreAdmin = "bg-rougeCegep";
                     $Background = "background2";
                 }
             }
@@ -224,22 +224,22 @@
                 }
                 else if ($_SESSION['style'] == 1){
                     $_SESSION['style'] = 1;
-                    $CardHeader = "bgLilasCegep border-rouge-cegep";
-                    $CardBody = "bg-bleuCegep border-bleuCegep border-top-0 border-bottom-0";
-                    $CardFooter = "bgLilasCegep border-rouge-cegep";
-                    $Table = "fontCegep lilasCegep";
-                    $TableBorder = "text-center border-bottom border-light";
-                    $Bouton = "bg-bleuCegep border-rouge-cegep rounded";
-                    $TextBouton = "fontCegep lilasCegep fw-bold fs-4";
-                    $BtnA = "btn bg-bleuCegep border-rouge-cegep";
-                    $TextBtnA = "fontCegep fw-bold lilasCegep";
-                    $TextCardHeader = "bleuCegep fw-bold text-center fontCegep";
-                    $TextCardBody = "lilasCegep fw-bold fontCegep";
-                    $TextErreur = "rougeCegep fw-bold fontCegep";
-                    $Label = "fontCegep lilasCegep fw-bold fs-6";
-                    $borderInput = "rounded text-center border-lilas-cegep";
-                    $borderImg = "rounded border-lilas-cegep";
-                    $BarreAdmin = "bgLilasCegep";
+                    $CardHeader = "bg-rougeCegep border-bleuCegep";
+                    $CardBody = "bgLilasCegep border-bleuCegep border-top-0 border-bottom-0";
+                    $CardFooter = "bg-rougeCegep border-bleuCegep";
+                    $Table = "fontCegep bleuCegep";
+                    $TableBorder = "text-center border-bottom border-danger";
+                    $Bouton = "bgLilasCegep border-bleuCegep rounded";
+                    $TextBouton = "fontCegep bleuCegep fw-bold fs-4";
+                    $BtnA = "btn bgLilasCegep border-bleuCegep";
+                    $TextBtnA = "fontCegep fw-bold bleuCegep";
+                    $TextCardHeader = "lilasCegep fw-bold text-center fontCegep";
+                    $TextCardBody = "rougeCegep fw-bold fontCegep";
+                    $TextErreur = "rougeOrangeCegep fw-bold fontCegep";
+                    $Label = "fontCegep rougeCegep fw-bold fs-6";
+                    $borderInput = "rounded text-center border-bleuCegep";
+                    $borderImg = "rounded border-rouge-cegep";
+                    $BarreAdmin = "bg-rougeCegep";
                     $Background = "background2";
                 }
             }
@@ -1429,7 +1429,7 @@
                             <div class="col-6 d-flex justify-content-center align-items-center">
                                 <a href="admin.php?style=0" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
                                     <img src="icones/theme.png" alt="Theme bleu">                       
-                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème bleu</span>
+                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème Cégep</span>
                                 </a>
                             </div>  
 
@@ -1437,7 +1437,7 @@
                             <div class="col-6 d-flex justify-content-center align-items-center">
                                 <a href="admin.php?style=1" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
                                     <img src="icones/theme.png" alt="Theme lilas">                       
-                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème lilas</span>
+                                    <span class="fs-4 <?php echo $TextBtnA; ?>">Thème Diablos</span>
                                 </a>
                             </div>  
 
