@@ -61,7 +61,6 @@
         $valueCourrielUser          = "";
         $idUser                     = "";        
 
-
         //? Variable pour le thème
         if(!isset($_SESSION['style'])){
             $_SESSION['style'] = 0;
@@ -75,7 +74,6 @@
         else{
             $_SESSION['style'] = 0;
         }
-
 
         if(isset($_SESSION['style'] )|| $_SESSION['style'] == 0){
             $_SESSION['style'] == 0;
@@ -126,7 +124,9 @@
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if(isset($_POST["courriel"]) && isset($_POST["mdp"])) {
-                $courriel = test_input($_POST["courriel"]);
+                
+                $courriel = $_POST["courriel"];
+                //!$courriel = test_input($_POST["courriel"]);
                 $mdp = sha1($_POST["mdp"]);
 
                 $sql = "SELECT * FROM users WHERE email = '$courriel' AND MDP = '$mdp'";
@@ -565,7 +565,7 @@
                     <a href="admin.php?page=users" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/user.png" alt="Utilisateurs" class=" p-0 m-0 icone-menu">
+                                <img src="icones/user.png" alt="Utilisateurs" class="p-0 m-0 icone-menu">
                                 <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Utilisateurs</h5>
                             </div>
                         </div>
@@ -577,7 +577,7 @@
                     <a href="statistiques.php" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/stats.png" alt="Statistiques" class=" p-0 m-0 icone-menu">
+                                <img src="icones/stats.png" alt="Statistiques" class="p-0 m-0 icone-menu">
                                 <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Statistiques</h5>
                             </div>
                         </div>
@@ -589,7 +589,7 @@
                     <a href="admin.php?page=accueil" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/votes.png" alt="Votes" class=" p-0 m-0 icone-menu">
+                                <img src="icones/votes.png" alt="Votes" class="p-0 m-0 icone-menu">
                                 <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Page de votes</h5>
                             </div>
                         </div>
@@ -601,7 +601,7 @@
                     <a href="admin.php?page=deco" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/deconnexion.png" alt="Deconnexion" class=" p-0 m-0 icone-menu">
+                                <img src="icones/deconnexion.png" alt="Deconnexion" class="p-0 m-0 icone-menu">
                                 <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Déconnexion</h5>
                             </div>
                         </div>
@@ -613,7 +613,7 @@
                     <a href="admin.php?page=themes" class="<?php echo $BtnA; ?>">
                         <div class="row ">
                             <div class="col-12 d-flex justify-content-evenly align-items-center flex-row ">
-                                <img src="icones/theme.png" alt="Theme" class=" p-0 m-0 icone-menu">
+                                <img src="icones/theme.png" alt="Theme" class="p-0 m-0 icone-menu">
                                 <h5 class="p-0 m-0 <?php echo $TextBtnA; ?>">Thèmes</h5>
                             </div>
                         </div>
@@ -919,12 +919,12 @@
 
                         <!-- Bouton Retour --> 
                             <div class="col-4 d-flex justify-content-center">
-                                <button type="reset" class="p-0 m-0 w-100 <?php echo $Bouton; ?>">
+                                <a href="admin.php?page=events&action=consulter" class="w-100 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <img src="icones/retour.png" alt="annuler" style="width: 60px; height: 60px">
-                                        <span class="<?php echo $TextBouton; ?>">Retour</span>
-                                    </div>
-                                </button>
+                                        <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px;">
+                                        <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
+                                    </div>        
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -1220,7 +1220,7 @@
                             </div>       
                             
                             <div class="col-4 d-flex justify-content-center">
-                                <a href="admin.php?page=users" class="w-100 m-0 p-0 <?php echo $BtnA; ?>">
+                                <a href="admin.php?page=users&action=consulter" class="w-100 m-0 p-0 <?php echo $BtnA; ?>">
                                     <div class="d-flex justify-content-center align-items-center">
                                         <img src="icones/retour.png" alt="retour" style="width: 60px; height: 60px;">
                                         <span class="fs-4 <?php echo $TextBtnA; ?>">Retour</span>
@@ -1451,10 +1451,10 @@
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <img src="img/background.png" alt="Theme 1" style="width:400px; height:300px;" class="<?php echo $borderImg; ?>">
+                                    <img src="img/themeCegep.png" alt="Theme 1" style="width:375px; height:225px;" class="<?php echo $borderImg; ?>">
                                 </div>
                                 <div class="col-6 d-flex align-items-center justify-content-center">
-                                    <img src="img/backgroundEmp.png" alt="Theme 2" style="width:400px; height:300px;" class="<?php echo $borderImg; ?>">
+                                    <img src="img/themeDiablos.png" alt="Theme 2" style="width:375px; height:225px;" class="<?php echo $borderImg; ?>">
                                 </div>
                             </div>                   
                         </div>
@@ -1465,7 +1465,7 @@
                             <!-- Theme 1 - theme bleu -->
                             <div class="col-6 d-flex justify-content-center align-items-center">
                                 <a href="admin.php?style=0" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
-                                    <img src="icones/theme.png" alt="Theme bleu">                       
+                                    <img src="icones/CegepLogo.png" alt="Theme bleu">                       
                                     <span class="fs-4 <?php echo $TextBtnA; ?>">Thème Cégep</span>
                                 </a>
                             </div>  
@@ -1473,7 +1473,7 @@
                             <!-- Theme 2 - theme lilas -->
                             <div class="col-6 d-flex justify-content-center align-items-center">
                                 <a href="admin.php?style=1" class="w-75 m-0 p-0 d-flex justify-content-center align-items-center <?php echo $BtnA; ?>">
-                                    <img src="icones/theme.png" alt="Theme lilas">                       
+                                    <img src="icones/DiablosLogo.png" alt="Theme lilas">                       
                                     <span class="fs-4 <?php echo $TextBtnA; ?>">Thème Diablos</span>
                                 </a>
                             </div>  
@@ -1491,12 +1491,12 @@
 
     // FONCTION
 
-    function test_input($data){
-        $data = trim($data);
-        $data = addslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    //function test_input($data){
+       // $data = trim($data);
+       // $data = addslashes($data);
+       // $data = htmlspecialchars($data);
+       // return $data;
+  //  }
 
 
 ?>

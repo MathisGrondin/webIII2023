@@ -19,6 +19,7 @@
             $CardFooter = "bg-bleuCegep border-rouge-cegep";
 
             $Table = "fontCegep bleuCegep";
+            $TableStats = "fontCegep py-3 lilasCegep";
 
             $Bouton = "bgLilasCegep border-rouge-cegep rounded";
             $TextBouton = "fontCegep bleuCegep fw-bold fs-4";

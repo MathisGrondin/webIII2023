@@ -3,20 +3,6 @@ html, body{
     overflow: hidden;
 }
 
-.contStats{
-    background-image: url("../img/background.png");
-}
-
-.icons{
-    height: 60px;
-    width: auto;
-}
-
-.iconsAvis{
-    height: 80px;
-    width: auto;
-}
-
 #bodyStats{
     height: 100%;
     overflow-y: scroll;

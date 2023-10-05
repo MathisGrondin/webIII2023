@@ -48,14 +48,14 @@
 
 /* Image en background */
 .background1{
-    background-image: url("../img/background.png");
+    background-image: url("../img/bg_cegep.png");
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
 }
 
 .background2{
-    background-image: url("../img/backgroundEmp.png");
+    background-image: url("../img/bg_diablos.png");
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;

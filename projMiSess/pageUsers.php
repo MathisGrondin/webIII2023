@@ -98,10 +98,10 @@
 
                 if($result->num_rows > 0){
                     while($row = $result->fetch_assoc()){
-                        $valuenomUser = $row["nom"];
-                        $valueprenomUser = $row["prenom"];
-                        $valueCourrielUser = $row["email"];
                         $idUser = $row["id"];
+                        $valueNomUser = $row["nom"];
+                        $valuePrenomUser = $row["prenom"];
+                        $valueCourrielUser = $row["email"];
                     }
                 }
             }
