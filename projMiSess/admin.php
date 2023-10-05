@@ -7,10 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicons/favicon-admin.png" type="image/x-icon">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
     <link rel="stylesheet" href="css/styleco.css">
-    <title>Connexion admin</title>
+    <title>Page admin</title>
 </head>
 
 <body>

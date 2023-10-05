@@ -42,6 +42,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicons/favicon-votes.png" type="image/x-icon">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleIndex.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
@@ -49,17 +52,18 @@
 </head>
 <body>
     <!-- Carte principale -->
-
-
-
     <div class="container-fluid" id="conteneurCarte" style='background-image: url("img/<?php echo $backgroundURL; ?>.png"); height: 100vh; width: 100vw;'>
         <div class="row d-flex justify-content-center align-items-center" id="rowCarte" style='background-image: url("img/<?php echo $backgroundURL; ?>.png"); height: 100vh; width: 100vw;'>
             <div class="offset col-xl-2 col-m-2"></div>
             <div class="col-xl-8 col- col-m-8 col-12">
                 <div class="card border-bleuCegep">
+
+                <!-- Entete -->
                     <div class="card-header bg bg-bleuCegep">
                         <h1 class="fontCegep lilasCegep text-center fw-bold">Appréciation de l'événement</h1>
                     </div>
+
+                <!-- Partie de votes -->
                     <div class="card-body bg bgLilasCegep">
                         <div class="row text-center my-5" style="display: <?php echo $voirBoutons; ?>">
                             <div class="offset col-1"></div>
@@ -74,7 +78,6 @@
                             </div>
 
                             <div class="offset col-2"></div>
-
                             <div class="col-2">
                                 <a href="add.php?addN=2" class="btn btn-warning w-100 h-100 border border-3 border-light">
                                     <div class="d-flex justify-content-between flex-column w-100 h-100">
@@ -83,7 +86,6 @@
                                     </div>
                                 </a>
                             </div>
-
                             <div class="offset col-2"></div>
 
                             <div class="col-2">
@@ -97,15 +99,21 @@
 
                             <div class="offset col-1"></div>
                         </div>
+
+                    <!-- Message de confirmation du vote  -->
                         <div class="row text-center my-5" style="display: <?php echo $messageConfirm; ?>">
                             <div class="col-xl-12 col-12">
                                 <h4><?php echo $resultAjout; ?></h4>
                             </div>
                         </div>
+
                     </div>
+
+                <!-- Pied de page -->
                     <div class="card-footer bg bg-bleuCegep py-4 text-center d-flex justify-content-center align-content-center">
                         <h4 class="fontCegep lilasCegep p-0 m-0 fw-bold fs-2"><?php echo $_SESSION["event"]; ?> | <?php if($_SESSION["type"] == "etudiant"){echo "Étudiants";}else if($_SESSION["type"] == "employeur"){echo "Employeurs";} ?></h4>
                     </div>
+
                 </div>
             </div>
             <div class="offset col-xl-2 col-m-2"></div>

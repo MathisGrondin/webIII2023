@@ -11,6 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicons/favicon-stats.png" type="image/x-icon">
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/styleStats.css">
     <link rel="stylesheet" href="css/cegepCSS.css">
@@ -82,6 +85,7 @@
         //? Connexion à la BD
         include 'connBD.php';
 
+        //? Changement de thème
         if(isset($_GET['style'])){
             $style = $_GET['style'];
             
@@ -238,7 +242,8 @@
                             </table> 
                         </div>                               
                     </div>
-
+                
+                <!-- Bas de page et bouton retour -->
                     <div class="card-footer d-flex justify-content-center align-items-center <?php echo $CardFooter; ?>">
                         <div class="col-4 d-flex justify-content-center">
                             <a href="admin.php" class="m-0 p-0 w-75 <?php echo $BtnA; ?>">
