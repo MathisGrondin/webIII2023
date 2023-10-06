@@ -1510,7 +1510,11 @@ session_start();
                                             $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
-                                                    echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                    ?>
+
+                                                    <option value="<?php echo $row["nom"]; ?>"><?php echo $row["nom"]; ?></option>
+                                                    <?php
+                                                    // echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
                                                 }
                                             } else {
                                                 echo "<option value=''>Aucun événement</option>";

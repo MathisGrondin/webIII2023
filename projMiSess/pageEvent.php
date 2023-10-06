@@ -18,7 +18,14 @@
         $programme3  = test_input($_POST["programmeModif3"]);
         $idEvent    = test_input($_POST["idEventModif"]);
 
-        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent))
+        $nomEvent   = test_input($nomEvent);
+        $dateEvent  = test_input($dateEvent);
+        $lieuEvent  = test_input($lieuEvent);
+        $programme  = test_input($programme);
+        $idEvent    = test_input($idEvent);
+
+
+        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent) || empty($programme))
         {
             if(!empty($idEvent))
             {
@@ -153,14 +160,15 @@ else
                 $formCreation       = "none";
                 $idEvent            = $_GET["id"];
 
-                $sql    = "DELETE FROM evenements WHERE id = $idEvent";
-                $result = $conn->query($sql);
-
-                if ($result == TRUE) {
+                try{
+                    $sql    = "DELETE FROM evenements WHERE id = $idEvent";
+                    $result = $conn->query($sql);
                     header("Location: admin.php?page=events&state=20");
-                } else {
+                }
+                catch (Exception $e){
                     header("Location: admin.php?page=events&state=21");
                 }
+                
 
                 $conn->close();
             }
@@ -238,6 +246,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Événement modifié avec succès";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 11 : 
@@ -249,6 +258,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Erreur lors de la modification de l'événement";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 12 : 
@@ -260,6 +270,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Merci de remplir tous les champs";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 20 : 
@@ -271,6 +282,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Événement supprimé avec succès";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 21 : 
@@ -282,8 +294,8 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Erreur lors de la suppression de l'événement";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
-
             }
         }
     }

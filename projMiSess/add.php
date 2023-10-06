@@ -24,6 +24,7 @@
             $addN = $_GET["addN"];
             $event = $_SESSION["event"];
             $type = $_SESSION["type"];
+            $event = test_input($event);
 
             // Connexion à la BD
             include("connBD.php");
@@ -155,4 +156,12 @@
             header("Location: index.php");
         }
     }
+
+    function test_input($data){
+        $data = trim($data);
+        $data = addslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    
 ?>
