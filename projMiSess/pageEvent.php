@@ -241,7 +241,7 @@ else
                         $formCreation           = "none";
                         $formModif              = "none";
                         $contextBodyCreaEvent   = "flex";
-                        $messageContexte        = "AHHHHHH !";
+                        $messageContexte        = "Événement supprimé avec succès";
                         retourPage("events", $tempsAttente);
                         break;
                     }
