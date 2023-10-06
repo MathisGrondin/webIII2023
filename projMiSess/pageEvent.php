@@ -121,14 +121,15 @@ else
                 $formCreation       = "none";
                 $idEvent            = $_GET["id"];
 
-                $sql    = "DELETE FROM evenements WHERE id = $idEvent";
-                $result = $conn->query($sql);
-
-                if ($result == TRUE) {
+                try{
+                    $sql    = "DELETE FROM evenements WHERE id = $idEvent";
+                    $result = $conn->query($sql);
                     header("Location: admin.php?page=events&state=20");
-                } else {
+                }
+                catch (Exception $e){
                     header("Location: admin.php?page=events&state=21");
                 }
+                
 
                 $conn->close();
             }
