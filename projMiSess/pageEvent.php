@@ -124,7 +124,7 @@ else
                 try{
                     $sql    = "DELETE FROM evenements WHERE id = $idEvent";
                     $result = $conn->query($sql);
-                    header("Location: admin.php?page=events&state=20");
+                    header("Location: admin.php?page=events&state=25");
                 }
                 catch (Exception $e){
                     header("Location: admin.php?page=events&state=21");
@@ -207,6 +207,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Événement modifié avec succès";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 11 : 
@@ -218,6 +219,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Erreur lors de la modification de l'événement";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 12 : 
@@ -229,6 +231,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Merci de remplir tous les champs";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 20 : 
@@ -240,6 +243,7 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "AHHHHHH !";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
 
                 case 21 : 
@@ -251,8 +255,8 @@ else
                         $contextBodyCreaEvent   = "flex";
                         $messageContexte        = "Erreur lors de la suppression de l'événement";
                         retourPage("events", $tempsAttente);
+                        break;
                     }
-
             }
         }
     }
