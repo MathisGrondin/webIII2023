@@ -50,7 +50,7 @@
     <link rel="stylesheet" href="css/cegepCSS.css">
     <title>Formulaire satisfaction</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <!-- Carte principale -->
     <div class="container-fluid" id="conteneurCarte" style='background-image: url("img/<?php echo $backgroundURL; ?>.png"); height: 100vh; width: 100vw;'>
         <div class="row d-flex justify-content-center align-items-center" id="rowCarte" style='background-image: url("img/<?php echo $backgroundURL; ?>.png"); height: 100vh; width: 100vw;'>
