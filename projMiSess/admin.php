@@ -1349,7 +1349,7 @@ session_start();
                                                 while ($row = $result->fetch_assoc()) {
                                                     ?>
 
-                                                    <option value="<?php echo $row["id"]; ?>"><?php echo $row["nom"]; ?></option>
+                                                    <option value="<?php echo $row["nom"]; ?>"><?php echo $row["nom"]; ?></option>
                                                     <?php
                                                     // echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
                                                 }
