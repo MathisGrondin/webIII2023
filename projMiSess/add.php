@@ -24,7 +24,7 @@
             $addN = $_GET["addN"];
             $event = $_SESSION["event"];
             $type = $_SESSION["type"];
-
+            $event = test_input($event);
             // Connexion à la BD
             include("connBD.php");
                 
@@ -35,7 +35,7 @@
                             case 1 : 
                                 {
                                     // Récupération du nombre d'aimé de l'événement
-                                        /* Requête SQL                          */ $sql         = "SELECT nbAimeEtu FROM evenements WHERE nom = '$event'";
+                                        /* Requête SQL                          */ $sql         = "SELECT nbAimeEtu FROM evenements WHERE nom = $event";
                                         /* Envoi requête                        */ $result      = $conn->query($sql);
                                         /* Récupération des résultats           */ $row         = $result->fetch_assoc();
                                         /* Variable du résultat (nombreLike)    */ $nbAimeEtu   = $row["nbAimeEtu"];
