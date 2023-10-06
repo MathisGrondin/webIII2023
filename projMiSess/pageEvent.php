@@ -14,6 +14,8 @@
         $dateEvent  = test_input($_POST["dateEventModif"]);
         $lieuEvent  = test_input($_POST["lieuEventModif"]);
         $programme  = test_input($_POST["programmeModif"]);
+        $programme2  = test_input($_POST["programmeModif2"]);
+        $programme3  = test_input($_POST["programmeModif3"]);
         $idEvent    = test_input($_POST["idEventModif"]);
 
         if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent))
@@ -35,11 +37,20 @@
         }
         else
         {            
+            if($programme2 != "aucun" || $programme2 != ""){
+                $programme = $programme . " | " . $programme2;
+            }
+            if($programme3 != "aucun" || $programme3 != ""){
+                $programme = $programme .  " | " . $programme3;
+            }
+
+
+            
             $sql = "UPDATE evenements SET nom = '$nomEvent', lieu = '$lieuEvent', date = '$dateEvent', programme = '$programme' WHERE id = $idEvent";
 
             $result = $conn->query($sql);
 
-            if ($result === TRUE) {
+            if ($result == TRUE) {
                 header("Location: admin.php?page=events&state=10");
             } else {
                 header("Location: admin.php?page=events&state=11");
@@ -108,7 +119,28 @@ else
                         $valueNomEvent  = $row["nom"];
                         $valueDateEvent = $row["date"];
                         $valueLieuEvent = $row["lieu"];
-                        $valueProgramme = $row["programme"];
+                        $valueProgrammeModif = explode(" | ", $row["programme"]);
+                        $nbProgs = count($valueProgrammeModif);
+
+                        switch ($nbProgs) {
+                            case 1:
+                                $valueProgrammeModif1   = $valueProgrammeModif[0];
+                                break;
+                            case 2:
+                                $valueProgrammeModif1   = $valueProgrammeModif[0];
+                                $valueProgrammeModif2   = $valueProgrammeModif[1];
+                                break;
+                            case 3:
+                                $valueProgrammeModif1   = $valueProgrammeModif[0];
+                                $valueProgrammeModif2   = $valueProgrammeModif[1];
+                                $valueProgrammeModif3   = $valueProgrammeModif[2];
+                                break;
+                            default:
+                                $valueProgrammeModif1   = $valueProgrammeModif[0];
+                                break;
+                        }
+
+
                         $idEvent        = $row["id"];
                     }
                 }

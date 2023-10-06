@@ -46,7 +46,12 @@ session_start();
     $valueDateEvent             = "";
     $valueLieuEvent             = "";
     $valueNomEvent              = "";
-    $valueProgramme             = "";
+    $valueProgrammeModif1       = "";
+    $valueProgrammeModif2       = "";
+    $valueProgrammeModif3       = "";
+    $rowPModif1                 = false;
+    $rowPModif2                 = false;
+    $rowPModif3                 = false;
 
     //? Variable partie Users
     $pageUsers                  = "none";
@@ -842,25 +847,181 @@ session_start();
                                     <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueNomEvent; ?>" required>
                                 </div>
                             </div>
-                            <div class="row d-flex align-items-center">
+
+                            <!-- Premier choix de programme (name=programmeModif) -->
+
+                            <?php
+
+                                // changement d'affichage dépendamment du nombre de programmes
+
+                                // $valueProgrammeModif = explode(" | ", $valueProgramme);
+
+                                // $nbProgs = count($valueProgrammeModif);
+
+                                // switch ($nbProgs) {
+                                //     case 1:
+                                //         $rowPModif1 = true;
+                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
+                                //         $valueProgrammeModif2 = "Choisir un programme (Facultatif)";
+                                //         $valueProgrammeModif3 = "Choisir un programme (Facultatif)";
+                                //         break;
+
+                                //     case 2:
+                                //         $rowPModif1 = true;
+                                //         $rowPModif2 = true;
+                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
+                                //         $valueProgrammeModif2 = $valueProgrammeModif[1];
+                                //         $valueProgrammeModif3 = "Choisir un programme (Facultatif)";
+                                //         break;
+
+                                //     case 3:
+                                //         $rowPModif1 = true;
+                                //         $rowPModif2 = true;
+                                //         $rowPModif3 = true;
+                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
+                                //         $valueProgrammeModif2 = $valueProgrammeModif[1];
+                                //         $valueProgrammeModif3 = $valueProgrammeModif[2];
+                                //         break;
+
+                                //     default:
+                                //         $rowPModif1 = true;
+                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
+                                //         break;
+                                // }
+
+
+
+
+                            ?>
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <label for="programmeModif" class="<?php echo $Label; ?>">Programme</label>
+                                    </div>
+
+                                    <div class="col-8">
+                                        <select name="programmeModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgrammeModif1; ?>" required>
+                                            <?php
+                                            $sql = "SELECT * FROM programmes";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    ?>
+
+                                                    <option value="<?php echo $row["nom"]; ?>" <?php echo $row["nom"] == $valueProgrammeModif1 ? "selected" : ""; ?>><?php echo $row["nom"]; ?></option>
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                echo "<option value=''>Aucun programme</option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                            <!-- Autre programme 1-->
+                                <div class="row align-items-center dispNone" id="inputNouvProgModif">
+                                    <div class="col-4">
+                                        <label for="programmeAjoutModif" class="<?php echo $Label; ?>">Programme #1 à ajouter</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" name="programmeAjoutModif" id="progAjoutModif" class="form-control <?php echo $borderInput; ?>">
+                                    </div>
+                                </div>
+
+                            <!-- Deuxième choix de programme (name = programme2) -->
+                            <div class="row align-items-center">
                                 <div class="col-4">
-                                    <label for="programme" class="<?php echo $Label; ?>">Programme</label>
+                                    <label for="programmeModif2" class="<?php echo $Label; ?>">Programme #2</label>
                                 </div>
                                 <div class="col-8">
-                                    <select name="programmeModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgramme; ?>" required>
+                                    <select name="programmeModif2" id="selectProgModif2" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgrammeModif2; ?>">
                                         <?php
+
                                         $sql = "SELECT * FROM programmes";
                                         $result = $conn->query($sql);
 
+                                        if($valueProgrammeModif2 == "Choisir un programme (Facultatif)" || $valueProgrammeModif2 == "")
+                                        {
+                                            $valueProgrammeModif2 = "Choisir un programme (Facultatif)";
+                                            echo "<option value='aucun' selected disabled>". $valueProgrammeModif2 . "</option>";
+                                        }
+
                                         if ($result->num_rows > 0) {
                                             while ($row = $result->fetch_assoc()) {
-                                                echo "<option value='" . $row["nom"] . "'>" . $row["nom"] . "</option>";
+                                                ?>
+
+                                                <option value="<?php echo $row["nom"]; ?>" <?php echo $row["nom"] == $valueProgrammeModif2 ? "selected" : ""; ?>><?php echo $row["nom"]; ?></option>
+
+                                                <?php
+
                                             }
                                         } else {
                                             echo "<option value=''>Aucun programme</option>";
                                         }
                                         ?>
+                                        <option value="ajout">Ajouter un programme</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <!-- Autre programme 2-->
+                            <div class="row align-items-center dispNone" id="inputNouvProgModif2">
+                                <div class="col-4">
+                                    <label for="programmeAjoutModif2" class="<?php echo $Label; ?>">Programme #2 à ajouter</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="programmeAjoutModif2" id="progAjoutModif2" class="form-control <?php echo $borderInput; ?>">
+                                </div>
+                            </div>
+
+                            <!-- Troisième choix de programme (name = programme3) -->
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <label for="programmeModif3" class="<?php echo $Label; ?>">Programme #3</label>
+                                </div>
+                                <div class="col-8">
+                                    <select name="programmeModif3" id="selectProgModif3" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueProgrammeModif3; ?>">
+                                        <?php
+
+                                        $sql = "SELECT * FROM programmes";
+                                        $result = $conn->query($sql);
+
+                                        if($valueProgrammeModif3 == "Choisir un programme (Facultatif)" || $valueProgrammeModif3 == "")
+                                        {
+                                            $valueProgrammeModif3 = "Choisir un programme (Facultatif)";
+                                            echo "<option value='aucun' selected disabled>". $valueProgrammeModif3 . "</option>";
+                                        }
+
+                                        if ($result->num_rows > 0) {
+                                            while ($row = $result->fetch_assoc()) 
+                                            {
+                                                ?>
+
+                                                <option value="<?php echo $row["nom"]; ?>" <?php echo $row["nom"] == $valueProgrammeModif3 && $valueProgrammeModif3 != "" ? "selected" : ""; ?>><?php echo $row["nom"]; ?></option>
+
+                                                <?php
+                                            }
+                                        } else {
+                                            echo "<option value=''>Aucun programme</option>";
+                                        }
+                                        ?>
+                                        <option value="ajout">Ajouter un programme</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Autre programme 3-->
+                            <div class="row align-items-center dispNone" id="inputNouvProgModif3">
+                                <div class="col-4">
+                                    <label for="programmeAjoutModif3" class="<?php echo $Label; ?>">Programme #3 à ajouter</label>
+                                </div>
+                                <div class="col-8">
+                                    <input type="text" name="programmeAjoutModif3" id="progAjoutModif3" class="form-control <?php echo $borderInput; ?>">
                                 </div>
                             </div>
                         </div>
@@ -950,13 +1111,15 @@ session_start();
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         if ($_SESSION["admin"] == true) {
+
+                                            $programmes = str_replace(" | ", ",<br>", $row["programme"]);
                                 ?>
                                             <tr class="<?php echo $TableBorder; ?>">
                                                 <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
                                                 <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
                                                 <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
                                                 <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
+                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $programmes ?></td>
 
 
                                                 <td>

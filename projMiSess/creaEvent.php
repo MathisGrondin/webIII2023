@@ -76,7 +76,7 @@
                             $prog2 = $prog2 . $nomProg2;
 
                         // ajout du programme dans le string pour la BD
-                            $prog1 = $prog1 . ", " . $nomProg2;
+                            $prog1 = $prog1 . " | " . $nomProg2;
                     }
                     else if($_POST["programme2"] != "aucun" && $_POST["programme2"] != "ajout"){
                         $idProg2 = $_POST["programme2"];
@@ -87,7 +87,7 @@
                         $prog2 = test_input($row["nom"]);
 
                         // ajout du programme dans le string pour la BD
-                            $prog1 = $prog1 . ", " . $prog2;
+                            $prog1 = $prog1 . " | " . $prog2;
                     }
                     else{
                         $prog2 = "aucun";
@@ -111,7 +111,7 @@
                             $prog3 = $prog3 . $nomProg3;
 
                         // ajout du programme dans le string pour la BD
-                            $prog1 = $prog1 . ", " . $nomProg3;
+                            $prog1 = $prog1 . " | " . $nomProg3;
                     }
                     else if($_POST["programme3"] != "aucun" && $_POST["programme3"] != "ajout"){
                         $idProg3 = $_POST["programme3"];
@@ -122,7 +122,7 @@
                         $prog3 = test_input($row["nom"]);
 
                         // ajout du programme dans le string pour la BD
-                            $prog1 = $prog1 . ", " . $prog3;
+                            $prog1 = $prog1 . " | " . $prog3;
                     }
                     else{
                         $prog3 = "aucun";
