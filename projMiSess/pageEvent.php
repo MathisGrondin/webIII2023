@@ -124,7 +124,7 @@ else
                 try{
                     $sql    = "DELETE FROM evenements WHERE id = $idEvent";
                     $result = $conn->query($sql);
-                    header("Location: admin.php?page=events&state=25");
+                    header("Location: admin.php?page=events&state=20");
                 }
                 catch (Exception $e){
                     header("Location: admin.php?page=events&state=21");
