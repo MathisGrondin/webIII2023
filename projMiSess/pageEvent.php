@@ -10,13 +10,20 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $nomEvent   = test_input($_POST["nomEventModif"]);
-        $dateEvent  = test_input($_POST["dateEventModif"]);
-        $lieuEvent  = test_input($_POST["lieuEventModif"]);
-        $programme  = test_input($_POST["programmeModif"]);
-        $idEvent    = test_input($_POST["idEventModif"]);
+        $nomEvent   = $_POST["nomEventModif"];
+        $dateEvent  = $_POST["dateEventModif"];
+        $lieuEvent  = $_POST["lieuEventModif"];
+        $programme  = $_POST["programmeModif"];
+        $idEvent    = $_POST["idEventModif"];
 
-        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent))
+        $nomEvent   = test_input($nomEvent);
+        $dateEvent  = test_input($dateEvent);
+        $lieuEvent  = test_input($lieuEvent);
+        $programme  = test_input($programme);
+        $idEvent    = test_input($idEvent);
+
+
+        if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent) || empty($programme))
         {
             if(!empty($idEvent))
             {
