@@ -18,11 +18,7 @@
         $programme3  = test_input($_POST["programmeModif3"]);
         $idEvent    = test_input($_POST["idEventModif"]);
 
-        $nomEvent   = test_input($nomEvent);
-        $dateEvent  = test_input($dateEvent);
-        $lieuEvent  = test_input($lieuEvent);
-        $programme  = test_input($programme);
-        $idEvent    = test_input($idEvent);
+
 
 
         if(empty($nomEvent) || empty($dateEvent) || empty($lieuEvent) || empty($idEvent) || empty($programme))
@@ -44,10 +40,10 @@
         }
         else
         {            
-            if($programme2 != "aucun" || $programme2 != ""){
+            if($programme2 != "aucun" && $programme2 != ""){
                 $programme = $programme . " | " . $programme2;
             }
-            if($programme3 != "aucun" || $programme3 != ""){
+            if($programme3 != "aucun" && $programme3 != ""){
                 $programme = $programme .  " | " . $programme3;
             }
 
@@ -101,9 +97,13 @@ else
             if($action == "consulter") 
             {
                 $pageEvent              = "block";
-                $afficherliste          = "block";
-                $titreCarteEvent        = "Liste des événements";
+                $afficherliste          = "flex";
+                // $titreCarteEvent        = "Liste des événements";
                 $boutonRetourEvent      = "flex";
+                $cardListeEvents        = "flex";
+                $cardCreaEvent          = "none";
+                $cardFooterListe        = "none";
+                $cardFooterCrea         = "none";
                 $formCreation           = "none";               
             }
             else if($action == "Modifier") {
@@ -114,6 +114,9 @@ else
                 $formCreation       = "none";
                 $formModif          = "block";
                 $idEvent            = $_GET["id"];
+                $cardListeEvents    = "none";
+                $cardCreaEvent      = "flex";
+                $cardFooterListe    = "none";
                 
                 
                 $sql    = "SELECT * FROM evenements WHERE id = $idEvent";

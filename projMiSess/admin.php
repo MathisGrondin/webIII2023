@@ -31,6 +31,8 @@ session_start();
     $formReinit                 = "none";
     $etapeReinit                = "Envoyer";
     $idReinit                   = "";
+    $cardListeEvents            = "none";
+    $cardCreaEvent              = "flex";
 
     //? Variables partie Événements
     $pageEvent                  = "none";
@@ -628,11 +630,11 @@ session_start();
     <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ -->
     <div class="container-fluid h-100 w-100 <?php echo $Background; ?>" style="display: <?php echo $pageEvent; ?>">
         <div class="row h-100 w-100 d-flex justify-content-center align-items-center" id="rowEvent">
-            <div class="col-xl-6 h-75 d-flex align-items-center">
+            <div class="col-xl-6 h-75 w-100 d-flex align-items-center justify-content-center">
 
                 <!-- ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤   Création d'un événement   ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤ ¤  -->
-                <!-- Entete -->
-                <div class="card h-75 w-100">
+                <!-- Carte ajout et contexte -->
+                <div class="card h-75 w-50" style="display: <?php echo $cardCreaEvent; ?>">
                     <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
                         <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
                         <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier"><?php echo $titreCarteEvent; ?></h3>
@@ -643,7 +645,7 @@ session_start();
                         <div class="card-body h-100 w-100 d-flex flex-column justify-content-evenly <?php echo $CardBody; ?>">
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
+                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="date" name="dateEvent" class="form-control <?php echo $borderInput; ?>" required>
@@ -651,7 +653,7 @@ session_start();
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
+                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" name="lieuEvent" class="form-control <?php echo $borderInput; ?>" required>
@@ -659,7 +661,7 @@ session_start();
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
+                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" name="nomEvent" class="form-control <?php echo $borderInput; ?>" required>
@@ -669,7 +671,7 @@ session_start();
                             <!-- Premier choix de programme (name=programme1) -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme" class="<?php echo $Label; ?>">Programme #1</label>
+                                    <label for="programme" class="<?php echo $Label; ?>">Programme #1 <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <select name="programme" id="selectProg1" class="form-control <?php echo $borderInput; ?>" required>
@@ -694,7 +696,7 @@ session_start();
                             <!-- Autre programme 1-->
                             <div class="row align-items-center dispNone" id="inputNouvProg">
                                 <div class="col-4">
-                                    <label for="programmeAjout" class="<?php echo $Label; ?>">Programme #1 à ajouter</label>
+                                    <label for="programmeAjout" class="<?php echo $Label; ?>">Programme #1 à ajouter  <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" name="programmeAjout" id="progAjout" class="form-control <?php echo $borderInput; ?>">
@@ -704,7 +706,7 @@ session_start();
                             <!-- Deuxième choix de programme (name = programme2) -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme2" class="<?php echo $Label; ?>">Programme #2 (facultatif)</label>
+                                    <label for="programme2" class="<?php echo $Label; ?>">Programme #2</label>
                                 </div>
                                 <div class="col-8">
                                     <select name="programme2" id="selectProg2" class="form-control <?php echo $borderInput; ?>">
@@ -740,7 +742,7 @@ session_start();
                             <!-- Troisième choix de programme (name = programme3) -->
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="programme3" class="<?php echo $Label; ?>">Programme #3 (facultatif)</label>
+                                    <label for="programme3" class="<?php echo $Label; ?>">Programme #3</label>
                                 </div>
                                 <div class="col-8">
                                     <select name="programme3" id="selectProg3" class="form-control <?php echo $borderInput; ?>">
@@ -825,7 +827,7 @@ session_start();
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date</label>
+                                    <label for="dateEvent" class="<?php echo $Label; ?>">Date <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="date" name="dateEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueDateEvent; ?>" required>
@@ -833,7 +835,7 @@ session_start();
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu</label>
+                                    <label for="lieuEvent" class="<?php echo $Label; ?>">Lieu <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" name="lieuEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueLieuEvent; ?>" required>
@@ -841,7 +843,7 @@ session_start();
                             </div>
                             <div class="row d-flex align-items-center">
                                 <div class="col-4">
-                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom</label>
+                                    <label for="nomEvent" class="<?php echo $Label; ?>">Nom <span style="color: red; font-size:1.4em ">*</span></label>
                                 </div>
                                 <div class="col-8">
                                     <input type="text" name="nomEventModif" class="form-control <?php echo $borderInput; ?>" value="<?php echo $valueNomEvent; ?>" required>
@@ -850,52 +852,9 @@ session_start();
 
                             <!-- Premier choix de programme (name=programmeModif) -->
 
-                            <?php
-
-                                // changement d'affichage dépendamment du nombre de programmes
-
-                                // $valueProgrammeModif = explode(" | ", $valueProgramme);
-
-                                // $nbProgs = count($valueProgrammeModif);
-
-                                // switch ($nbProgs) {
-                                //     case 1:
-                                //         $rowPModif1 = true;
-                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
-                                //         $valueProgrammeModif2 = "Choisir un programme (Facultatif)";
-                                //         $valueProgrammeModif3 = "Choisir un programme (Facultatif)";
-                                //         break;
-
-                                //     case 2:
-                                //         $rowPModif1 = true;
-                                //         $rowPModif2 = true;
-                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
-                                //         $valueProgrammeModif2 = $valueProgrammeModif[1];
-                                //         $valueProgrammeModif3 = "Choisir un programme (Facultatif)";
-                                //         break;
-
-                                //     case 3:
-                                //         $rowPModif1 = true;
-                                //         $rowPModif2 = true;
-                                //         $rowPModif3 = true;
-                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
-                                //         $valueProgrammeModif2 = $valueProgrammeModif[1];
-                                //         $valueProgrammeModif3 = $valueProgrammeModif[2];
-                                //         break;
-
-                                //     default:
-                                //         $rowPModif1 = true;
-                                //         $valueProgrammeModif1 = $valueProgrammeModif[0];
-                                //         break;
-                                // }
-
-
-
-
-                            ?>
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <label for="programmeModif" class="<?php echo $Label; ?>">Programme</label>
+                                        <label for="programmeModif" class="<?php echo $Label; ?>">Programme #1 <span style="color: red; font-size:1.4em ">*</span></label>
                                     </div>
 
                                     <div class="col-8">
@@ -1006,6 +965,7 @@ session_start();
 
                                                 <?php
                                             }
+                                            
                                         } else {
                                             echo "<option value=''>Aucun programme</option>";
                                         }
@@ -1068,108 +1028,125 @@ session_start();
                             <br>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Liste -->
-                    <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" style="display: <?php echo $afficherliste; ?>">
-                        <table class="w-100">
-                            <thead>
-                                <?php
-                                if ($_SESSION["admin"] == true) {
-                                ?>
+                <!-- Carte pour liste -->
+                <div class="card h-75 w-75" style="display: <?php echo $afficherliste; ?>">
 
-                                    <tr class="text-center">
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
-                                    </tr>
-
-                                <?php
-                                } else {
-                                ?>
-
-                                    <tr class="text-center">
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
-                                    </tr>
-
-                                <?php
-                                }
-                                ?>
-
-                            </thead>
-                            <tbody class="table-group-divider <?php echo $TableBorder; ?>">
-                                <?php
-                                $sql = "SELECT * FROM evenements";
-                                $result = $conn->query($sql);
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        if ($_SESSION["admin"] == true) {
-
-                                            $programmes = str_replace(" | ", ",<br>", $row["programme"]);
-                                ?>
-                                            <tr class="<?php echo $TableBorder; ?>">
-                                                <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $programmes ?></td>
-
-
-                                                <td>
-                                                    <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>'>
-                                                        <img src="icones/modifier.png">
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href='admin.php?page=events&action=Supprimer&id=<?php echo $row["id"] ?>'>
-                                                        <img src="icones/supprimer.png" class="icons">
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <tr class="<?php echo $TableBorder; ?>">
-                                                <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
-                                                <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["programme"]; ?></td>
-                                            </tr>
-                                <?php
-                                        }
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='5'>Aucun événement</td></tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <div class="card-header p-2 d-flex align-items-center justify-content-center <?php echo $CardHeader; ?>">
+                        <img src="icones/event.png" alt="crEvent" style="width: 60px; height: 60px;">
+                        <h3 class="p-0 m-0 <?php echo $TextCardHeader; ?>" id="titreCarteModifier">Liste des événements</h3>
                     </div>
 
-                    <!-- footer liste -->
-                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>" style="display : <?php echo $boutonRetourEvent; ?>">
+
+
+                    <div class="card-body h-25 listeOverflow <?php echo $CardBody; ?>" >
+                            <table class="w-100">
+                                <thead>
+                                    <?php
+                                    if ($_SESSION["admin"] == true) {
+                                    ?>
+
+                                        <tr class="text-center">
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
+                                            <!-- <th scope="col" class="fw-bold <?php /* echo $Table; */ ?>">Modifier</th> -->
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Options</th>
+                                        </tr>
+
+                                    <?php
+                                    } else {
+                                    ?>
+
+                                        <tr class="text-center">
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">#</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Nom</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Date</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Lieu</th>
+                                            <th scope="col" class="fw-bold <?php echo $Table; ?>">Programme</th>
+                                        </tr>
+
+                                    <?php
+                                    }
+                                    ?>
+
+                                </thead>
+                                <tbody class="table-group-divider <?php echo $TableBorder; ?>">
+                                    <?php
+                                    $sql = "SELECT * FROM evenements";
+                                    $result = $conn->query($sql);
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            if ($_SESSION["admin"] == true) {
+
+                                                $programmes = str_replace(" | ", ",<br>", $row["programme"]);
+                                    ?>
+                                                <tr class="<?php echo $TableBorder; ?>">
+                                                    <th scope="row" class="<?php echo $Table; ?> text-nowrap"><?php echo $row["id"]; ?></th>
+                                                    <td class="my-3 px-2 py-3 <?php echo $Table; ?> text-nowrap"><?php echo $row["nom"]; ?></td>
+                                                    <td class="my-3 px-2 py-3 <?php echo $Table; ?> text-nowrap"><?php echo $row["date"]; ?></td>
+                                                    <td class="my-3 px-2 py-3 <?php echo $Table; ?> text-nowrap"><?php echo $row["lieu"]; ?></td>
+                                                    <td class="my-3 px-2 py-3 <?php echo $Table; ?> text-nowrap"><?php echo $programmes ?></td>
+
+
+                                                    <td>
+                                                        <div class="d-flex align-items-center justify-content-evenly flex-column">
+                                                            <a href='admin.php?page=events&action=Modifier&id=<?php echo $row["id"] ?>' data-bs-custom-class="custom-tooltip" class="pb-2" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Modifier cet événement">
+                                                                <img src="icones/modifier.png" class="icons">
+                                                            </a>
+                                                            
+                                                            <a href='admin.php?page=events&action=Supprimer&id=<?php echo $row["id"] ?>' data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Supprimer l'événement">
+                                                                <img src="icones/supprimer.png" class="icons">
+                                                            </a>
+                                                        </div>
+
+
+                                                    </td>
+                                                    <!-- <td>
+                                                        <a href='admin.php?page=events&action=Supprimer&id=<?php /* echo $row["id"] */ ?>'>
+                                                            <img src="icones/supprimer.png" class="icons">
+                                                        </a>
+                                                    </td> -->
+                                                </tr>
+                                            <?php
+                                            } else {
+
+                                                $programmes = str_replace(" | ", ",<br>", $row["programme"]);
+                                            ?>
+
+                                                <tr class="<?php echo $TableBorder; ?>">
+                                                    <th scope="row" class="<?php echo $Table; ?>"><?php echo $row["id"]; ?></th>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["nom"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["date"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $row["lieu"]; ?></td>
+                                                    <td class="my-3 py-3 <?php echo $Table; ?>"><?php echo $programmes ?></td>
+                                                </tr>
+                                    <?php
+                                            }
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='5'>Aucun événement</td></tr>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                    </div>
+                
+                    <!-- Footer -->
+                    <div class="card-footer w-100 align-items-center justify-content-center <?php echo $CardFooter; ?>">
                         <div class="row d-flex align-items-center justify-content-center w-100">
                             <div class="col-4">
-                                <a href="admin.php?page=events" class="w-100 align-items-center justify-content-center <?php echo $BtnA; ?>" style="display : <?php if ($_SESSION["admin"] == true) {
-                                                                                                                                                                    echo "flex";
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo "none";
-                                                                                                                                                                }  ?> ">
+                                <a href="admin.php?page=events" class="w-100 align-items-center justify-content-center <?php echo $BtnA; ?>" style="display : <?php if ($_SESSION["admin"] == true) { echo "flex"; } else { echo "none"; }  ?> ">
                                     <img src="icones/retour.png" alt="annuler" style="width: 60px;">
                                     <span class="<?php echo $TextBtnA; ?>">Retour au formulaire</span>
                                 </a>
+                                
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -1227,7 +1204,7 @@ session_start();
                                     <label for="courriel" class="<?php echo $Label; ?>">Courriel du CTR</label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="courriel" class="form-control <?php echo $borderInput; ?>" required>
+                                    <input type="email" name="courriel" class="form-control <?php echo $borderInput; ?>" required>
                                 </div>
                             </div>
                             <div class="row d-flex align-items-center">
@@ -1388,8 +1365,7 @@ session_start();
                                     if ($_SESSION["admin"] == true) {
 
                                     ?>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Modifier</th>
-                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Supprimer</th>
+                                        <th scope="col" class="fw-bold <?php echo $Table; ?>">Options</th>
                                     <?php
 
                                     }
@@ -1413,14 +1389,19 @@ session_start();
                                                 <td class="<?php echo $Table; ?> my-3 py-3 fw-bold <?php echo $row["admin"] == 1 ? "rougeCegep" : "bleuCegep" ?>"><?php echo $row["admin"] == 1 ? "Administrateur" : "Utilisateur standard" ?></td>
                                                 <td class="<?php echo $Table; ?> my-3 py-3"><?php echo $row["email"] ?></td>
                                                 <td>
-                                                    <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>'>
-                                                        <img src="icones/modifier.png" class="icons">
-                                                    </a>
+                                                    <div class="d-flex justify-content-center align-items-center flex-column">
+                                                        <a href='admin.php?page=users&action=Modifier&id=<?php echo $row["id"] ?>' data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Modifier l'utilisateur" class="pb-2">
+                                                            <img src="icones/modifier.png" class="icons">
+                                                        </a>
+
+                                                        <a href='admin.php?page=users&action=Supprimer&id=<?php echo $row["id"] ?>' data-bs-custom-class="custom-tooltip" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Supprimer l'utilisateur">
+                                                            <img src="icones/supprimer.png" class="icons">
+                                                        </a>
+                                                    </div>
+                                                    
                                                 </td>
                                                 <td>
-                                                    <a href='admin.php?page=users&action=Supprimer&id=<?php echo $row["id"] ?>'>
-                                                        <img src="icones/supprimer.png" class="icons">
-                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
 
@@ -1630,8 +1611,9 @@ session_start();
 
 
     ?>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/scriptPerso.js"></script>
+    <script src="js/bootstrap.js"></script>
 </body>
 
 </html>
