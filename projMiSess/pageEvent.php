@@ -71,10 +71,11 @@ else
         //? il a accès à la liste des events seulement
 
         $pageEvent          = "block";
-        $afficherliste      = "block";
+        $afficherliste      = "flex";
         $titreCarteEvent      = "Liste des événements";
         $boutonRetourEvent  = "flex";
         $formCreation       = "none";
+        $cardCreaEvent      = "none";
     }
     else{
 
